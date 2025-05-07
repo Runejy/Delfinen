@@ -16,6 +16,6 @@ public class Trainer {
     }
 
     public void listOfTrainersEliteSwimmers(){
-
+//
     }
 }
