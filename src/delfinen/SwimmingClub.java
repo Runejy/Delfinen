@@ -3,6 +3,7 @@ package delfinen;
 public class SwimmingClub {
 
 
+
     public void listOfMembers(){
 
     }
