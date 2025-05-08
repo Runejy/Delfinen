@@ -9,14 +9,14 @@ public class Member {
     private static int idCounter = 0;
     private final int ID;
     private int age;
-    private char gender;
+    private String gender;
     private String mail;
     private MemberType memberType;
     private MemberActivity memberActivity;
     private TrainingType trainingType;
 
 
-    Member(String name, int age, char gender, String mail, MemberActivity memberActivity, MemberType memberType, TrainingType trainingType){
+    Member(String name, int age, String gender, String mail, MemberActivity memberActivity, MemberType memberType, TrainingType trainingType){
         idCounter++;
         ID = idCounter;
 
