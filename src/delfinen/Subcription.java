@@ -1,5 +1,8 @@
 package delfinen;
 
+import delfinen.Enums.MemberActivity;
+import delfinen.Enums.MemberType;
+
 public class Subcription {
     private double price;
     private boolean isPaid;
@@ -32,4 +35,13 @@ public class Subcription {
     public void updateMemberPayment(){
 
     }
-}
+//Regner pris for hvad medlemmet skal betale baseret på deres informationer.
+    public void calculatePrice(Member member){
+        if(member.getMemberActivity() == MemberActivity.PASSIVE) {
+            this.price = 500;
+        }else{
+            this.price = member.getMemberType().getPrice();
+            }
+        }
+    }
+

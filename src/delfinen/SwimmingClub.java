@@ -1,4 +1,5 @@
 package delfinen;
+
 import delfinen.Enums.MemberActivity;
 import delfinen.Enums.MemberType;
 import delfinen.Enums.TrainingType;
@@ -20,12 +21,26 @@ public class SwimmingClub {
         System.out.println();
 
         //REGISTER NAME
-        System.out.println("Enter members name: ");
-        String name = scanner.nextLine();
+        String name = "";
+        while (name.isBlank()) {
+            System.out.println("Enter members name: ");
+            name = scanner.nextLine();
+            if (name.isBlank()) {
+                System.out.println("Name cannot be empty");
+            }
+
+        }
 
         //REGISTER MAIL
-        System.out.println("Enter members email: " );
-        String mail = scanner.nextLine();
+        String mail = "";
+        while (mail.isBlank()) {
+            System.out.println("Enter members email: ");
+            mail = scanner.nextLine();
+            if(mail.isBlank()){
+                System.out.println("Email cannot be empty");
+            }
+        }
+
 
         //REGISTER AGE AND MEMBERTYPE BY AGE
         LocalDate birthDate = null;
@@ -39,6 +54,7 @@ public class SwimmingClub {
             }
         }
 
+        //Skal dette visse til formand når oprettelse dannes?
         MemberType memberType;
         int age = Period.between(birthDate, LocalDate.now()).getYears();
         if (age < 18) {
@@ -97,35 +113,35 @@ public class SwimmingClub {
             }
         }
         Member newMember = new Member(name, age, gender, mail, memberActivity, memberType, trainingType);
+
         System.out.println("New member has been added to the club.");
 
         //Her skal vi også tilføje den til LISTER
         //Add to list
         // (if trainingType == Competition) add to ELITE LIST
-    }
-
-
-
-
-        //maria was here
-    public void updateMember(){
 
 
     }
 
-    public void totalMembers(){
+
+    public void updateMember() {
+
 
     }
 
-    public void totalMembersByMemberType(){
+    public void totalMembers() {
 
     }
 
-    public void listOfTrainers(){
+    public void totalMembersByMemberType() {
 
     }
 
-    public void top5Swimmers(){
+    public void listOfTrainers() {
+
+    }
+
+    public void top5Swimmers() {
 
     }
 }
