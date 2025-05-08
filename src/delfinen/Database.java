@@ -44,13 +44,13 @@ public class Database {
 
                 String[] row = line.split(",");
 
-                System.out.printf("%-15s%2$-15s", row[0], "|");
-                System.out.printf("%-10s%2$s", row[1], "|");
-                System.out.printf("%-10s%2$s", row[2], "|");
-                System.out.printf("%-35s%2$s", row[3], "|");
-                System.out.printf("%-20s%2$s", row[4], "|");
-                System.out.printf("%-20s%2$s", row[5], "|");
-                System.out.printf("%-20s%2$s", row[6], "|");
+                System.out.printf("|%-15s", row[0]);
+                System.out.printf("|%-15s", row[1]);
+                System.out.printf("|%-15s", row[2]);
+                System.out.printf("|%-30s", row[3]);
+                System.out.printf("|%-20s", row[4]);
+                System.out.printf("|%-20s", row[5]);
+                System.out.printf("|%-20s", row[6]);
 
                 System.out.println();
             }
