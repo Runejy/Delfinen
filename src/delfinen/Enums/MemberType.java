@@ -3,7 +3,7 @@ package delfinen.Enums;
 public enum MemberType {
     JUNIOR(1000.0),
     SENIOR(1600.0),
-    RETIRERE(1600*0.75);
+    RETIREE(1600*0.75);
 
     private double price;
 
