@@ -43,9 +43,15 @@ public class Database {
             while((line = reader.readLine()) != null) {
 
                 String[] row = line.split(",");
-                for(String index : row) {
-                    System.out.printf("%-15s", index);
-                }
+
+                System.out.printf("%-15s%2$-15s", row[0], "|");
+                System.out.printf("%-10s%2$s", row[1], "|");
+                System.out.printf("%-10s%2$s", row[2], "|");
+                System.out.printf("%-35s%2$s", row[3], "|");
+                System.out.printf("%-20s%2$s", row[4], "|");
+                System.out.printf("%-20s%2$s", row[5], "|");
+                System.out.printf("%-20s%2$s", row[6], "|");
+
                 System.out.println();
             }
         }
