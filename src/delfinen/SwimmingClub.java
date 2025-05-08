@@ -3,6 +3,8 @@ import delfinen.Enums.MemberActivity;
 import delfinen.Enums.TrainingType;
 
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class SwimmingClub {
@@ -11,22 +13,59 @@ public class SwimmingClub {
 
 
     public void addNewMember() {
-        //REGISTER NAME
+        //START
         System.out.println("REGISTER NEW MEMBER");
         System.out.println("-------------------");
         System.out.println();
+
+        //REGISTER NAME
         System.out.println("Enter members name: ");
         String name = scanner.nextLine();
 
-        //REGISTER AGE
-        System.out.println("Enter members birth date: ");
-        // ENTER AGE BY LOCAL DATE???
+        //REGISTER MAIL
+        System.out.println("Enter members email: " );
+        String mail = scanner.nextLine();
+
+        //REGISTER AGE AND MEMBERTYPE BY AGE
+        LocalDate birthDate = null;
+        while (birthDate == null) {
+            System.out.println("Enter member's birth date (YYYY-MM-DD): ");
+            String birthDateInput = scanner.nextLine();
+            try {
+                birthDate = LocalDate.parse(birthDateInput);
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid date format. Please use yyyy-MM-dd.");
+            }
+        }
+
+        MemberType memberType;
+        int age = Period.between(birthDate, LocalDate.now()).getYears();
+        if (age < 18) {
+            memberType = MemberType.JUNIOR;
+        } else if (age >= 60) {
+            memberType = MemberType.RETIREE;
+        } else {
+            memberType = MemberType.SENIOR;
+        }
+
 
         //REGISTER GENDER
         String gender = null;
         while (gender == null) {
-        System.out.println("Enter members gender: (F for Female, M for Male, O for Other");
-        String gender = scanner.nextLine();
+            System.out.println("Enter members gender: (F for Female, M for Male, O for Other");
+            String genderInput = scanner.nextLine();
+
+            if (genderInput.equalsIgnoreCase("F")) {
+                gender = "Female";
+            } else if (genderInput.equalsIgnoreCase("M")) {
+                gender = "Male";
+            } else if (genderInput.equalsIgnoreCase("O")) {
+                gender = "Other";
+            } else {
+                System.out.println("Invalid input. Please enter F (female) or M (male) or O (other).");
+            }
+        }
+
 
         //REGISTER MEMBER ACTIVITY (ACTIVE OR PASSIVE)
         MemberActivity memberActivity = null;
@@ -56,6 +95,12 @@ public class SwimmingClub {
                 System.out.println("Invalid input. Please enter Y (yes) or N (no).");
             }
         }
+        Member newMember = new Member(name, age, gender, mail, memberActivity, memberType, trainingType);
+        System.out.println("New member has been added to the club.");
+
+        //Her skal vi også tilføje den til LISTER
+        //Add to list
+        // (if trainingType == Competition) add to ELITE LIST
     }
 
 
