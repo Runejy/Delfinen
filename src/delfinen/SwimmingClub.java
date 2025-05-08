@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class SwimmingClub {
 
     Scanner scanner = new Scanner(System.in);
-
+    Database database = new Database();
 
     public void addNewMember() {
         //START
@@ -96,7 +96,8 @@ public class SwimmingClub {
                 System.out.println("Invalid input. Please enter Y (yes) or N (no).");
             }
         }
-        Member newMember = new Member(name, age, gender, mail, memberActivity, memberType, trainingType);
+        Member newMember = new Member(name, age, gender, mail, memberActivity, trainingType);
+        database.inputNewMemberData(newMember);
         System.out.println("New member has been added to the club.");
 
         //Her skal vi også tilføje den til LISTER

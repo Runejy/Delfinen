@@ -16,7 +16,9 @@ public class Member {
     private TrainingType trainingType;
 
 
-    Member(String name, int age, String gender, String mail, MemberActivity memberActivity, MemberType memberType, TrainingType trainingType){
+
+
+    Member(String name, int age, String gender, String mail, MemberActivity memberActivity, TrainingType trainingType){
         idCounter++;
         ID = idCounter;
 
@@ -25,11 +27,72 @@ public class Member {
         this.mail = mail;
         this.gender = gender;
         this.memberActivity = memberActivity;
-        this.memberType = memberType;
         this.trainingType = trainingType;
+
+        if(age < 40){
+            this.memberType = MemberType.JUNIOR;
+        } else if (age < 60) {
+            this.memberType = MemberType.SENIOR;
+        } else {
+            this.memberType = MemberType.RETIREE;
+        }
 
         //sæt MemberType enum baseret på alder(age)
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public MemberType getMemberType() {
+        return memberType;
+    }
+
+    public void setMemberType(MemberType memberType) {
+        this.memberType = memberType;
+    }
+
+    public MemberActivity getMemberActivity() {
+        return memberActivity;
+    }
+
+    public void setMemberActivity(MemberActivity memberActivity) {
+        this.memberActivity = memberActivity;
+    }
+
+    public TrainingType getTrainingType() {
+        return trainingType;
+    }
+
+    public void setTrainingType(TrainingType trainingType) {
+        this.trainingType = trainingType;
+    }
 }
