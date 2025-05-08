@@ -1,5 +1,6 @@
 package delfinen;
 import delfinen.Enums.MemberActivity;
+import delfinen.Enums.MemberType;
 import delfinen.Enums.TrainingType;
 
 import java.time.LocalDate;
@@ -109,15 +110,7 @@ public class SwimmingClub {
         //maria was here
     public void updateMember(){
 
-    }
 
-    public void listOfMembers(){
-        String path = "";
-        String line;
-        try {
-            
-        }
-        }
     }
 
     public void totalMembers(){
