@@ -1,5 +1,9 @@
 package delfinen;
 
+import delfinen.Enums.MemberActivity;
+import delfinen.Enums.MemberType;
+import delfinen.Enums.TrainingType;
+
 public class EliteSwimmer extends Member{
     private String team;
 
@@ -7,8 +11,8 @@ public class EliteSwimmer extends Member{
 
     }
 
-    EliteSwimmer(String name, int age, String mail){
-        super(name, age, mail);
+    EliteSwimmer(String name, int age, String gender, String mail, MemberActivity memberActivity, MemberType memberType, TrainingType trainingType){
+        super(name, age, gender, mail, memberActivity, memberType, trainingType);
     }
 
     public void addTrainer(){
