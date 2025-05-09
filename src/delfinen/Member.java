@@ -107,4 +107,9 @@ public class Member {
     public void setTrainingType(TrainingType trainingType) {
         this.trainingType = trainingType;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

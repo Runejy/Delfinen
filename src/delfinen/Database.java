@@ -27,7 +27,6 @@ public class Database {
                             "," + newMember.getMemberType() +
                             "," + newMember.getTrainingType()
             );
-
             fileWriter.close();
         } catch(IOException e){
             System.out.println("IOException");
@@ -36,14 +35,24 @@ public class Database {
 
      ArrayList<Member> getMemberArrayList(){
         ArrayList<Member> memberList = new ArrayList<>();
-        Scanner fileReader = new Scanner(filePath);
+
+        try{
+            Scanner fileReader = new Scanner(new File(filePath));
 
             while(fileReader.hasNext()){
                 String[] rowData = fileReader.nextLine().split(",");
-                Member newMember = new Member(rowData[0],Integer.parseInt(rowData[1]),rowData[2],rowData[3],MemberActivity.valueOf(rowData[4].toUpperCase()),TrainingType.valueOf(rowData[6].toUpperCase()));
 
-                memberList.add(newMember);
+                if(rowData[1].matches("\\d+")){
+
+                    Member newMember = new Member(rowData[0],Integer.parseInt(rowData[1]),rowData[2],rowData[3],MemberActivity.valueOf(rowData[4].toUpperCase()),TrainingType.valueOf(rowData[6].toUpperCase()));
+
+                    memberList.add(newMember);
+                }
             }
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
         return memberList;
     }
 

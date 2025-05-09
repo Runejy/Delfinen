@@ -5,7 +5,7 @@ public class Menu {
         SwimmingClub delfinen = new SwimmingClub();
         Database database = new Database();
 
-        //System.out.println(delfinen.members);
+        System.out.println(delfinen.members.get(1).getGender());
 
     }
 }
