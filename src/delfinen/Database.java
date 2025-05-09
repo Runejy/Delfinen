@@ -61,7 +61,7 @@ public class Database {
         }
     }
 
-    //Metoden for at printe kune navne ud på svømmerne i klubben
+    //Metoden for at printe kun navne ud på svømmerne i klubben
     public void listOfMembers() {
         String line;
         try {

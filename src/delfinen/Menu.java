@@ -6,5 +6,7 @@ public class Menu {
         Database database = new Database();
 
         database.DatabaseOutput();
+
+        delfinen.addNewMember();
     }
 }

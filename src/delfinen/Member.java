@@ -29,12 +29,12 @@ public class Member {
         this.memberActivity = memberActivity;
         this.trainingType = trainingType;
 
-        if(age < 40){
+        if(age < 18){
             this.memberType = MemberType.JUNIOR;
-        } else if (age < 60) {
-            this.memberType = MemberType.SENIOR;
-        } else {
+        } else if (age >= 60) {
             this.memberType = MemberType.RETIREE;
+        } else {
+            this.memberType = MemberType.SENIOR;
         }
 
         //sæt MemberType enum baseret på alder(age)

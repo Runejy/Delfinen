@@ -6,17 +6,6 @@ public class Results {
     private int placement;
     private String competitionName;
 
-    private enum TrainingType{
-        TRAINING,
-        COMPETITION;
-    }
-
-    private enum Discipline{
-        FREESTYLE,
-        BACKSTROKE,
-        BREASTSTROKE,
-        BUTTERFLY;
-    }
 
     Results(String date, double time){
         this.date = date;

@@ -114,7 +114,18 @@ public class SwimmingClub {
         }
         Member newMember = new Member(name, age, gender, mail, memberActivity, trainingType);
         database.inputNewMemberData(newMember);
-        System.out.println("New member has been added to the club.");
+        System.out.println("=======================================");
+        System.out.println("   New Member Added to the Club");
+        System.out.println("=======================================");
+        System.out.printf ("%-20s: %s%n", "Name", name);
+        System.out.printf ("%-20s: %d%n", "Age", age);
+        System.out.printf ("%-20s: %s%n", "Gender", gender);
+        System.out.printf ("%-20s: %s%n", "Mail", mail);
+        System.out.printf ("%-20s: %s%n", "Member Type", memberType);
+        System.out.printf ("%-20s: %s%n", "Member Activity", memberActivity);
+        System.out.printf ("%-20s: %s%n", "Training Type", trainingType);
+        System.out.println("=======================================");
+
 
         //Her skal vi også tilføje den til LISTER
         //Add to list
@@ -122,9 +133,7 @@ public class SwimmingClub {
     }
 
 
-
-
-        //maria was here
+        //MARIA LAVER updateMEMBERs
     public void updateMember(){
 
 
