@@ -8,16 +8,9 @@ public class Database {
     FileWriter fileWriter;
     String filePath = "src/Files/database.csv";
 
-    Database(){
-        try{
-            fileWriter = new FileWriter(filePath, true);
-        } catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-
     void inputNewMemberData(Member newMember){
         try{
+            fileWriter = new FileWriter(filePath, true);
             fileWriter.write(
                         "\n" + newMember.getName() +
                             "," + newMember.getAge() +
