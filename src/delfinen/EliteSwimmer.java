@@ -11,8 +11,8 @@ public class EliteSwimmer extends Member{
 
     }
 
-    EliteSwimmer(String name, int age, String gender, String mail, MemberActivity memberActivity, TrainingType trainingType){
-        super(name, age, gender, mail, memberActivity, trainingType);
+    EliteSwimmer(int ID, String name, int age, String gender, String mail, MemberActivity memberActivity, TrainingType trainingType){
+        super(ID, name, age, gender, mail, memberActivity, trainingType);
     }
 
     public void addTrainer(){

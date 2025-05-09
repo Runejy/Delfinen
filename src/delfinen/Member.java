@@ -6,8 +6,7 @@ import delfinen.Enums.TrainingType;
 
 public class Member {
     private String name;
-    private static int idCounter = 0;
-    private final int ID;
+    private int ID;
     private int age;
     private String gender;
     private String mail;
@@ -18,9 +17,8 @@ public class Member {
 
 
 
-    Member(String name, int age, String gender, String mail, MemberActivity memberActivity, TrainingType trainingType){
-        idCounter++;
-        ID = idCounter;
+    Member(int ID, String name, int age, String gender, String mail, MemberActivity memberActivity, TrainingType trainingType){
+
 
         this.name = name;
         this.age = age;
@@ -28,6 +26,7 @@ public class Member {
         this.gender = gender;
         this.memberActivity = memberActivity;
         this.trainingType = trainingType;
+        this.ID = ID;
 
         if(age < 18){
             this.memberType = MemberType.JUNIOR;
@@ -106,6 +105,14 @@ public class Member {
 
     public void setTrainingType(TrainingType trainingType) {
         this.trainingType = trainingType;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     @Override

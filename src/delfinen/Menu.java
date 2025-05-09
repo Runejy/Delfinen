@@ -7,5 +7,7 @@ public class Menu {
 
         System.out.println(delfinen.members.get(1).getGender());
 
+        delfinen.updateMember();
+
     }
 }

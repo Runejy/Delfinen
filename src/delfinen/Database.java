@@ -19,7 +19,8 @@ public class Database {
         try{
             fileWriter = new FileWriter(filePath, true);
             fileWriter.write(
-                        "\n" + newMember.getName() +
+                        "\n" + newMember.getID() +
+                                "," + newMember.getName() +
                             "," + newMember.getAge() +
                             "," + newMember.getGender() +
                             "," + newMember.getMail() +
@@ -42,9 +43,9 @@ public class Database {
             while(fileReader.hasNext()){
                 String[] rowData = fileReader.nextLine().split(",");
 
-                if(rowData[1].matches("\\d+")){
+                if(rowData[0].matches("\\d+")){ //Tjekker udelukkende om rowData[1]/age består af ét eller flere cifre og ikke bogstaver
 
-                    Member newMember = new Member(rowData[0],Integer.parseInt(rowData[1]),rowData[2],rowData[3],MemberActivity.valueOf(rowData[4].toUpperCase()),TrainingType.valueOf(rowData[6].toUpperCase()));
+                    Member newMember = new Member(Integer.parseInt(rowData[0]), rowData[1],Integer.parseInt(rowData[2]),rowData[3],rowData[4],MemberActivity.valueOf(rowData[5].toUpperCase()),TrainingType.valueOf(rowData[7].toUpperCase()));
 
                     memberList.add(newMember);
                 }
@@ -54,6 +55,41 @@ public class Database {
         }
 
         return memberList;
+    }
+
+    ArrayList<Member> getEliteMemberArrayList(){
+        ArrayList<Member> eliteMemberList = new ArrayList<>();
+
+        try{
+            Scanner fileReader = new Scanner(new File(filePath));
+
+            //INDTIL VI KAN SLETTE I CVS FIL:
+            int lineCounter = 0;
+
+            while(fileReader.hasNext()){
+                String[] rowData = fileReader.nextLine().split(",");
+                lineCounter++;
+
+                // Spring de første 10 linjer over
+                if (lineCounter <= 10) {
+                    continue;
+                }
+
+
+                if(rowData[0].matches("\\d+")){ //Tjekker udelukkende om rowData[1]/age består af ét eller flere cifre og ikke bogstaver
+
+                    Member newMember = new Member(Integer.parseInt(rowData[0]), rowData[1],Integer.parseInt(rowData[2]),rowData[3],rowData[4],MemberActivity.valueOf(rowData[5].toUpperCase()),TrainingType.valueOf(rowData[7].toUpperCase()));
+
+                    if (newMember.getTrainingType() == TrainingType.COMPETITION) {
+                        eliteMemberList.add(newMember);
+                    }
+                }
+            }
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return eliteMemberList;
     }
 
     //Method to print out the userInputted members from database
@@ -73,6 +109,7 @@ public class Database {
                 System.out.printf("|%-20s", row[4]);
                 System.out.printf("|%-20s", row[5]);
                 System.out.printf("|%-20s", row[6]);
+                System.out.printf("|%-20s", row[7]);
 
                 System.out.println();
             }
