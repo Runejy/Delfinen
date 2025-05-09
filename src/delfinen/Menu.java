@@ -5,8 +5,7 @@ public class Menu {
         SwimmingClub delfinen = new SwimmingClub();
         Database database = new Database();
 
-        database.DatabaseOutput();
+        //System.out.println(delfinen.members);
 
-        delfinen.addNewMember();
     }
 }

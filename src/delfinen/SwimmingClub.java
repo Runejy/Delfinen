@@ -7,12 +7,14 @@ import delfinen.Enums.TrainingType;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SwimmingClub {
 
     Scanner scanner = new Scanner(System.in);
     Database database = new Database();
+    ArrayList<Member> members = database.getMemberArrayList();
 
     public void addNewMember() {
         //START
@@ -114,6 +116,7 @@ public class SwimmingClub {
         }
         Member newMember = new Member(name, age, gender, mail, memberActivity, trainingType);
         database.inputNewMemberData(newMember);
+
         System.out.println("=======================================");
         System.out.println("   New Member Added to the Club");
         System.out.println("=======================================");

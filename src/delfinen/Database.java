@@ -1,8 +1,15 @@
 package delfinen;
 
+import delfinen.Enums.TrainingType;
+import delfinen.Enums.MemberActivity;
+
 import java.io.*;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 
 public class Database {
     FileWriter fileWriter;
@@ -25,6 +32,19 @@ public class Database {
         } catch(IOException e){
             System.out.println("IOException");
         }
+    }
+
+     ArrayList<Member> getMemberArrayList(){
+        ArrayList<Member> memberList = new ArrayList<>();
+        Scanner fileReader = new Scanner(filePath);
+
+            while(fileReader.hasNext()){
+                String[] rowData = fileReader.nextLine().split(",");
+                Member newMember = new Member(rowData[0],Integer.parseInt(rowData[1]),rowData[2],rowData[3],MemberActivity.valueOf(rowData[4].toUpperCase()),TrainingType.valueOf(rowData[6].toUpperCase()));
+
+                memberList.add(newMember);
+            }
+        return memberList;
     }
 
     //Method to print out the userInputted members from database
