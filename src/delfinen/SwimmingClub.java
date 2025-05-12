@@ -1,4 +1,5 @@
 package delfinen;
+
 import delfinen.Enums.MemberActivity;
 import delfinen.Enums.MemberType;
 import delfinen.Enums.TrainingType;
@@ -6,26 +7,44 @@ import delfinen.Enums.TrainingType;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SwimmingClub {
 
     Scanner scanner = new Scanner(System.in);
+    Database database = new Database();
+    ArrayList<Member> members = database.getMemberArrayList();
+    ArrayList<Member> eliteMembers = database.getEliteMemberArrayList();
 
 
     public void addNewMember() {
         //START
-        System.out.println("REGISTER NEW MEMBER");
-        System.out.println("-------------------");
+        System.out.println("===================================");
+        System.out.println("         REGISTER NEW MEMBER");
+        System.out.println("===================================");
         System.out.println();
 
         //REGISTER NAME
-        System.out.println("Enter members name: ");
-        String name = scanner.nextLine();
+        String name = "";
+        while (name.isBlank()) {
+            System.out.println("Enter members name: ");
+            name = scanner.nextLine();
+            if (name.isBlank()) {
+                System.out.println("Name cannot be empty.");
+            }
+
+        }
 
         //REGISTER MAIL
-        System.out.println("Enter members email: " );
-        String mail = scanner.nextLine();
+        String mail = "";
+        while (mail.isBlank()) {
+            System.out.println("Enter members e-mail: ");
+            mail = scanner.nextLine();
+            if(mail.isBlank()){
+                System.out.println("E-mail cannot be empty.");
+            }
+        }
 
         //REGISTER AGE AND MEMBERTYPE BY AGE
         LocalDate birthDate = null;
@@ -49,7 +68,6 @@ public class SwimmingClub {
             memberType = MemberType.SENIOR;
         }
 
-
         //REGISTER GENDER
         String gender = null;
         while (gender == null) {
@@ -66,7 +84,6 @@ public class SwimmingClub {
                 System.out.println("Invalid input. Please enter F (female) or M (male) or O (other).");
             }
         }
-
 
         //REGISTER MEMBER ACTIVITY (ACTIVE OR PASSIVE)
         MemberActivity memberActivity = null;
@@ -96,21 +113,195 @@ public class SwimmingClub {
                 System.out.println("Invalid input. Please enter Y (yes) or N (no).");
             }
         }
-        Member newMember = new Member(name, age, gender, mail, memberActivity, memberType, trainingType);
-        System.out.println("New member has been added to the club.");
 
-        //Her skal vi også tilføje den til LISTER
-        //Add to list
-        // (if trainingType == Competition) add to ELITE LIST
+        //SETTER ID DEN KAN DOG IKKE BRUGS NÅR VI REMOVER MEDLEMMER! - SÅ MÅSKE VI ENTEN BARE SKAL FLYTTE?
+        int nextID = database.getMemberArrayList().size() + 1;
+
+        Member newMember = new Member(nextID, name, age, gender, mail, memberActivity, trainingType);
+        database.inputNewMemberData(newMember);
+        members.add(newMember);
+        if (trainingType == TrainingType.COMPETITION) {
+            eliteMembers.add(newMember);
+        }
+
+
+        System.out.println("=======================================");
+        System.out.println("   New Member Added to the Club");
+        System.out.println("=======================================");
+        System.out.printf ("%-20s: %s%n", "ID", nextID);
+        System.out.printf ("%-20s: %s%n", "Name", name);
+        System.out.printf ("%-20s: %d%n", "Age", age);
+        System.out.printf ("%-20s: %s%n", "Gender", gender);
+        System.out.printf ("%-20s: %s%n", "Mail", mail);
+        System.out.printf ("%-20s: %s%n", "Member Type", memberType);
+        System.out.printf ("%-20s: %s%n", "Member Activity", memberActivity);
+        System.out.printf ("%-20s: %s%n", "Training Type", trainingType);
+        System.out.println("=======================================");
+
     }
 
 
+    //MARIA
+    //Mangler en måde at opdatere CSV filen
+    public void updateMember() {
+        System.out.println("===================================");
+        System.out.println("         UPDATE MEMBER");
+        System.out.println("===================================");
+        System.out.print("Enter the ID of the member you want to update: ");
+        int inputID = scanner.nextInt();
+        scanner.nextLine();
+
+        Member member = null;
+        for (Member memberToUpdate : members) {
+            if (memberToUpdate.getID() == inputID) {
+                member = memberToUpdate;
+                break;
+            }
+        }
+
+        if (member == null) {
+            System.out.println("No member found with ID: " + inputID);
+            return;
+        }
 
 
-        //maria was here
-    public void updateMember(){
+        boolean updating = true;
+
+        while (updating) {
+            System.out.println();
+            System.out.println("===================================");
+            System.out.println("       SELECT WHAT TO UPDATE");
+            System.out.println("===================================");
+            System.out.println("1 - Name");
+            System.out.println("2 - Birth Date");
+            System.out.println("3 - Gender");
+            System.out.println("4 - Mail");
+            System.out.println("5 - Member Activity");
+            System.out.println("6 - Training Type");
+            System.out.println("7 - Remove Member");
+            System.out.println("8 - Back to Menu");
+            System.out.print("Enter choice (1–8): ");
 
 
+            //CHOOSE UPDATE ACTION
+            int updateChoice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (updateChoice) {
+                case 1 -> {
+                    System.out.println("Members name: " + member.getName());
+                    System.out.println("Enter new name: ");
+                    String newName = scanner.nextLine();
+                    member.setName(newName);
+                    System.out.println("Name has been updated!");
+                    System.out.println("Members name: " + newName);
+                }
+                case 2 -> {
+                    System.out.println("Enter new birth date (YYYY-MM-DD): ");
+                    String birthDateInput = scanner.nextLine();
+                    try {
+                        LocalDate birthDate = LocalDate.parse(birthDateInput);
+                        int age = Period.between(birthDate, LocalDate.now()).getYears();
+                        MemberType memberType;
+
+                        if (age < 18) {
+                            memberType = MemberType.JUNIOR;
+                        } else if (age >= 60) {
+                            memberType = MemberType.RETIREE;
+                        } else {
+                            memberType = MemberType.SENIOR;
+                        }
+                        member.setAge(age);
+                        System.out.println("Birth date has been updated!");
+                        System.out.println("Members birthday: " + birthDate);
+                        System.out.println("Members age: " + age);
+                        System.out.println("Member type: " + memberType);
+                    } catch (DateTimeParseException e) {
+                        System.out.println("Invalid date format. Please use yyyy-MM-dd.");
+                    }
+                }
+                case 3 -> {
+                    while (true) {
+                        System.out.println(member.getName() + " current gender: " + member.getGender());
+                        System.out.println("Enter members new gender: (F for Female, M for Male, O for Other");
+                        String genderInput = scanner.nextLine();
+
+                        switch (genderInput.toUpperCase()) {
+                            case "F" -> {
+                                member.setGender("Female");
+                                System.out.println("Gender updated to Female.");
+                                break;
+                            }
+                            case "M" -> {
+                                member.setGender("Male");
+                                System.out.println("Gender updated to Male.");
+                                break;
+                            }
+                            case "O" -> {
+                                member.setGender("Other");
+                                System.out.println("Gender updated to Other.");
+                                break;
+                            }
+                            default -> {
+                                    System.out.println("Invalid input. Use 'F' for Female, 'M' for Male, 'O' for Other");
+                                    continue;
+                            }
+
+                        }
+                        break;
+                    }
+                }
+                case 4 -> {
+                    String mail = "";
+                    while (mail.isBlank()) {
+                        System.out.println("Enter members e-mail: ");
+                        mail = scanner.nextLine();
+                        if (mail.isBlank()) {
+                            System.out.println("E-mail cannot be empty.");
+                        }
+                    }
+                    System.out.println("Mail has been updated to: " + member.getMail());
+                    member.setMail(mail);
+                }
+                case 5 -> {
+                    MemberActivity memberActivity = null;
+                    while (memberActivity == null) {
+                        System.out.println("Is member active or passive? Type A for Active or P for Passive.");
+                        String activityInput = scanner.nextLine();
+
+                        if (activityInput.equalsIgnoreCase("A")) {
+                            memberActivity = MemberActivity.ACTIVE;
+                        } else if (activityInput.equalsIgnoreCase("P")) {
+                            memberActivity = MemberActivity.PASSIVE;
+                        } else {
+                            System.out.println("Invalid input. Please enter A (active) or P (passive).");
+                        }
+                    }
+                    member.setMemberActivity(memberActivity);
+                }
+                case 6 -> {
+                    TrainingType trainingType = null;
+                    while (trainingType == null) {
+                        System.out.println("Is member an Elite swimmer? Type Y for Yes or N for No.");
+                        String trainingInput = scanner.nextLine();
+                        if (trainingInput.equalsIgnoreCase("Y")) {
+                            trainingType = TrainingType.COMPETITION;
+                        } else if (trainingInput.equalsIgnoreCase("N")) {
+                            trainingType = TrainingType.CASUAL;
+                        } else {
+                            System.out.println("Invalid input. Please enter Y (yes) or N (no).");
+                        }
+                    }
+                    member.setTrainingType(trainingType);
+                }
+                case 7 -> {
+                    System.out.println("REMOVE MEMBER????");
+                }
+                case 8 -> updating = false;
+                default -> System.out.println("Invalid choice. Please try again.");
+
+            }
+        }
     }
 
     public void totalMembers(){
