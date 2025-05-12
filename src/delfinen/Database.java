@@ -19,7 +19,7 @@ public class Database {
         try{
             fileWriter = new FileWriter(filePath, true);
             fileWriter.write(
-                        "\n" + newMember.getID() +
+                        "\n" + newMember.getPhoneNumber() +
                                 "," + newMember.getName() +
                             "," + newMember.getAge() +
                             "," + newMember.getGender() +
@@ -43,9 +43,9 @@ public class Database {
             while(fileReader.hasNext()){
                 String[] rowData = fileReader.nextLine().split(",");
 
-                if(rowData[0].matches("\\d+")){ //Tjekker udelukkende om rowData[1]/age består af ét eller flere cifre og ikke bogstaver
+                if(rowData[2].matches("\\d+")){ //Tjekker udelukkende om rowData[1]/age består af ét eller flere cifre og ikke bogstaver
 
-                    Member newMember = new Member(Integer.parseInt(rowData[0]), rowData[1],Integer.parseInt(rowData[2]),rowData[3],rowData[4],MemberActivity.valueOf(rowData[5].toUpperCase()),TrainingType.valueOf(rowData[7].toUpperCase()));
+                    Member newMember = new Member(rowData[0], rowData[1],Integer.parseInt(rowData[2]),rowData[3],rowData[4],MemberActivity.valueOf(rowData[5].toUpperCase()),TrainingType.valueOf(rowData[7].toUpperCase()));
 
                     memberList.add(newMember);
                 }
@@ -78,7 +78,7 @@ public class Database {
 
                 if(rowData[0].matches("\\d+")){ //Tjekker udelukkende om rowData[1]/age består af ét eller flere cifre og ikke bogstaver
 
-                    Member newMember = new Member(Integer.parseInt(rowData[0]), rowData[1],Integer.parseInt(rowData[2]),rowData[3],rowData[4],MemberActivity.valueOf(rowData[5].toUpperCase()),TrainingType.valueOf(rowData[7].toUpperCase()));
+                    Member newMember = new Member(rowData[0], rowData[1],Integer.parseInt(rowData[2]),rowData[3],rowData[4],MemberActivity.valueOf(rowData[5].toUpperCase()),TrainingType.valueOf(rowData[7].toUpperCase()));
 
                     if (newMember.getTrainingType() == TrainingType.COMPETITION) {
                         eliteMemberList.add(newMember);
