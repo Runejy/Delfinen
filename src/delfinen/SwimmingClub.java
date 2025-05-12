@@ -36,6 +36,16 @@ public class SwimmingClub {
 
         }
 
+        //REGISTER PHONENUMBER
+        String phoneNumber = "";
+        while (phoneNumber.isBlank()) {
+            System.out.println("Enter members phone number: ");
+            phoneNumber = scanner.nextLine();
+            if(phoneNumber.isBlank()){
+                System.out.println("E-mail cannot be empty.");
+            }
+        }
+
         //REGISTER MAIL
         String mail = "";
         while (mail.isBlank()) {
@@ -117,7 +127,7 @@ public class SwimmingClub {
         //SETTER ID DEN KAN DOG IKKE BRUGS NÅR VI REMOVER MEDLEMMER! - SÅ MÅSKE VI ENTEN BARE SKAL FLYTTE?
         int nextID = database.getMemberArrayList().size() + 1;
 
-        Member newMember = new Member(nextID, name, age, gender, mail, memberActivity, trainingType);
+        Member newMember = new Member(phoneNumber, name, age, gender, mail, memberActivity, trainingType);
         database.inputNewMemberData(newMember);
         members.add(newMember);
         if (trainingType == TrainingType.COMPETITION) {
@@ -147,20 +157,20 @@ public class SwimmingClub {
         System.out.println("===================================");
         System.out.println("         UPDATE MEMBER");
         System.out.println("===================================");
-        System.out.print("Enter the ID of the member you want to update: ");
-        int inputID = scanner.nextInt();
-        scanner.nextLine();
+        System.out.print("Enter the phone number of the member you want to update: ");
+        String inputphoneNumber = scanner.nextLine();
+
 
         Member member = null;
         for (Member memberToUpdate : members) {
-            if (memberToUpdate.getID() == inputID) {
+            if (memberToUpdate.getPhoneNumber().equalsIgnoreCase(inputphoneNumber)) {
                 member = memberToUpdate;
                 break;
             }
         }
 
         if (member == null) {
-            System.out.println("No member found with ID: " + inputID);
+            System.out.println("No member found with phone number: " + inputphoneNumber);
             return;
         }
 
@@ -176,11 +186,12 @@ public class SwimmingClub {
             System.out.println("2 - Birth Date");
             System.out.println("3 - Gender");
             System.out.println("4 - Mail");
-            System.out.println("5 - Member Activity");
-            System.out.println("6 - Training Type");
-            System.out.println("7 - Remove Member");
-            System.out.println("8 - Back to Menu");
-            System.out.print("Enter choice (1–8): ");
+            System.out.println("5 - Phone number");
+            System.out.println("6 - Member Activity");
+            System.out.println("7 - Training Type");
+            System.out.println("9 - Remove Member");
+            System.out.println("9 - Back to Menu");
+            System.out.print("Enter choice (1–9): ");
 
 
             //CHOOSE UPDATE ACTION
@@ -254,7 +265,8 @@ public class SwimmingClub {
                 case 4 -> {
                     String mail = "";
                     while (mail.isBlank()) {
-                        System.out.println("Enter members e-mail: ");
+                        System.out.println("Members current email: " + member.getMail());
+                        System.out.println("Enter members new e-mail: ");
                         mail = scanner.nextLine();
                         if (mail.isBlank()) {
                             System.out.println("E-mail cannot be empty.");
@@ -264,6 +276,24 @@ public class SwimmingClub {
                     member.setMail(mail);
                 }
                 case 5 -> {
+                    String phoneNumber = "";
+                    while (phoneNumber.isBlank()) {
+                        System.out.println("Members current phone number: " + member.getPhoneNumber());
+                        System.out.println("Enter members new phone number (8 digits): ");
+                        phoneNumber = scanner.nextLine();
+
+                        if (!phoneNumber.matches("\\d{8}")) {
+                            System.out.println("Invalid phone number. It must contain exactly 8 digits.");
+                        } else {
+                            break;
+                        }
+                    }
+                    member.setPhoneNumber(phoneNumber);
+                    System.out.println("Phone number has been updated to: " + member.getPhoneNumber());
+
+
+                }
+                case 6 -> {
                     MemberActivity memberActivity = null;
                     while (memberActivity == null) {
                         System.out.println("Is member active or passive? Type A for Active or P for Passive.");
@@ -279,7 +309,7 @@ public class SwimmingClub {
                     }
                     member.setMemberActivity(memberActivity);
                 }
-                case 6 -> {
+                case 7 -> {
                     TrainingType trainingType = null;
                     while (trainingType == null) {
                         System.out.println("Is member an Elite swimmer? Type Y for Yes or N for No.");
@@ -294,10 +324,10 @@ public class SwimmingClub {
                     }
                     member.setTrainingType(trainingType);
                 }
-                case 7 -> {
+                case 8 -> {
                     System.out.println("REMOVE MEMBER????");
                 }
-                case 8 -> updating = false;
+                case 9 -> updating = false;
                 default -> System.out.println("Invalid choice. Please try again.");
 
             }
