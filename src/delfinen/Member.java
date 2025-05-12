@@ -17,7 +17,7 @@ public class Member {
 
 
 
-    Member(String phoneNumber, String name, int age, String gender, String mail, MemberActivity memberActivity, TrainingType trainingType){
+    Member(String name, int age, String gender, String mail,String phoneNumber, MemberActivity memberActivity, TrainingType trainingType){
 
 
         this.name = name;
