@@ -127,7 +127,7 @@ public class SwimmingClub {
         //SETTER ID DEN KAN DOG IKKE BRUGS NÅR VI REMOVER MEDLEMMER! - SÅ MÅSKE VI ENTEN BARE SKAL FLYTTE?
         int nextID = database.getMemberArrayList().size() + 1;
 
-        Member newMember = new Member(phoneNumber, name, age, gender, mail, memberActivity, trainingType);
+        Member newMember = new Member(name, age, gender, mail, phoneNumber, memberActivity, trainingType);
         database.inputNewMemberData(newMember);
         members.add(newMember);
         if (trainingType == TrainingType.COMPETITION) {
@@ -138,11 +138,11 @@ public class SwimmingClub {
         System.out.println("=======================================");
         System.out.println("   New Member Added to the Club");
         System.out.println("=======================================");
-        System.out.printf ("%-20s: %s%n", "ID", nextID);
         System.out.printf ("%-20s: %s%n", "Name", name);
         System.out.printf ("%-20s: %d%n", "Age", age);
         System.out.printf ("%-20s: %s%n", "Gender", gender);
         System.out.printf ("%-20s: %s%n", "Mail", mail);
+        System.out.printf ("%-20s: %s%n", "Phone number", phoneNumber);
         System.out.printf ("%-20s: %s%n", "Member Type", memberType);
         System.out.printf ("%-20s: %s%n", "Member Activity", memberActivity);
         System.out.printf ("%-20s: %s%n", "Training Type", trainingType);
