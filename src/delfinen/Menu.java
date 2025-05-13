@@ -1,13 +1,20 @@
 package delfinen;
 
+import delfinen.Enums.MemberActivity;
+import delfinen.Enums.TrainingType;
+
+import java.io.IOException;
+
 public class Menu {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         SwimmingClub delfinen = new SwimmingClub();
         Database database = new Database();
-
-        System.out.println(delfinen.members.get(1).getGender());
-
         delfinen.updateMember();
+
+        EliteSwimmer haala = new EliteSwimmer("Yacqub", 21, "male","YAcqubgmail", "20807993", MemberActivity.ACTIVE, TrainingType.CASUAL  );
+        haala.addDiscipline();
+
+
 
     }
 }
