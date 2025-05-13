@@ -21,4 +21,8 @@ public class ResultTraining implements Result {
     public Discipline getDiscipline() {
         return discipline;
     }
+
+    public void viewRusults(){
+
+    }
 }
