@@ -31,4 +31,8 @@ public class ResultCompetition implements Result {
     public int getPlacement() {
         return placement;
     }
+
+    public void viewRusults(){
+
+    }
 }
