@@ -2,10 +2,13 @@ package delfinen;
 
 import delfinen.Enums.MemberActivity;
 import delfinen.Enums.MemberType;
+import java.io.*;
+import java.util.*;
 
 public class Subcription {
     private double price;
     private boolean isPaid;
+
 
     public double getPrice() {
         return price;
@@ -25,10 +28,81 @@ public class Subcription {
     }
 
     public void totalRevenueByMemberType(){
+        ArrayList<Member> revenueList = new ArrayList<>();
+        int totalPassiveRevenue = 0;
+        int totalJuniorRevenue = 0;
+        int totalSeniorRevenue = 0;
+        int totalRetireeRevenue = 0;
 
+        try(BufferedReader br = new BufferedReader(new FileReader("src/Files/database.csv"))){
+            String line;
+            br.readLine();
+
+            while((line = br.readLine()) !=null){
+                String[] values = line.split(",");
+
+                String activityStr = values[5];
+                String memberTypeStr = values[6];
+
+                MemberActivity activity = MemberActivity.valueOf(activityStr);
+                MemberType memberType = MemberType.valueOf(memberTypeStr);
+
+                revenueList.add(new Member(activity,memberType));
+
+                if(activity == MemberActivity.PASSIVE) {
+                    totalPassiveRevenue += 500;
+                }else{
+                    switch (memberType){
+                        case JUNIOR -> totalJuniorRevenue += 1000;
+                        case SENIOR -> totalSeniorRevenue += 1600;
+                        case RETIREE -> totalRetireeRevenue += 1200;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("Samlet årlig indtægt for passive medlemmer: " + totalPassiveRevenue + " DKK");
+        System.out.println("Samlet årlig indtægt for Junior medlemmer: " + totalJuniorRevenue + " DKK");
+        System.out.println("Samlet årlig indtægt for Senior medlemmer: " + totalSeniorRevenue + " DKK");
+        System.out.println("Samlet årlig indtægt for Retiree medlemmer: " + totalRetireeRevenue + " DKK");
     }
 
     public void totalRevenue(){
+    ArrayList<Member> revenueList = new ArrayList<>();
+    int totalRevenue = 0;
+
+        try(BufferedReader br = new BufferedReader(new FileReader("src/Files/database.csv"))){
+            String line;
+            br.readLine();
+
+            while((line = br.readLine()) !=null){
+                String[] values = line.split(",");
+
+                String activityStr = values[5];
+                String memberTypeStr = values[6];
+
+                MemberActivity activity = MemberActivity.valueOf(activityStr);
+                MemberType memberType = MemberType.valueOf(memberTypeStr);
+
+                revenueList.add(new Member(activity,memberType));
+
+                if(activity == MemberActivity.PASSIVE) {
+                    totalRevenue += 500;
+                }else{
+                    switch (memberType){
+                        case JUNIOR -> totalRevenue += 1000;
+                        case SENIOR -> totalRevenue += 1600;
+                        case RETIREE -> totalRevenue += 1200;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("Samlet årlig indtægt: " + totalRevenue + " DKK");
 
     }
 
