@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 
@@ -19,18 +20,56 @@ public class Database {
         try{
             fileWriter = new FileWriter(filePath, true);
             fileWriter.write(
-                        "\n" + newMember.getID() +
-                                "," + newMember.getName() +
+                                "\n" + newMember.getName() +
                             "," + newMember.getAge() +
                             "," + newMember.getGender() +
                             "," + newMember.getMail() +
+                                "," + newMember.getPhoneNumber() +
                             "," + newMember.getMemberActivity() +
                             "," + newMember.getMemberType() +
                             "," + newMember.getTrainingType()
             );
             fileWriter.close();
         } catch(IOException e){
-            System.out.println("IOException");
+            e.printStackTrace();
+        }
+    }
+
+    void changeDataByRow(String searchedPhoneNumber,String inputDataType, String inputData){
+        try{
+            fileWriter = new FileWriter(filePath);
+            Scanner fileReader = new Scanner(new File(filePath));
+
+            while(fileReader.hasNext()){
+                String[] rowData = fileReader.nextLine().split(",");
+                if(rowData[4].equals(searchedPhoneNumber)){
+                    HashMap<String, String> rowAndColumnNames = new HashMap<String,String>();
+                    rowAndColumnNames.put("Name", rowData[0]);
+                    rowAndColumnNames.put("Age", rowData[1]);
+                    rowAndColumnNames.put("Gender", rowData[2]);
+                    rowAndColumnNames.put("Mail", rowData[3]);
+                    rowAndColumnNames.put("Phonenumber", rowData[4]);
+                    rowAndColumnNames.put("Member Activity", rowData[5]);
+                    rowAndColumnNames.put("Member Type", rowData[6]);
+                    rowAndColumnNames.put("Training Type", rowData[7]);
+
+                    rowAndColumnNames.put(inputDataType, inputData);
+
+                    fileWriter.write(
+                            "\n" + rowAndColumnNames.get("Name") +
+                                    "," + rowAndColumnNames.get("Age") +
+                                    "," + rowAndColumnNames.get("Gender") +
+                                    "," + rowAndColumnNames.get("Mail") +
+                                    "," + rowAndColumnNames.get("Phonenumber") +
+                                    "," + rowAndColumnNames.get("Member Activity") +
+                                    "," + rowAndColumnNames.get("Member Type") +
+                                    "," + rowAndColumnNames.get("Training Type")
+                    );
+                    fileWriter.close();
+                }
+            }
+        } catch(IOException e){
+            e.printStackTrace();
         }
     }
 
@@ -43,9 +82,9 @@ public class Database {
             while(fileReader.hasNext()){
                 String[] rowData = fileReader.nextLine().split(",");
 
-                if(rowData[0].matches("\\d+")){ //Tjekker udelukkende om rowData[1]/age består af ét eller flere cifre og ikke bogstaver
+                if(rowData[1].matches("\\d+")){ //Tjekker udelukkende om rowData[1]/age består af ét eller flere cifre og ikke bogstaver
 
-                    Member newMember = new Member(Integer.parseInt(rowData[0]), rowData[1],Integer.parseInt(rowData[2]),rowData[3],rowData[4],MemberActivity.valueOf(rowData[5].toUpperCase()),TrainingType.valueOf(rowData[7].toUpperCase()));
+                    Member newMember = new Member(rowData[0], Integer.parseInt(rowData[1]),rowData[2],rowData[3],rowData[4],MemberActivity.valueOf(rowData[5].toUpperCase()),TrainingType.valueOf(rowData[7].toUpperCase()));
 
                     memberList.add(newMember);
                 }
@@ -76,9 +115,9 @@ public class Database {
                 }
 
 
-                if(rowData[0].matches("\\d+")){ //Tjekker udelukkende om rowData[1]/age består af ét eller flere cifre og ikke bogstaver
+                if(rowData[1].matches("\\d+")){ //Tjekker udelukkende om rowData[1]/age består af ét eller flere cifre og ikke bogstaver
 
-                    Member newMember = new Member(Integer.parseInt(rowData[0]), rowData[1],Integer.parseInt(rowData[2]),rowData[3],rowData[4],MemberActivity.valueOf(rowData[5].toUpperCase()),TrainingType.valueOf(rowData[7].toUpperCase()));
+                    Member newMember =  new Member(rowData[0], Integer.parseInt(rowData[1]),rowData[2],rowData[3],rowData[4],MemberActivity.valueOf(rowData[5].toUpperCase()),TrainingType.valueOf(rowData[7].toUpperCase()));
 
                     if (newMember.getTrainingType() == TrainingType.COMPETITION) {
                         eliteMemberList.add(newMember);
