@@ -11,9 +11,6 @@ public class Menu {
         Database database = new Database();
         delfinen.updateMember();
 
-        EliteSwimmer haala = new EliteSwimmer("Yacqub", 21, "male","YAcqubgmail", "20807993", MemberActivity.ACTIVE, TrainingType.CASUAL  );
-        haala.addDiscipline();
-
 
 
     }
