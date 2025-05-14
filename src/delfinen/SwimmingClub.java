@@ -1,8 +1,6 @@
 package delfinen;
 
-import delfinen.Enums.MemberActivity;
-import delfinen.Enums.MemberType;
-import delfinen.Enums.TrainingType;
+import delfinen.Enums.*;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -124,15 +122,66 @@ public class SwimmingClub {
             }
         }
 
-        //SETTER ID DEN KAN DOG IKKE BRUGS NÅR VI REMOVER MEDLEMMER! - SÅ MÅSKE VI ENTEN BARE SKAL FLYTTE?
-        int nextID = database.getMemberArrayList().size() + 1;
-
+        //ADD MEMBER
         Member newMember = new Member(name, age, gender, mail, phoneNumber, memberActivity, trainingType);
         database.inputNewMemberData(newMember);
         members.add(newMember);
+
+
+        //ADD MEMBER IF ELITE
         if (trainingType == TrainingType.COMPETITION) {
-            eliteMembers.add(newMember);
+
+            //AGE ASSIGNS TEAM WITH TERNARY
+
+            Team team = (age < 18) ? Team.JUNIOR : Team.SENIOR;
+
+            //ASSIGN DISCIPLINES TO ELITE SWIMMER
+
+            ArrayList<Discipline> disciplines = assignDisciplines();
+
+            //ASSIGN TRAINER TO ELITE SWIMMER
+
+            ArrayList<String> trainerList = getTrainersFromFile();
+
+            if (trainerList.isEmpty()) {
+                System.out.println("No trainers available. Please add trainers first.");
+                return;
+            }
+
+            System.out.println("Select a trainer from the list:");
+            for (int i = 0; i < trainerList.size(); i++) {
+                System.out.printf("%d - %s%n", i + 1, trainerList.get(i));
+            }
+            int trainerChoice = -1;
+            while (trainerChoice < 1 || trainerChoice > trainerList.size()) {
+                System.out.print("Enter the number of the trainer to assign: ");
+                String input = scanner.nextLine();
+                try {
+                    trainerChoice = Integer.parseInt(input);
+                    if (trainerChoice < 1 || trainerChoice > trainerList.size()) {
+                        System.out.println("Invalid choice. Please select a number from the list.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Please enter a valid number.");
+                }
+            }
+
+            String selectedTrainerName = trainerList.get(trainerChoice - 1);
+            Trainer trainer = new Trainer(selectedTrainerName);
+
+
+
+            EliteSwimmer eliteSwimmer = new EliteSwimmer(name, age, gender, mail, phoneNumber, memberActivity, trainingType, team, disciplines, trainer);
+            eliteSwimmer.setDisciplines(disciplines);
+            eliteSwimmer.setTeam(team);
+            eliteSwimmer.setTrainer(trainer);
+
+            //ADD TO MEMBERLIST AND CSV
+            eliteMembers.add(eliteSwimmer);
+            database.inputNewEliteData(eliteSwimmer);
+
         }
+
 
 
         System.out.println("=======================================");
@@ -189,7 +238,7 @@ public class SwimmingClub {
             System.out.println("5 - Phone number");
             System.out.println("6 - Member Activity");
             System.out.println("7 - Training Type");
-            System.out.println("9 - Remove Member");
+            System.out.println("8 - Remove Member");
             System.out.println("9 - Back to Menu");
             System.out.print("Enter choice (1–9): ");
 
@@ -342,11 +391,86 @@ public class SwimmingClub {
 
     }
 
-    public void listOfTrainers(){
+    public void addTrainer() {
+        System.out.println("===================================");
+        System.out.println("         REGISTER NEW TRAINER");
+        System.out.println("===================================");
+        System.out.println();
+
+        String name = "";
+        while (name.isBlank()) {
+            System.out.println("Enter trainers name: ");
+            name = scanner.nextLine();
+            if (name.isBlank()) {
+                System.out.println("Name cannot be empty.");
+            }
+
+        }
+        Trainer trainer = new Trainer(name);
+        database.inputNewTrainer(trainer);
+        System.out.println("Trainer " + name + " has been added to the list of trainers.");
+
 
     }
 
-    public void top5Swimmers(){
+    public ArrayList<String> getTrainersFromFile() {
+        ArrayList<String> trainers = new ArrayList<>();
+        File file = new File("src/Files/trainers.csv");
 
+        System.out.println("List of trainers in Delfinen: ");
+        Scanner scanner = null;
+
+        try {
+            scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                trainers.add(line);
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.print("File not found.");
+        }
+        return trainers;
+
+
+    }
+
+    public void listOfTrainers() {
+        System.out.println("Trainers in Delfinen: ");
+        for (String name : getTrainersFromFile()) {
+            System.out.println(name);
+        }
+    }
+
+
+    public void top5Swimmers() {
+
+    }
+
+    public ArrayList<Discipline> assignDisciplines() {
+        ArrayList<Discipline> disciplines = new ArrayList<>();
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Assign discipline BACKSTROKE to swimmer (Y/N):");
+        if (input.nextLine().equalsIgnoreCase("Y")) {
+            disciplines.add(Discipline.BACKSTROKE);
+        }
+
+        System.out.println("Assign discipline BUTTERFLY to swimmer (Y/N):");
+        if (input.nextLine().equalsIgnoreCase("Y")) {
+            disciplines.add(Discipline.BUTTERFLY);
+        }
+
+        System.out.println("Assign discipline FREESTYLE to swimmer (Y/N):");
+        if (input.nextLine().equalsIgnoreCase("Y")) {
+            disciplines.add(Discipline.FREESTYLE);
+        }
+
+        System.out.println("Assign discipline BREASTSTROKE to swimmer (Y/N):");
+        if (input.nextLine().equalsIgnoreCase("Y")) {
+            disciplines.add(Discipline.BREASTSTROKE);
+        }
+
+        return disciplines;
     }
 }

@@ -5,14 +5,17 @@ import delfinen.Enums.MemberType;
 import delfinen.Enums.TrainingType;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class SwimmingClubTest {
 
     @Test
     void addNewMember() {
-        Member memberNew = new Member(43567892, "Yrsa Larsen", 90, "Female", "yrsal@gmail.com", MemberActivity.PASSIVE, TrainingType.CASUAL);
+        Member memberNew = new Member("Yrsa Larsen", 90, "Female", "yrsal@gmail.com", "34543212", MemberActivity.PASSIVE, TrainingType.CASUAL);
 
         //TEST AF AT ALDER AFGØR MEMBER TYPE OG PRIS
         assertEquals(MemberType.RETIREE, memberNew.getMemberType());
@@ -29,4 +32,20 @@ public class SwimmingClubTest {
 
 
     }
+
+    @Test
+    void addTrainer() {
+        Trainer testTrainer = new Trainer("Test Test");
+        assertEquals("Test Test", testTrainer.getName());
+
+    }
+
+    @Test
+    void listOfTrainers() {
+        SwimmingClub club = new SwimmingClub();
+        ArrayList<String> trainers = club.getTrainersFromFile();
+
+        assertTrue(trainers.contains("Jens Hansen"));
+    }
+
 }

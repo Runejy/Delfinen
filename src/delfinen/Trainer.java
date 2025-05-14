@@ -6,12 +6,16 @@ public class Trainer {
     private String name;
     private Database database;
 
-    Trainer(String name, Database database){
+    Trainer(String name) {
         this.name = name;
-        this.database = database;
     }
 
-    public String getName(){
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
         return name;
     }
 
@@ -25,7 +29,8 @@ public class Trainer {
         }
     }
 
-    public void listOfTrainersEliteSwimmers(){
+    public void listOfTrainersEliteSwimmers() {
 
     }
+
 }

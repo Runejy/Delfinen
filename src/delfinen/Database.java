@@ -73,6 +73,21 @@ public class Database {
         }
     }
 
+    void inputNewEliteData(EliteSwimmer newEliteSwimmer){
+        try{
+            fileWriter = new FileWriter("src/Files/EliteSwimmer.csv", true);
+            fileWriter.write(
+                    "\n" + newEliteSwimmer.getName() +
+                            "," + newEliteSwimmer.getTrainer() +
+                            "," + newEliteSwimmer.getTeam() +
+                            "," + newEliteSwimmer.getDisciplines()
+            );
+            fileWriter.close();
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
      ArrayList<Member> getMemberArrayList(){
         ArrayList<Member> memberList = new ArrayList<>();
 
@@ -131,6 +146,21 @@ public class Database {
         return eliteMemberList;
     }
 
+    //ADD TRAINER TO trainers.csv
+
+    void inputNewTrainer(Trainer newTrainer){
+        try{
+            fileWriter = new FileWriter("src/Files/trainers.csv", true);
+            fileWriter.write(
+                    "\n" + newTrainer.getName()
+            );
+            fileWriter.close();
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+
     //Method to print out the userInputted members from database
     void DatabaseOutput(){
         BufferedReader reader = null;
@@ -181,4 +211,5 @@ public class Database {
             e.printStackTrace();
         }
     }
+
 }
