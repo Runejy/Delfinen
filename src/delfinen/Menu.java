@@ -126,7 +126,7 @@ public class Menu {
                     //Method to Add Member
                     break;
                 case "2":
-                    d.DatabaseOutput();
+                    d.databaseOutput();
                     break;
                 case "3":
                     //Method for updating existing members
