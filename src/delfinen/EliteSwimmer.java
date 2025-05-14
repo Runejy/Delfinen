@@ -34,9 +34,8 @@ public class EliteSwimmer extends Member {
             case 2 -> "Butterfly";
             case 3 -> "Freestyle";
             case 4 -> "Breaststroke";
-            default -> {
-                System.out.println("Ugyldigt valg!");
-            }
+            default -> "Ugyldigt valg!";
+        };
 
 //            File inputX = new File("database.csv");
 //            File wrt = new File("temp.csv");
@@ -71,7 +70,9 @@ public class EliteSwimmer extends Member {
 //                } catch (IOException e) {
 //                    System.out.println("Fejl!");
 //                }
-        };
+    }
+
+    ;
 
 //            public void updateProfile () {
 //
@@ -82,8 +83,6 @@ public class EliteSwimmer extends Member {
 //            }
 
 
-    }
-    }
-
+}
 
 
