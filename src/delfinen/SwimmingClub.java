@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class SwimmingClub {
 
     Scanner scanner = new Scanner(System.in);
-    Database database = new Database();
+    Database database = new  Database();
     ArrayList<Member> members = database.getMemberArrayList();
     ArrayList<Member> eliteMembers = database.getEliteMemberArrayList();
 

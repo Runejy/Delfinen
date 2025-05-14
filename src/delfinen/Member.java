@@ -4,6 +4,8 @@ import delfinen.Enums.MemberActivity;
 import delfinen.Enums.MemberType;
 import delfinen.Enums.TrainingType;
 
+import java.text.Format;
+
 public class Member {
     private String name;
     private String phoneNumber;
@@ -17,7 +19,7 @@ public class Member {
 
 
 
-    Member(String name, int age, String gender, String mail, String phoneNumber, MemberActivity memberActivity, TrainingType trainingType){
+    Member(String phoneNumber, String name, int age, String gender, String mail,  MemberActivity memberActivity, TrainingType trainingType){
 
 
         this.name = name;
@@ -123,6 +125,6 @@ public class Member {
 
     @Override
     public String toString() {
-        return name;
+        return String.format("%-15s %-20s %-10d %-10s %-35s %-15s %-15s %-15s", phoneNumber, name, age, gender, mail, memberActivity, memberType, trainingType);
     }
 }

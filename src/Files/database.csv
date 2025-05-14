@@ -1,9 +1,9 @@
 Telephone,Name,Age,Gender,Mail,Member Activity,Member Type,Training Type
-20 45 67 89,August Gosden,12,Male,august@gmail.com,ACTIVE,SENIOR,CASUAL
+20 45 67 89,August Gosden,51,Male,august@gmail.com,ACTIVE,SENIOR,CASUAL
 31 28 49 56,Benjamin Yung,22,Male,ben@gmail.com,ACTIVE,SENIOR,CASUAL
 40 91 83 72,Maria Fogt,79,Female,mariafora@hotmail.com,ACTIVE,RETIREE,COMPETITION
 52 37 19 84,Hans Larsen,57,Male,larsen@larsen.dk,ACTIVE,SENIOR,CASUAL
-60 58 77 14,Nynne LArsen,35,Other,nynnel@gmail.com,ACTIVE,SENIOR,COMPETITION
+60 58 77 14,Nynne Larsen,1,Other,@gmail.com,ACTIVE,JUNIOR,CASUAL
 71 63 20 90,Lars Larsen,45,Male,larslars@lars.dk,ACTIVE,SENIOR,CASUAL
 22 11 33 44,Daniel Mortensen,25,Male,dm@gmail.com,ACTIVE,SENIOR,COMPETITION
 53 87 61 05,Line Frank,23,Female,lineersej@gmail.com,ACTIVE,SENIOR,COMPETITION

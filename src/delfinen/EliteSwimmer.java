@@ -88,13 +88,15 @@ public class EliteSwimmer extends Member {
         this.team = team;
     }
 
-    public void updateProfile() {
-
-    }
-
-    public void addResult() {
-
-    }
+//            public void updateProfile () {
+//
+//            }
+//
+//            public void addResult () {
+//
+//            }
 
 
 }
+
+

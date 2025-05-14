@@ -1,5 +1,6 @@
 package delfinen;
 
+import delfinen.Enums.MemberType;
 import delfinen.Enums.TrainingType;
 import delfinen.Enums.MemberActivity;
 
@@ -15,6 +16,13 @@ import java.util.Scanner;
 public class Database {
     FileWriter fileWriter;
     String filePath = "src/Files/database.csv";
+    ArrayList<Member> memberList = getMemberArrayList();
+
+    void print(){
+        for(Member member : memberList){
+            System.out.println(member);
+        }
+    }
 
     void inputNewMemberData(Member newMember){
         try{
@@ -35,39 +43,56 @@ public class Database {
         }
     }
 
-    void changeDataByRow(String searchedPhoneNumber,String inputDataType, String inputData){
-        try{
-            fileWriter = new FileWriter(filePath);
-            Scanner fileReader = new Scanner(new File(filePath));
-
-            while(fileReader.hasNext()){
-                String[] rowData = fileReader.nextLine().split(",");
-                if(rowData[4].equals(searchedPhoneNumber)){
-                    HashMap<String, String> rowAndColumnNames = new HashMap<String,String>();
-                    rowAndColumnNames.put("Name", rowData[0]);
-                    rowAndColumnNames.put("Age", rowData[1]);
-                    rowAndColumnNames.put("Gender", rowData[2]);
-                    rowAndColumnNames.put("Mail", rowData[3]);
-                    rowAndColumnNames.put("Phonenumber", rowData[4]);
-                    rowAndColumnNames.put("Member Activity", rowData[5]);
-                    rowAndColumnNames.put("Member Type", rowData[6]);
-                    rowAndColumnNames.put("Training Type", rowData[7]);
-
-                    rowAndColumnNames.put(inputDataType, inputData);
-
-                    fileWriter.write(
-                            "\n" + rowAndColumnNames.get("Name") +
-                                    "," + rowAndColumnNames.get("Age") +
-                                    "," + rowAndColumnNames.get("Gender") +
-                                    "," + rowAndColumnNames.get("Mail") +
-                                    "," + rowAndColumnNames.get("Phonenumber") +
-                                    "," + rowAndColumnNames.get("Member Activity") +
-                                    "," + rowAndColumnNames.get("Member Type") +
-                                    "," + rowAndColumnNames.get("Training Type")
-                    );
-                    fileWriter.close();
+    void changeDataByRow(String searchedPhoneNumber, String dataKey, String dataValue){
+        for(Member member : memberList){
+            if(member.getPhoneNumber().equalsIgnoreCase(searchedPhoneNumber)){
+                switch(dataKey){
+                    case "Telephone":
+                        member.setPhoneNumber(dataValue);
+                        break;
+                    case "Name":
+                        member.setName(dataValue);
+                        break;
+                    case "Age":
+                        member.setAge(Integer.parseInt(dataValue));
+                        break;
+                    case "Gender":
+                        member.setGender(dataValue);
+                        break;
+                    case "Mail":
+                        member.setMail(dataValue);
+                        break;
+                    case "Member Activity":
+                        member.setMemberActivity(MemberActivity.valueOf(dataValue));
+                        break;
+                    case "Member Type":
+                        member.setMemberType(MemberType.valueOf(dataValue));
+                        break;
+                    case "Training Type":
+                        member.setTrainingType(TrainingType.valueOf(dataValue));
+                        break;
                 }
             }
+        }
+    }
+
+    void updateDatabase(){
+        try{
+            fileWriter = new FileWriter(filePath);
+
+            String data = "Telephone,Name,Age,Gender,Mail,Member Activity,Member Type,Training Type";
+            for(Member member : memberList){
+                data += "\n" + member.getPhoneNumber() +
+                        "," + member.getName() +
+                        "," + member.getAge() +
+                        "," + member.getGender() +
+                        "," + member.getMail() +
+                        "," + member.getMemberActivity() +
+                        "," + member.getMemberType() +
+                        "," + member.getTrainingType();
+            }
+            fileWriter.write(data);
+            fileWriter.close();
         } catch(IOException e){
             e.printStackTrace();
         }
@@ -89,26 +114,25 @@ public class Database {
     }
 
      ArrayList<Member> getMemberArrayList(){
-        ArrayList<Member> memberList = new ArrayList<>();
-
         try{
+            ArrayList<Member> memberList = new ArrayList<>();
             Scanner fileReader = new Scanner(new File(filePath));
-
-            while(fileReader.hasNext()){
+            while(fileReader.hasNextLine()){
                 String[] rowData = fileReader.nextLine().split(",");
+                if(rowData[2].matches("\\d+")){ //Tjekker udelukkende om rowData[1]/age består af ét eller flere cifre og ikke bogstaver
 
-                if(rowData[1].matches("\\d+")){ //Tjekker udelukkende om rowData[1]/age består af ét eller flere cifre og ikke bogstaver
-
-                    Member newMember = new Member(rowData[0], Integer.parseInt(rowData[1]),rowData[2],rowData[3],rowData[4],MemberActivity.valueOf(rowData[5].toUpperCase()),TrainingType.valueOf(rowData[7].toUpperCase()));
+                    Member newMember = new Member(rowData[0], rowData[1],Integer.parseInt(rowData[2]),rowData[3],rowData[4],MemberActivity.valueOf(rowData[5].toUpperCase()),TrainingType.valueOf(rowData[7].toUpperCase()));
 
                     memberList.add(newMember);
+
                 }
             }
+            return memberList;
         } catch(FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        return memberList;
+        return null;
     }
 
     ArrayList<Member> getEliteMemberArrayList(){
@@ -132,7 +156,7 @@ public class Database {
 
                 if(rowData[1].matches("\\d+")){ //Tjekker udelukkende om rowData[1]/age består af ét eller flere cifre og ikke bogstaver
 
-                    Member newMember =  new Member(rowData[0], Integer.parseInt(rowData[1]),rowData[2],rowData[3],rowData[4],MemberActivity.valueOf(rowData[5].toUpperCase()),TrainingType.valueOf(rowData[7].toUpperCase()));
+                    Member newMember =  new Member(rowData[0], rowData[1],Integer.parseInt(rowData[2]),rowData[3],rowData[4],MemberActivity.valueOf(rowData[5].toUpperCase()),TrainingType.valueOf(rowData[7].toUpperCase()));
 
                     if (newMember.getTrainingType() == TrainingType.COMPETITION) {
                         eliteMemberList.add(newMember);
@@ -162,7 +186,7 @@ public class Database {
 
 
     //Method to print out the userInputted members from database
-    void DatabaseOutput(){
+    void databaseOutput(){
         BufferedReader reader = null;
         String line = "";
         try {
@@ -171,14 +195,14 @@ public class Database {
 
                 String[] row = line.split(",");
 
-                System.out.printf("|%-15s", row[0]);
-                System.out.printf("|%-15s", row[1]);
-                System.out.printf("|%-15s", row[2]);
-                System.out.printf("|%-30s", row[3]);
-                System.out.printf("|%-20s", row[4]);
-                System.out.printf("|%-20s", row[5]);
-                System.out.printf("|%-20s", row[6]);
-                System.out.printf("|%-20s", row[7]);
+                System.out.printf("%-15s", row[0]);
+                System.out.printf("%-15s", row[1]);
+                System.out.printf("%-15s", row[2]);
+                System.out.printf("%-30s", row[3]);
+                System.out.printf("%-20s", row[4]);
+                System.out.printf("%-20s", row[5]);
+                System.out.printf("%-20s", row[6]);
+                System.out.printf("%-20s", row[7]);
 
                 System.out.println();
             }
