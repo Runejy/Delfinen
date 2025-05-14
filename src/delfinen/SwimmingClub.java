@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class SwimmingClub {
 
     Scanner scanner = new Scanner(System.in);
-    Database database = new Database();
+    Database database = new  Database();
     ArrayList<Member> members = database.getMemberArrayList();
     ArrayList<Member> eliteMembers = database.getEliteMemberArrayList();
 
@@ -127,7 +127,7 @@ public class SwimmingClub {
         //SETTER ID DEN KAN DOG IKKE BRUGS NÅR VI REMOVER MEDLEMMER! - SÅ MÅSKE VI ENTEN BARE SKAL FLYTTE?
         int nextID = database.getMemberArrayList().size() + 1;
 
-        Member newMember = new Member(name, age, gender, mail, phoneNumber, memberActivity, trainingType);
+        Member newMember = new Member(phoneNumber, name, age, gender, mail, memberActivity, trainingType);
         database.inputNewMemberData(newMember);
         members.add(newMember);
         if (trainingType == TrainingType.COMPETITION) {

@@ -14,8 +14,8 @@ public class EliteSwimmer extends Member {
 
     }
 
-    EliteSwimmer(String name, int age, String gender, String mail, String phoneNumber, MemberActivity memberActivity, TrainingType trainingType) {
-        super(name, age, gender, mail, phoneNumber, memberActivity, trainingType);
+    EliteSwimmer(String phoneNumber, String name, int age, String gender, String mail, MemberActivity memberActivity, TrainingType trainingType) {
+        super(phoneNumber,name, age, gender, mail, memberActivity, trainingType);
     }
 
     public void addTrainer() {
@@ -34,9 +34,8 @@ public class EliteSwimmer extends Member {
             case 2 -> "Butterfly";
             case 3 -> "Freestyle";
             case 4 -> "Breaststroke";
-            default -> {
-                System.out.println("Ugyldigt valg!");
-            }
+            default -> "Ugyldigt valg";
+            };
 
 //            File inputX = new File("database.csv");
 //            File wrt = new File("temp.csv");
@@ -83,7 +82,7 @@ public class EliteSwimmer extends Member {
 
 
     }
-    }
+
 
 
 
