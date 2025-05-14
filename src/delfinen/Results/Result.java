@@ -8,7 +8,5 @@ public interface Result {
     Discipline getDiscipline();
 
 
-    public void viewRusults(){
-
-    }
+    public void viewRusults();
 }

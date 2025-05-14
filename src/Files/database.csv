@@ -1,11 +1,17 @@
-Name,Age,Gender,Mail,Phonenumber,Member Activity,Member Type,Training Type
-August,22,Male,august@gmail.com,,ACTIVE,SENIOR,CASUAL
-Benjamin,22,Male,ben@gmail.com,,PASSIVE,SENIOR,CASUAL
-Maria Fogt,79,Female,mariafora@hotmail.com,,ACTIVE,RETIREE,COMPETITION
-Hans Larsen,57,Male,larsen@larsen.dk,,ACTIVE,SENIOR,CASUAL
-Nynne LArsen,35,Other,nynnel@gmail.com,,ACTIVE,SENIOR,COMPETITION
-Lars Larsen,45,Male,larslars@lars.dk,,ACTIVE,SENIOR,CASUAL
-Daniel Mortensen,25,Male,dm@gmail.com,,ACTIVE,SENIOR,COMPETITION
-Line Frank,23,Female,lineersej@gmail.com,,ACTIVE,SENIOR,COMPETITION
-Sofie Degn,22,Female,sofie_degn@hotmail.com,,ACTIVE,SENIOR,COMPETITION
-Martin Jo,32,Male,martinjojojo@live.dk,,PASSIVE,SENIOR,CASUAL
+Telephone,Name,Age,Gender,Mail,Member Activity,Member Type,Training Type
+20 45 67 89,August Gosden,12,Male,august@gmail.com,ACTIVE,SENIOR,CASUAL
+31 28 49 56,Benjamin Yung,22,Male,ben@gmail.com,ACTIVE,SENIOR,CASUAL
+40 91 83 72,Maria Fogt,79,Female,mariafora@hotmail.com,ACTIVE,RETIREE,COMPETITION
+52 37 19 84,Hans Larsen,57,Male,larsen@larsen.dk,ACTIVE,SENIOR,CASUAL
+60 58 77 14,Nynne LArsen,35,Other,nynnel@gmail.com,ACTIVE,SENIOR,COMPETITION
+71 63 20 90,Lars Larsen,45,Male,larslars@lars.dk,ACTIVE,SENIOR,CASUAL
+22 11 33 44,Daniel Mortensen,25,Male,dm@gmail.com,ACTIVE,SENIOR,COMPETITION
+53 87 61 05,Line Frank,23,Female,lineersej@gmail.com,ACTIVE,SENIOR,COMPETITION
+28 92 73 66,Sofie Degn,22,Female,sofie_degn@hotmail.com,ACTIVE,SENIOR,COMPETITION
+42 35 78 29,Martin Jo,32,Male,martinjojojo@live.dk,ACTIVE,SENIOR,CASUAL
+61 70 85 93,Julie Gregersen,26,Female,juliegre@gmail.com,ACTIVE,SENIOR,COMPETITION
+26 59 48 37,Lars Kjeldesen,54,Male,lk@mail.com,PASSIVE,SENIOR,CASUAL
+30 74 60 21,Hanne Holst,44,Female,hanneh@hanne.dk,ACTIVE,SENIOR,CASUAL
+23 86 19 40,Heino Hansen,39,Male,heino@mail.dk,PASSIVE,SENIOR,CASUAL
+45 22 68 75,Marie Hansen,34,Other,mariehansen1991@gmail.com,ACTIVE,SENIOR,CASUAL
+38 11 55 92,Gertrud Holem,34,Female,gholem@yahoo.com,ACTIVE,SENIOR,COMPETITION

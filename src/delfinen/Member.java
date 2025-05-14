@@ -44,6 +44,12 @@ public class Member {
         this.sub = sub;
     }
 
+    //Ny konstruktør, bruges til udregning af revenue.
+    public Member (MemberActivity memberActivity, MemberType memberType){
+        this.memberActivity = memberActivity;
+        this.memberType = memberType;
+    }
+
     public String getName() {
         return name;
     }
