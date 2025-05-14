@@ -32,7 +32,7 @@ public class Trainer {
     }
 
     public void showTeam() {
-        System.out.println("træner; " + Trainer.getName());
+        System.out.println("træner; " + name);
         System.out.println("Svømmer på holdet:");
         for (Member member : eliteList) ;
     }

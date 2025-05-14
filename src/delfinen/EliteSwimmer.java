@@ -21,7 +21,7 @@ public class EliteSwimmer extends Member {
 
 
     EliteSwimmer(String name, int age, String gender, String mail, String phoneNumber, MemberActivity memberActivity, TrainingType trainingType, Team team, ArrayList<Discipline> disciplines, Trainer trainer) {
-        super(name, age, gender, mail, phoneNumber, memberActivity, trainingType);
+        super(phoneNumber, name, age, gender, mail, memberActivity, trainingType);
         this.team = team;
         this.disciplines = disciplines;
         this.trainer = trainer;

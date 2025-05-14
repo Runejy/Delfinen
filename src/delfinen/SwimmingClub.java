@@ -2,6 +2,8 @@ package delfinen;
 
 import delfinen.Enums.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeParseException;
@@ -123,7 +125,7 @@ public class SwimmingClub {
         }
 
         //ADD MEMBER
-        Member newMember = new Member(name, age, gender, mail, phoneNumber, memberActivity, trainingType);
+        Member newMember = new Member(phoneNumber, name, age, gender, mail, memberActivity, trainingType);
         database.inputNewMemberData(newMember);
         members.add(newMember);
 
