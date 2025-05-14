@@ -3,9 +3,7 @@ package delfinen;
 import delfinen.Enums.MemberActivity;
 import delfinen.Enums.TrainingType;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 
@@ -24,47 +22,68 @@ public class EliteSwimmer extends Member {
 
     }
 
-    public String addDiscipline() throws IOException {
+    public void addDiscipline() throws IOException {
         Scanner input = new Scanner(System.in);
         System.out.println("Hvilken svømme disciplin, svømmer du i?");
         System.out.println("1. Crawl " + "\n 2. Butterfly" + "\n 3. Freestyle" + "\n 4. Breaststroke");
-        int data = Integer.parseInt(null);
+        int valg = input.nextInt();
         int discipline = input.nextInt();
 
-        switch (discipline) {
-            case 1:
-                System.out.println("Du svømmer Crawl!");
-                break;
-            case 2:
-                System.out.println("Du svømmer Butterfly!");
-                break;
-            case 3:
-                System.out.println("Du svømmer Freestyle!");
-                break;
-            case 4:
-                System.out.println("Du svømmer Breaststroke");
-            default:
+        String disciplin = switch (valg) {
+            case 1 -> "Crawl";
+            case 2 -> "Butterfly";
+            case 3 -> "Freestyle";
+            case 4 -> "Breaststroke";
+            default -> {
+                System.out.println("Ugyldigt valg!");
+            }
 
-                try (BufferedWriter writer = new BufferedWriter(new FileWriter("database.csv", true))) {
-                    writer.write(discipline);
-                    writer.newLine();
-                    System.out.println("Dit valg er gemt i ´databasen.csv´");
+//            File inputX = new File("database.csv");
+//            File wrt = new File("temp.csv");
+//            boolean fundet = false;
+//
+//
+//            try (BufferedReader reader = new BufferedReader(new FileReader(inputX));
+//                 BufferedWriter writer = new BufferedWriter(new FileWriter(wrt))) {
 
-                } catch (IOException e) {
-                    System.out.println("Fejl!");
-                }
-        }
+//                String linje;
+//                while ((linje = reader.readLine()) != null) {
+//                    String[] dele = linje.split(",", -1);
+//
+//                    if (dele[0].trim().equalsIgnoreCase(navn)) {
+//                        // Vi antager: format = navn, alder, disciplin
+//                        if (dele.length < 3) {
+//                            dele = Arrays.copyOf(dele, 3); // udvid array hvis disciplin mangler
+//                        }
+//                        dele[2] = disciplin;
+//                        fundet = true;
+//                        System.out.println("Disciplin opdateret til: " + disciplin);
+//                    }
+//
+//                    writer.write(String.join(",", dele));
+//                    writer.newLine();
+//                }
+//            }
+//                writer.write(discipline);
+//                    writer.newLine();
+//                    System.out.println("Dit valg er gemt i ´databasen.csv´");
+//
+//                } catch (IOException e) {
+//                    System.out.println("Fejl!");
+//                }
+        };
 
-        return null;
+//            public void updateProfile () {
+//
+//            }
+//
+//            public void addResult () {
+//
+//            }
+
+
+    }
     }
 
-    public void updateProfile() {
-
-    }
-
-    public void addResult() {
-
-    }
 
 
-}
