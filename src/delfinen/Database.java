@@ -44,6 +44,8 @@ public class Database {
     }
 
     void changeDataByRow(String searchedPhoneNumber, String dataKey, String dataValue){
+
+
         for(Member member : memberList){
             if(member.getPhoneNumber().equalsIgnoreCase(searchedPhoneNumber)){
                 switch(dataKey){

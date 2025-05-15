@@ -146,7 +146,7 @@ public class Menu {
             System.out.println("=== Kasser ===");
             System.out.println("""
                     1: Total Revenue
-                    2: Total Revenue af medlemstype
+                    2: Total Revenue membertype
                     3: Restance
                     4: Back""");
 
