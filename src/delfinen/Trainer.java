@@ -1,43 +1,21 @@
 package delfinen;
 
-import delfinen.Enums.MemberType;
-
-import java.util.ArrayList;
+import delfinen.Enums.Discipline;
+import delfinen.Results.ResultCompetition;
 
 public class Trainer {
-    public static String name;
-    private Database database;
-    private ArrayList<Member> eliteList = database.getEliteMemberArrayList();
 
-    Trainer(String name) {
+    private String name;
+
+    public Trainer(String name) {
         this.name = name;
+    }
+
+    public ResultCompetition createCompetitionResult(String date, double time, Discipline discipline, String competitionName, int placement) {
+        return new ResultCompetition(date, time, discipline, competitionName, placement);
     }
 
     public String getName() {
         return name;
     }
-
-    @Override
-    public String toString() {
-        return name;
-    }
-
-    public void listOfEliteSwimmer() {
-
-        System.out.println("List of Elite Swimmers:");
-        for (Member member : eliteList) {
-            System.out.println("- " + member.getName());
-            //EVT OGSÅ TILFØJE DISCIPLINER DE SVØMMER I NÅR DET ER OPRETTET
-        }
-    }
-
-    public void showTeam() {
-        System.out.println("træner; " + name);
-        System.out.println("Svømmer på holdet:");
-        for (Member member : eliteList) ;
-    }
-
-    public void listOfTrainersEliteSwimmers() {
-    }
-
 }
