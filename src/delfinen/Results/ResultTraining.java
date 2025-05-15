@@ -30,7 +30,7 @@ public class ResultTraining implements Result {
 
     @Override
     public String toString() {
-        // Returner relevant data som streng
+        // Returner relevant data som string
         return "Dato: " + date + ", Tid: " + time + ", Disciplin: " + discipline;
     }
 }
