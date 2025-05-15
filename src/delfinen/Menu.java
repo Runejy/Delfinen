@@ -137,8 +137,6 @@ public class Menu {
             }
 
         }
-
-
     }
 
     //Kasser Menu
@@ -171,7 +169,7 @@ public class Menu {
     }
 
     //Træner menu
-    public static void showTræner() {
+    public static void showTrainer() {
         while (true) {
             System.out.println("=== Træner ===");
             System.out.println("""
@@ -194,8 +192,6 @@ public class Menu {
                 case "4":
                     return;
             }
-
-
         }
     }
 }

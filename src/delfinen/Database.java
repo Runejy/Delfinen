@@ -195,14 +195,14 @@ public class Database {
 
                 String[] row = line.split(",");
 
-                System.out.printf("%-15s", row[0]);
-                System.out.printf("%-15s", row[1]);
-                System.out.printf("%-15s", row[2]);
-                System.out.printf("%-30s", row[3]);
-                System.out.printf("%-20s", row[4]);
-                System.out.printf("%-20s", row[5]);
-                System.out.printf("%-20s", row[6]);
-                System.out.printf("%-20s", row[7]);
+                System.out.printf("%-20s", row[0]);
+                System.out.printf("%-20s", row[1]);
+                System.out.printf("%-20s", row[2]);
+                System.out.printf("%-40s", row[3]);
+                System.out.printf("%-30s", row[4]);
+                System.out.printf("%-30s", row[5]);
+                System.out.printf("%-30s", row[6]);
+                System.out.printf("%-30s", row[7]);
 
                 System.out.println();
             }
