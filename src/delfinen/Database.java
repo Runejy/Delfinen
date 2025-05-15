@@ -49,27 +49,35 @@ public class Database {
                 switch(dataKey){
                     case "Telephone":
                         member.setPhoneNumber(dataValue);
+                        updateDatabase();
                         break;
                     case "Name":
                         member.setName(dataValue);
+                        updateDatabase();
                         break;
                     case "Age":
                         member.setAge(Integer.parseInt(dataValue));
+                        updateDatabase();
                         break;
                     case "Gender":
                         member.setGender(dataValue);
+                        updateDatabase();
                         break;
                     case "Mail":
                         member.setMail(dataValue);
+                        updateDatabase();
                         break;
                     case "Member Activity":
                         member.setMemberActivity(MemberActivity.valueOf(dataValue));
+                        updateDatabase();
                         break;
                     case "Member Type":
                         member.setMemberType(MemberType.valueOf(dataValue));
+                        updateDatabase();
                         break;
                     case "Training Type":
                         member.setTrainingType(TrainingType.valueOf(dataValue));
+                        updateDatabase();
                         break;
                 }
             }
@@ -93,7 +101,6 @@ public class Database {
             }
             fileWriter.write(data);
             fileWriter.close();
-            memberList = getMemberArrayList();
         } catch(IOException e){
             e.printStackTrace();
         }
