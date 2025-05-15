@@ -49,27 +49,35 @@ public class Database {
                 switch(dataKey){
                     case "Telephone":
                         member.setPhoneNumber(dataValue);
+                        updateDatabase();
                         break;
                     case "Name":
                         member.setName(dataValue);
+                        updateDatabase();
                         break;
                     case "Age":
                         member.setAge(Integer.parseInt(dataValue));
+                        updateDatabase();
                         break;
                     case "Gender":
                         member.setGender(dataValue);
+                        updateDatabase();
                         break;
                     case "Mail":
                         member.setMail(dataValue);
+                        updateDatabase();
                         break;
                     case "Member Activity":
                         member.setMemberActivity(MemberActivity.valueOf(dataValue));
+                        updateDatabase();
                         break;
                     case "Member Type":
                         member.setMemberType(MemberType.valueOf(dataValue));
+                        updateDatabase();
                         break;
                     case "Training Type":
                         member.setTrainingType(TrainingType.valueOf(dataValue));
+                        updateDatabase();
                         break;
                 }
             }
@@ -117,15 +125,17 @@ public class Database {
         try{
             ArrayList<Member> memberList = new ArrayList<>();
             Scanner fileReader = new Scanner(new File(filePath));
+            boolean firstLine = true;
             while(fileReader.hasNextLine()){
                 String[] rowData = fileReader.nextLine().split(",");
-                if(rowData[2].matches("\\d+")){ //Tjekker udelukkende om rowData[1]/age består af ét eller flere cifre og ikke bogstaver
+                if(!firstLine){
 
                     Member newMember = new Member(rowData[0], rowData[1],Integer.parseInt(rowData[2]),rowData[3],rowData[4],MemberActivity.valueOf(rowData[5].toUpperCase()),TrainingType.valueOf(rowData[7].toUpperCase()));
 
                     memberList.add(newMember);
 
                 }
+                firstLine = false;
             }
             return memberList;
         } catch(FileNotFoundException e) {
