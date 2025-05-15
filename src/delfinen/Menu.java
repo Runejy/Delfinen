@@ -111,6 +111,7 @@ public class Menu {
     public static void showFormand() {
         //line for calling classes
         Database d = new Database();
+        SwimmingClub x = new SwimmingClub();
 
         while (true) {
             System.out.println("=== Formand === ");
@@ -123,13 +124,13 @@ public class Menu {
             userInput = Menu.getUserNumber(4);
             switch (userInput) {
                 case "1":
-                    //Method to Add Member
+                    x.addNewMember();
                     break;
                 case "2":
                     d.databaseOutput();
                     break;
                 case "3":
-                    //Method for updating existing members
+                    x.updateMember();
                     break;
                 case "4":
                     return;
@@ -172,16 +173,17 @@ public class Menu {
 
     //Træner menu
     public static void showTræner() {
+        SwimmingClub trainer = new SwimmingClub();
         while (true) {
             System.out.println("=== Træner ===");
             System.out.println("""
                     1:  
                     2: 
-                    3: 
+                    3: Show list of trainer
                     4: Tilbage""");
 
             userInput = Menu.getUserNumber(4);
-            switch (userInput){
+            switch (userInput) {
                 case "1":
                     //add method
                     break;
@@ -189,7 +191,7 @@ public class Menu {
                     //add method
                     break;
                 case "3":
-                    //add method
+                    trainer.listOfTrainers();
                     break;
                 case "4":
                     return;

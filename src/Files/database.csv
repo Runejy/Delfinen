@@ -15,7 +15,28 @@ Telephone,Name,Age,Gender,Mail,Member Activity,Member Type,Training Type
 23 86 19 40,Heino Hansen,39,Male,heino@mail.dk,PASSIVE,SENIOR,CASUAL
 45 22 68 75,Marie Hansen,34,Other,mariehansen1991@gmail.com,ACTIVE,SENIOR,CASUAL
 38 11 55 92,Gertrud Holem,34,Female,gholem@yahoo.com,ACTIVE,SENIOR,COMPETITION
-Maria Fogt,30,Female,mariafora@hotmail.com,52117651,ACTIVE,SENIOR,COMPETITION
-Laura Fogt,30,Female,laurafora@hotmail.com,52117500,ACTIVE,SENIOR,COMPETITION
-Ole Olesen,59,Male,ole@ole.dk,12345433,ACTIVE,SENIOR,COMPETITION
-Hans Jensen,49,Male,hh@jul.dk,43535631,ACTIVE,SENIOR,COMPETITION
+52 11 76 51,Maria Fogt,30,Female,mariafora@hotmail.com,ACTIVE,SENIOR,COMPETITION
+52 11 75 00,Laura Fogt,30,Female,laurafora@hotmail.com,ACTIVE,SENIOR,COMPETITION
+12 34 54 33,Ole Olesen,59,Male,ole@ole.dk,ACTIVE,SENIOR,COMPETITION
+43 53 56 31,Hans Jensen,49,Male,hh@jul.dk,ACTIVE,SENIOR,COMPETITION
+34 23 98 99,Julie Mollerup,25,Female,juliemol@gmail.com,ACTIVE,SENIOR,COMPETITION
+45 92 01 23,Frederik Juhlsen,22,Male,fredj@gmail.com,ACTIVE,SENIOR,COMPETITION
+67 87 65 43,Lykke Thorhøj,29,Other,lykkz@hotmail.com,ACTIVE,SENIOR,COMPETITION
+Georg Jensen,44,Male,gj@hotmail.com,34344545,ACTIVE,SENIOR,COMPETITION
+August Matthew,22,Male,am@live.dk,34576541,ACTIVE,SENIOR,COMPETITION
+Tobias Wiik,30,Male,toby@live.dk,41161711,ACTIVE,SENIOR,COMPETITION
+Yacqub,21,Male,Yacqub@gmail.com,20807993,ACTIVE,SENIOR,COMPETITION
+Helle H,45,Female,helleh@mail.dk,56749201,ACTIVE,SENIOR,COMPETITION
+Julia Roberts,35,Female,juliar@mail.com,2005,ACTIVE,SENIOR,COMPETITION
+Jakob Kjeldgaard,1,Male,jk@live.dk,45675432,ACTIVE,JUNIOR,COMPETITION
+Rasmus Rudolf,35,Other,julemanden@live.dk,3333339,ACTIVE,SENIOR,COMPETITION
+Mona Lisa,35,Female,mona@lisa.divine,45678921,ACTIVE,SENIOR,COMPETITION
+Frank Hvam,25,Male,frankie@mail.com,49683720,ACTIVE,SENIOR,COMPETITION
+Winnie Pooh,14,Other,poooooh@mail.com,78694921,ACTIVE,JUNIOR,COMPETITION
+Lina Rafn,45,Female,lina@rafn.dk,65432378,ACTIVE,SENIOR,COMPETITION
+Harry Potter,23,Male,thechosenone@hogwarts.com,32323435,ACTIVE,SENIOR,COMPETITION
+Frodo Baggins,21,Male,ringbeaerer@middleearth.com,11111191,ACTIVE,SENIOR,COMPETITION
+Will Smith,25,Male,will@smith.com,67583719,ACTIVE,SENIOR,COMPETITION
+Michael Jackson,27,Male,mj@live.dk,39929210,ACTIVE,SENIOR,COMPETITION
+Alfred Lutten,19,Male,alfie@mail.dk,93287241,ACTIVE,SENIOR,COMPETITION
+Hjalte Happy,26,Male,hjalte@happy.dk,67389501,ACTIVE,SENIOR,COMPETITION

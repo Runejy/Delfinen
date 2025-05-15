@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Trainer {
     public static String name;
-    private Database database;
+    private Database database = new Database();
     private ArrayList<Member> eliteList = database.getEliteMemberArrayList();
 
     Trainer(String name) {
