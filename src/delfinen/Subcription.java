@@ -10,6 +10,13 @@ public class Subcription {
     private double price;
     private boolean isPaid;
 
+    //For Restance Method
+    private static String userInput;
+
+    private static final Scanner sc = new Scanner(System.in);
+
+    private static int userInt;
+    //
 
     public double getPrice() {
         return price;

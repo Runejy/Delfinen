@@ -97,7 +97,7 @@ public class Menu {
                     break;
                 case "3":
                     //call Træner
-                    showTræner();
+                    showTrainer();
                     break;
                 //close menu
                 //line for method
@@ -147,8 +147,8 @@ public class Menu {
             System.out.println("""
                     1: Total Revenue
                     2: Total Revenue af medlemstype
-                    3: Vis medlemmer i restance
-                    4: Tilbage""");
+                    3: Restance
+                    4: Back""");
 
             userInput = Menu.getUserNumber(4);
             switch (userInput) {
@@ -159,7 +159,7 @@ public class Menu {
                     s.totalRevenueByMemberType();
                     break;
                 case "3":
-                    //Method for Restance
+                    s.showRestance();
                     break;
                 case "4":
                     return;
@@ -171,12 +171,12 @@ public class Menu {
     //Træner menu
     public static void showTrainer() {
         while (true) {
-            System.out.println("=== Træner ===");
+            System.out.println("=== Trainer ===");
             System.out.println("""
                     1:  
                     2: 
                     3: 
-                    4: Tilbage""");
+                    4: Back""");
 
             userInput = Menu.getUserNumber(4);
             switch (userInput){
