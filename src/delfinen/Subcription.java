@@ -59,6 +59,43 @@ public class Subcription {
     }
 
     public void setRestance() {
+        Database d = new Database();
+        Menu m = new Menu();
+        String userInputString;
+
+        while(true){
+            System.out.println("""
+                    1. Update Active
+                    2. Update Passive
+                    3. Update Restance
+                    4. Back""");
+            userInput = Menu.getUserNumber(4);
+            switch (userInput){
+                case "1":
+                    String rowIdentificer = sc.nextLine();
+                    String newValue = sc.nextLine();
+
+                    d.changeDataByRow(rowIdentificer, "Member Activity", "ACTIVE");
+                    // field for updating Active
+                    break;
+                case "2":
+                    rowIdentificer = sc.nextLine();
+                    newValue = sc.nextLine();
+
+                    d.changeDataByRow(rowIdentificer,"Member Activity","PASSIVE");
+                    //field for updating passive
+                    break;
+                case "3":
+                    rowIdentificer = sc.nextLine();
+                    newValue = sc.nextLine();
+
+                    d.changeDataByRow(rowIdentificer, "Member Activity", "RESTANCE");
+                    //field for updating Restance
+                    break;
+                case "4":
+                    return;
+            }
+        }
 
 
     }
