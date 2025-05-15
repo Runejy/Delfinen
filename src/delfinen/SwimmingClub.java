@@ -173,7 +173,7 @@ public class SwimmingClub {
 
 
 
-            EliteSwimmer eliteSwimmer = new EliteSwimmer(name, age, gender, mail, phoneNumber, memberActivity, trainingType, team, disciplines, trainer);
+            EliteSwimmer eliteSwimmer = new EliteSwimmer(phoneNumber, name, age, gender, mail, memberActivity, trainingType, team, disciplines, trainer);
             eliteSwimmer.setDisciplines(disciplines);
             eliteSwimmer.setTeam(team);
             eliteSwimmer.setTrainer(trainer);
