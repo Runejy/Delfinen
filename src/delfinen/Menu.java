@@ -170,6 +170,7 @@ public class Menu {
 
     //Træner menu
     public static void showTrainer() {
+        SwimmingClub trainer = new SwimmingClub();
         while (true) {
             System.out.println("=== Trainer ===");
             System.out.println("""
@@ -179,7 +180,7 @@ public class Menu {
                     4: Back""");
 
             userInput = Menu.getUserNumber(4);
-            switch (userInput){
+            switch (userInput) {
                 case "1":
                     //add method
                     break;
@@ -187,7 +188,7 @@ public class Menu {
                     //add method
                     break;
                 case "3":
-                    //add method
+                    trainer.listOfTrainers();
                     break;
                 case "4":
                     return;

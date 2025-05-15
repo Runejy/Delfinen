@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -108,21 +109,63 @@ public class Database {
         }
     }
 
+
+    //INPUT ELITE DATA TO CSV FILE
     void inputNewEliteData(EliteSwimmer newEliteSwimmer){
-        try{
+        try {
             fileWriter = new FileWriter("src/Files/EliteSwimmer.csv", true);
+
+            StringBuilder disciplineString = new StringBuilder();
+            for (int i = 0; i < newEliteSwimmer.getDisciplines().size(); i++) {
+                disciplineString.append(newEliteSwimmer.getDisciplines().get(i));
+                if (i < newEliteSwimmer.getDisciplines().size() - 1) {
+                    disciplineString.append(", ");
+                }
+            }
+
             fileWriter.write(
-                    "\n" + newEliteSwimmer.getName() +
-                            "," + newEliteSwimmer.getTrainer() +
-                            "," + newEliteSwimmer.getTeam() +
-                            "," + newEliteSwimmer.getDisciplines()
+                    System.lineSeparator() +
+                            newEliteSwimmer.getName() + ";" +
+                            newEliteSwimmer.getTrainer() + ";" +
+                            newEliteSwimmer.getTeam() + ";" +
+                            disciplineString.toString()
             );
             fileWriter.close();
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    //Method to print out the userInputted Elite members from database
+    void databaseOutputEliteMember(){
+        BufferedReader brReader = null;
+        String line;
+
+        try {
+            brReader = new BufferedReader(new FileReader("src/Files/EliteSwimmer.csv"));
+            System.out.printf("%-20s%-20s%-15s%-40s%n", "Swimmer Name", "Trainer", "Team", "Disciplines");
+
+            while ((line = brReader.readLine()) != null) {
+                // Skip header if present
+                if (line.startsWith("SwimmerName")) {
+                    continue;
+                }
+
+                String[] row = line.split(";", -1);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (brReader != null) brReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // ARRAYLIST OVER MEMBERS IN DATABASE
      ArrayList<Member> getMemberArrayList(){
         try{
             ArrayList<Member> memberList = new ArrayList<>();
@@ -146,7 +189,7 @@ public class Database {
 
         return null;
     }
-
+    // ARRAYLIST OVER ELITE MEMBERS IN DATABASE
     ArrayList<Member> getEliteMemberArrayList(){
         ArrayList<Member> eliteMemberList = new ArrayList<>();
 
@@ -166,7 +209,7 @@ public class Database {
                 }
 
 
-                if(rowData[1].matches("\\d+")){ //Tjekker udelukkende om rowData[1]/age består af ét eller flere cifre og ikke bogstaver
+                if(rowData[2].matches("\\d+")){ //Tjekker udelukkende om rowData[1]/age består af ét eller flere cifre og ikke bogstaver
 
                     Member newMember =  new Member(rowData[0], rowData[1],Integer.parseInt(rowData[2]),rowData[3],rowData[4],MemberActivity.valueOf(rowData[5].toUpperCase()),TrainingType.valueOf(rowData[7].toUpperCase()));
 
