@@ -7,6 +7,5 @@ public interface Result {
     double getTime();
     Discipline getDiscipline();
 
-
-    public void viewRusults();
+    //String viewResults();  // Metode som returnerer en String
 }

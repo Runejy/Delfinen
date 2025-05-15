@@ -9,6 +9,14 @@ public class ResultCompetition implements Result {
     private String competitionName;
     private int placement;
 
+    public ResultCompetition(String date, double time, Discipline discipline, String competitionName, int placement) {
+        this.date = date;
+        this.time = time;
+        this.discipline = discipline;
+        this.competitionName = competitionName;
+        this.placement = placement;
+    }
+
     @Override
     public String getDate() {
         return date;
@@ -32,7 +40,12 @@ public class ResultCompetition implements Result {
         return placement;
     }
 
-    public void viewRusults(){
-
+    @Override
+    public String toString() {
+        return "Dato: " + date
+                + ", Tid: " + time
+                + ", Disciplin: " + discipline
+                + ", Konkurrence: " + competitionName
+                + ", Placering: " + placement;
     }
 }
