@@ -20,7 +20,7 @@ public class EliteSwimmer extends Member {
     private ArrayList<Result> results = new ArrayList<>();
 
 
-    EliteSwimmer(String name, int age, String gender, String mail, String phoneNumber, MemberActivity memberActivity, TrainingType trainingType, Team team, ArrayList<Discipline> disciplines, Trainer trainer) {
+    EliteSwimmer(String phoneNumber, String name, int age, String gender, String mail, MemberActivity memberActivity, TrainingType trainingType, Team team, ArrayList<Discipline> disciplines, Trainer trainer) {
         super(phoneNumber, name, age, gender, mail, memberActivity, trainingType);
         this.team = team;
         this.disciplines = disciplines;
