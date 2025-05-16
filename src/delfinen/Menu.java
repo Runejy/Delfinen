@@ -177,18 +177,18 @@ public class Menu {
         while (true) {
             System.out.println("=== Træner ===");
             System.out.println("""
-                    1:  
-                    2: 
-                    3: Show list of trainers
+                    1: Tilføj træner
+                    2: Vis top 5 svømmere
+                    3: vis list af træner
                     4: Tilbage""");
 
             userInput = Menu.getUserNumber(4);
             switch (userInput) {
                 case "1":
-                    //add method
+                    trainer.addTrainer();
                     break;
                 case "2":
-                    //add method
+                    trainer.top5Swimmers();
                     break;
                 case "3":
                     trainer.listOfTrainers();
