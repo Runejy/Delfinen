@@ -35,14 +35,14 @@ public class Menu {
             try {
                 userInt = sc.nextInt();
             } catch (Exception e) {
-                System.out.println("Indtast venligst et gyldigt nummer");
+                System.out.println("Enter a valid number");
                 sc.nextLine();
                 continue;
             }
 
             //check if the users number is within the available options
             if (userInt > numOptions || userInt <= 0) {
-                System.out.println("Indtast venligst et nummer mellem 1 og " + numOptions);
+                System.out.println("Enter a number between 1 and " + numOptions);
                 continue;
             }
 
@@ -61,7 +61,7 @@ public class Menu {
             try {
                 userInt = sc.nextInt();
             } catch (Exception e) {
-                System.out.println("Indtast venligst et gyldigt nummer");
+                System.out.println("Enter a valid number");
                 sc.nextLine();
                 continue;
             }
@@ -76,11 +76,11 @@ public class Menu {
         //Main menu
         while (true) {
             System.out.println("""
-                    === Velkommen til Delfinen ===
-                    1: Formand
-                    2: Kasser
-                    3: Træner
-                    4: Luk""");
+                    === Welcome to Delfinen ===
+                    1: Chairman
+                    2: Financier
+                    3: Trainer
+                    4: Back""");
 
             //handle userInput
             userInput = Menu.getUserNumber(4);
@@ -114,12 +114,12 @@ public class Menu {
         SwimmingClub x = new SwimmingClub();
 
         while (true) {
-            System.out.println("=== Formand === ");
+            System.out.println("=== Chairman === ");
             System.out.println("""
-                    1: Opret medlem  
-                    2: Vis alle medlemmer
-                    3: Opdater medlem
-                    4: Tilbage""");
+                    1: Add member 
+                    2: Show all members
+                    3: Update members
+                    4: Back""");
 
             userInput = Menu.getUserNumber(4);
             switch (userInput) {
@@ -146,12 +146,12 @@ public class Menu {
     public static void showKasser() {
         Subcription s = new Subcription();
         while (true) {
-            System.out.println("=== Kasser ===");
+            System.out.println("=== Financier ===");
             System.out.println("""
                     1: Total Revenue
-                    2: Total Revenue af medlemstype
-                    3: Vis medlemmer i restance
-                    4: Tilbage""");
+                    2: Total Revenue by membertype
+                    3: Show members missing payments
+                    4: Back""");
 
             userInput = Menu.getUserNumber(4);
             switch (userInput) {
@@ -162,6 +162,7 @@ public class Menu {
                     s.totalRevenueByMemberType();
                     break;
                 case "3":
+                    s.showRestance();
                     //Method for Restance
                     break;
                 case "4":
@@ -171,16 +172,16 @@ public class Menu {
         }
     }
 
-    //Træner menu
+    //Træner menu //Ændre til engelsk til sidst.
     public static void showTræner() {
         SwimmingClub trainer = new SwimmingClub();
         while (true) {
-            System.out.println("=== Træner ===");
+            System.out.println("=== Trainer ===");
             System.out.println("""
-                    1: Tilføj træner
-                    2: Vis top 5 svømmere
-                    3: vis list af træner
-                    4: Tilbage""");
+                    1: Add trainer
+                    2: Show top 5 swimmers
+                    3: Show list of trainers
+                    4: Back""");
 
             userInput = Menu.getUserNumber(4);
             switch (userInput) {
