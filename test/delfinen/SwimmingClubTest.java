@@ -15,7 +15,7 @@ public class SwimmingClubTest {
 
     @Test
     void addNewMember() {
-        Member memberNew = new Member("Yrsa Larsen", 90, "Female", "yrsal@gmail.com", "34543212", MemberActivity.PASSIVE, TrainingType.CASUAL);
+        Member memberNew = new Member("34543212", "Yrsa Larsen", 90, "Female", "yrsal@gmail.com", MemberActivity.PASSIVE, TrainingType.CASUAL);
 
         //TEST AF AT ALDER AFGØR MEMBER TYPE OG PRIS
         assertEquals(MemberType.RETIREE, memberNew.getMemberType());

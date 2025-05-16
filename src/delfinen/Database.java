@@ -1,5 +1,6 @@
 package delfinen;
 
+import delfinen.Enums.Discipline;
 import delfinen.Enums.MemberType;
 import delfinen.Enums.TrainingType;
 import delfinen.Enums.MemberActivity;
@@ -132,6 +133,19 @@ public class Database {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String makeDisciplineText(ArrayList<Discipline> disciplines) {
+        String result = "";
+
+        for (int i = 0; i < disciplines.size(); i++) {
+            result += disciplines.get(i); // ADDS DISCIPLINE AS TEXT
+            if (i < disciplines.size() - 1) {
+                result += ", "; // ADD COMMA AND SPACE IF IT'S NOT THE LAST DISCIPLINE IN LIST
+            }
+        }
+
+        return result;
     }
 
     //Method to print out the userInputted Elite members from database
