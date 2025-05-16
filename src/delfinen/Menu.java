@@ -179,7 +179,7 @@ public class Menu {
             System.out.println("""
                     1:  
                     2: 
-                    3: Show list of trainer
+                    3: Show list of trainers
                     4: Tilbage""");
 
             userInput = Menu.getUserNumber(4);
