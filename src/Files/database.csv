@@ -22,21 +22,24 @@ Telephone,Name,Age,Gender,Mail,Member Activity,Member Type,Training Type
 34 23 98 99,Julie Mollerup,25,Female,juliemol@gmail.com,ACTIVE,SENIOR,COMPETITION
 45 92 01 23,Frederik Juhlsen,22,Male,fredj@gmail.com,ACTIVE,SENIOR,COMPETITION
 67 87 65 43,Lykke Thorhøj,29,Other,lykkz@hotmail.com,ACTIVE,SENIOR,COMPETITION
-Georg Jensen,44,Male,gj@hotmail.com,34344545,ACTIVE,SENIOR,COMPETITION
-August Matthew,22,Male,am@live.dk,34576541,ACTIVE,SENIOR,COMPETITION
-Tobias Wiik,30,Male,toby@live.dk,41161711,ACTIVE,SENIOR,COMPETITION
-Yacqub,21,Male,Yacqub@gmail.com,20807993,ACTIVE,SENIOR,COMPETITION
-Helle H,45,Female,helleh@mail.dk,56749201,ACTIVE,SENIOR,COMPETITION
-Julia Roberts,35,Female,juliar@mail.com,2005,ACTIVE,SENIOR,COMPETITION
-Jakob Kjeldgaard,1,Male,jk@live.dk,45675432,ACTIVE,JUNIOR,COMPETITION
-Rasmus Rudolf,35,Other,julemanden@live.dk,3333339,ACTIVE,SENIOR,COMPETITION
-Mona Lisa,35,Female,mona@lisa.divine,45678921,ACTIVE,SENIOR,COMPETITION
-Frank Hvam,25,Male,frankie@mail.com,49683720,ACTIVE,SENIOR,COMPETITION
-Winnie Pooh,14,Other,poooooh@mail.com,78694921,ACTIVE,JUNIOR,COMPETITION
-Lina Rafn,45,Female,lina@rafn.dk,65432378,ACTIVE,SENIOR,COMPETITION
-Harry Potter,23,Male,thechosenone@hogwarts.com,32323435,ACTIVE,SENIOR,COMPETITION
-Frodo Baggins,21,Male,ringbeaerer@middleearth.com,11111191,ACTIVE,SENIOR,COMPETITION
-Will Smith,25,Male,will@smith.com,67583719,ACTIVE,SENIOR,COMPETITION
-Michael Jackson,27,Male,mj@live.dk,39929210,ACTIVE,SENIOR,COMPETITION
-Alfred Lutten,19,Male,alfie@mail.dk,93287241,ACTIVE,SENIOR,COMPETITION
-Hjalte Happy,26,Male,hjalte@happy.dk,67389501,ACTIVE,SENIOR,COMPETITION
+34 34 45 45,Georg Jensen,44,Male,gj@hotmail.com,ACTIVE,SENIOR,COMPETITION
+34 57 65 41,August Matthew,22,Male,am@live.dk,ACTIVE,SENIOR,COMPETITION
+41 16 17 11,Tobias Wiik,30,Male,toby@live.dk,ACTIVE,SENIOR,COMPETITION
+20 80 79 93,Yacqub,21,Male,Yacqub@gmail.com,ACTIVE,SENIOR,COMPETITION
+56 74 92 01,Helle H,45,Female,helleh@mail.dk,ACTIVE,SENIOR,COMPETITION
+20 05 98 91,Julia Roberts,35,Female,juliar@mail.com,ACTIVE,SENIOR,COMPETITION
+45 67 54 32,Jakob Kjeldgaard,1,Male,jk@live.dk,ACTIVE,JUNIOR,COMPETITION
+33 33 33 39,Rasmus Rudolf,35,Other,julemanden@live.dk,ACTIVE,SENIOR,COMPETITION
+45 67 89 21,Mona Lisa,35,Female,mona@lisa.divine,ACTIVE,SENIOR,COMPETITION
+49 68 37 20,Frank Hvam,25,Male,frankie@mail.com,ACTIVE,SENIOR,COMPETITION
+78 69 49 21,Winnie Pooh,14,Other,poooooh@mail.com,ACTIVE,JUNIOR,COMPETITION
+65 43 23 78,Lina Rafn,45,Female,lina@rafn.dk,ACTIVE,SENIOR,COMPETITION
+32 32 34 35,Harry Potter,23,Male,thechosenone@hogwarts.com,ACTIVE,SENIOR,COMPETITION
+11 11 11 91,Frodo Baggins,21,Male,ringbeaerer@middleearth.com,ACTIVE,SENIOR,COMPETITION
+67 58 37 19,Will Smith,25,Male,will@smith.com,ACTIVE,SENIOR,COMPETITION
+39 92 92 10,Michael Jackson,27,Male,mj@live.dk,ACTIVE,SENIOR,COMPETITION
+93 28 72 41,Alfred Lutten,19,Male,alfie@mail.dk,ACTIVE,SENIOR,COMPETITION
+67 38 95 01,Hjalte Happy,26,Male,hjalte@happy.dk,ACTIVE,SENIOR,COMPETITION
+41 89 34 01,Mette Frederiksen,58,Female,mette@statministeriet.dk,ACTIVE,SENIOR,COMPETITION
+43 92 12 02,Holger Rune,16,Male,holger@rune.dk,ACTIVE,JUNIOR,COMPETITION
+87 65 52 62,Anders Degn,16,Male,ad@danmark.dk,ACTIVE,JUNIOR,COMPETITION

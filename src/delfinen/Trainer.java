@@ -48,6 +48,11 @@ public class Trainer {
         return name;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
     public List<EliteSwimmer> getEliteSwimmers() {
         return eliteSwimmers;
     }
