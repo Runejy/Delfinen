@@ -40,14 +40,14 @@ public class Subcription {
         d.databaseOutput();
         while (true) {
             System.out.println("""
-                    1. Set restance
-                    2. View restance
-                    3. Tilbage""");
+                    1. Set missing payer
+                    2. View missing payers
+                    3. Back""");
 
             userInput = Menu.getUserNumber(3);
             switch (userInput) {
                 case "1":
-                    // field for method - setRestance
+                    setRestance();
                     break;
                 case "2":
                     viewRestance();
@@ -58,45 +58,82 @@ public class Subcription {
         }
     }
 
+    // Bruges til at update Member Activity, til ACTIVE, PASSIVE ELLER RESTANCE, for kasseren.
     public void setRestance() {
         Database d = new Database();
         Menu m = new Menu();
         String userInputString;
-
-        while(true){
+// Huskeliste:
+// Lav userinterface så bruger kan se hvad programmet vil have af data.
+// Evt. check om den går tilbage og spørg om den vil update en til bruger
+// Check linje skift når man taster en bruger ind.
+// hej
+        //
+        // brug enums igen.
+        while(true) {
             System.out.println("""
                     1. Update Active
                     2. Update Passive
                     3. Update Restance
                     4. Back""");
             userInput = Menu.getUserNumber(4);
-            switch (userInput){
-                case "1":
-                    String rowIdentificer = sc.nextLine();
-                    String newValue = sc.nextLine();
+            try {
 
-                    d.changeDataByRow(rowIdentificer, "Member Activity", "ACTIVE");
-                    // field for updating Active
-                    break;
-                case "2":
-                    rowIdentificer = sc.nextLine();
-                    newValue = sc.nextLine();
+                switch (userInput) {
+                    case "1":
+                        System.out.println("Enter the phone number of the member to set as Active (xx xx xx xx): ");
+                        String rowIdentificer = sc.nextLine();
 
-                    d.changeDataByRow(rowIdentificer,"Member Activity","PASSIVE");
-                    //field for updating passive
-                    break;
-                case "3":
-                    rowIdentificer = sc.nextLine();
-                    newValue = sc.nextLine();
+                        if(rowIdentificer.matches("\\d{8}")){
+                            rowIdentificer = rowIdentificer.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4"); // $1 is the first 2 digits like this: 20 $1, 31 $2, 49 $3, 69 $4.
+                        }
 
-                    d.changeDataByRow(rowIdentificer, "Member Activity", "RESTANCE");
-                    //field for updating Restance
-                    break;
-                case "4":
-                    return;
+                        if (!rowIdentificer.matches("\\d{2} \\d{2} \\d{2} \\d{2}")) {
+                            System.out.println("Invalid format. Use XX XX XX XX.");
+                        }
+
+                        d.changeDataByRow(rowIdentificer, "Member Activity", "ACTIVE");
+                        System.out.println("Member status updated to ACTIVE");
+
+                        break;
+                    case "2":
+                        System.out.println("Enter the phone number of the member to set as PASSIVE (xx xx xx xx): ");
+                        rowIdentificer = sc.nextLine();
+
+                        if(rowIdentificer.matches("\\d{8}")){
+                            rowIdentificer = rowIdentificer.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4"); // $1 is the first 2 digits like this: 20 $1, 31 $2, 49 $3, 69 $4.
+                        }
+
+                        if (!rowIdentificer.matches("\\d{2} \\d{2} \\d{2} \\d{2}")) {
+                            System.out.println("Invalid format. Use XX XX XX XX.");
+                        }
+
+                        d.changeDataByRow(rowIdentificer, "Member Activity", "PASSIVE");
+                        System.out.println("Member status updated to PASSIVE");
+
+                        break;
+                    case "3":
+                        System.out.println("Enter the phone number of the member to set as RESTANCE (xx xx xx xx): ");
+                        rowIdentificer = sc.nextLine();
+
+                        if(rowIdentificer.matches("\\d{8}")){
+                            rowIdentificer = rowIdentificer.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4"); // $1 is the first 2 digits like this: 20 $1, 31 $2, 49 $3, 69 $4.
+                        }
+
+                        if (!rowIdentificer.matches("\\d{2} \\d{2} \\d{2} \\d{2}")) {
+                            System.out.println("Invalid format. Use XX XX XX XX.");
+                        }
+
+                        d.changeDataByRow(rowIdentificer, "Member Activity", "RESTANCE");
+                        System.out.println("Member status updated to RESTANCE");
+                        break;
+                    case "4":
+                        return;
+                }
+            } catch (Exception e) {
+                System.out.println("An error occurred: " + e);
             }
         }
-
 
     }
 
@@ -107,20 +144,20 @@ public class Subcription {
             br.readLine(); // Skip header
 
             String line;
-            System.out.println("=== Medlemmer i restance ===");
+            System.out.println("=== Members missing payment ===");
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
                 MemberActivity activity = MemberActivity.valueOf(values[5].trim());
 
                 if (activity == MemberActivity.RESTANCE) {
-                    membersInRestance.add("Mobilnummer: " + values[0] + " Navn: " + values[1]);
+                    membersInRestance.add("Phone: " + values[0] + " Name: " + values[1]);
 
                 }
             }
 
             // Print results
             for (String name : membersInRestance) {
-                System.out.println("I restance: " + name);
+                System.out.println("Missing payment: " + name);
             }
 
         } catch (IOException e) {
@@ -151,12 +188,12 @@ public class Subcription {
                 revenueList.add(new Member(activity, memberType));
 
                 if (activity == MemberActivity.PASSIVE) {
-                    totalPassiveRevenue += 500;
+                    totalPassiveRevenue += MemberType.PASSIVEPRICE.getPrice();
                 } else {
                     switch (memberType) {
-                        case JUNIOR -> totalJuniorRevenue += 1000;
-                        case SENIOR -> totalSeniorRevenue += 1600;
-                        case RETIREE -> totalRetireeRevenue += 1200;
+                        case JUNIOR -> totalJuniorRevenue += MemberType.JUNIOR.getPrice();
+                        case SENIOR -> totalSeniorRevenue += MemberType.SENIOR.getPrice();
+                        case RETIREE -> totalRetireeRevenue += MemberType.RETIREE.getPrice();
                     }
                 }
             }
@@ -164,10 +201,10 @@ public class Subcription {
             throw new RuntimeException(e);
         }
 
-        System.out.println("Samlet årlig indtægt for passive medlemmer: " + totalPassiveRevenue + " DKK");
-        System.out.println("Samlet årlig indtægt for Junior medlemmer: " + totalJuniorRevenue + " DKK");
-        System.out.println("Samlet årlig indtægt for Senior medlemmer: " + totalSeniorRevenue + " DKK");
-        System.out.println("Samlet årlig indtægt for Retiree medlemmer: " + totalRetireeRevenue + " DKK");
+        System.out.println("Yearly income for passive members: " + totalPassiveRevenue + " DKK");
+        System.out.println("Yearly income for Junior members: " + totalJuniorRevenue + " DKK");
+        System.out.println("Yearly income for Senior members: " + totalSeniorRevenue + " DKK");
+        System.out.println("Yearly income for Retiree members: " + totalRetireeRevenue + " DKK");
     }
 
     public void totalRevenue() {
@@ -203,7 +240,7 @@ public class Subcription {
             throw new RuntimeException(e);
         }
 
-        System.out.println("Samlet årlig indtægt: " + totalRevenue + " DKK");
+        System.out.println("Anually gross revenue: " + totalRevenue + " DKK");
 
     }
 

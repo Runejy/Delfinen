@@ -1,13 +1,14 @@
 package delfinen;
 
+import delfinen.Enums.Discipline;
+import delfinen.Trainer;
+import delfinen.Results.ResultCompetition;
+
 public class Main {
     public static void main(String[] args) {
 
-        SwimmingClub delfinen = new SwimmingClub();
-        delfinen.addNewMember();
 
-        Menu m = new Menu();
-        m.mainMenu();
+        Menu Menu = new Menu();
+        Menu.mainMenu();
     }
-
 }
