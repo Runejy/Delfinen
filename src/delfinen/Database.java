@@ -30,11 +30,10 @@ public class Database {
         try{
             fileWriter = new FileWriter(filePath, true);
             fileWriter.write(
-                                "\n" + newMember.getName() +
-                            "," + newMember.getAge() +
-                            "," + newMember.getGender() +
+                                "\n" + newMember.getPhoneNumber() +
+                            "," + newMember.getName() +
+                            "," + newMember.getAge() + "," + newMember.getGender() +
                             "," + newMember.getMail() +
-                                "," + newMember.getPhoneNumber() +
                             "," + newMember.getMemberActivity() +
                             "," + newMember.getMemberType() +
                             "," + newMember.getTrainingType()

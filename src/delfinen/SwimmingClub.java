@@ -189,13 +189,13 @@ public class SwimmingClub {
         System.out.println("=======================================");
         System.out.println("   New Member Added to the Club");
         System.out.println("=======================================");
+        System.out.printf ("%-20s: %s%n", "Phone number", phoneNumber);
         System.out.printf ("%-20s: %s%n", "Name", name);
         System.out.printf ("%-20s: %d%n", "Age", age);
         System.out.printf ("%-20s: %s%n", "Gender", gender);
         System.out.printf ("%-20s: %s%n", "Mail", mail);
-        System.out.printf ("%-20s: %s%n", "Phone number", phoneNumber);
-        System.out.printf ("%-20s: %s%n", "Member Type", memberType);
         System.out.printf ("%-20s: %s%n", "Member Activity", memberActivity);
+        System.out.printf ("%-20s: %s%n", "Member Type", memberType);
         System.out.printf ("%-20s: %s%n", "Training Type", trainingType);
         System.out.println("=======================================");
 
