@@ -45,12 +45,13 @@ public class Database {
         }
     }
 
-    void changeDataByRow(String searchedPhoneNumber, String dataKey, String dataValue){
+    void changeDataByRow(String searchedPhoneNumber, String dataKey, String dataValue) {
+        boolean updated = false;
 
 
-        for(Member member : memberList){
-            if(member.getPhoneNumber().equalsIgnoreCase(searchedPhoneNumber)){
-                switch(dataKey){
+        for (Member member : memberList) {
+            if (member.getPhoneNumber().equalsIgnoreCase(searchedPhoneNumber)) {
+                switch (dataKey) {
                     case "Telephone":
                         member.setPhoneNumber(dataValue);
                         updateDatabase();
@@ -83,10 +84,21 @@ public class Database {
                         member.setTrainingType(TrainingType.valueOf(dataValue));
                         updateDatabase();
                         break;
+
                 }
             }
         }
     }
+
+    public boolean memberUpdated(String phoneNumber) {
+        for (Member member : memberList) {
+            if (member.getPhoneNumber().equalsIgnoreCase(phoneNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     void updateDatabase(){
         try{

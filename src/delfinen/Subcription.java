@@ -63,72 +63,87 @@ public class Subcription {
         Database d = new Database();
         Menu m = new Menu();
         String userInputString;
-// Huskeliste:
-// Lav userinterface så bruger kan se hvad programmet vil have af data.
-// Evt. check om den går tilbage og spørg om den vil update en til bruger
-// Check linje skift når man taster en bruger ind.
-// hej
-        //
-        // brug enums igen.
+
         while(true) {
             System.out.println("""
-                    1. Update Active
-                    2. Update Passive
-                    3. Update Restance
-                    4. Back""");
-            userInput = Menu.getUserNumber(4);
+                1. Update Active
+                2. Update Passive
+                3. Update Restance
+                4. Back""");
+            String userInput = Menu.getUserNumber(4);
+
             try {
+                String rowIdentificer;
 
                 switch (userInput) {
                     case "1":
                         System.out.println("Enter the phone number of the member to set as Active (xx xx xx xx): ");
-                        String rowIdentificer = sc.nextLine();
+                        rowIdentificer = sc.nextLine();
 
                         if(rowIdentificer.matches("\\d{8}")){
-                            rowIdentificer = rowIdentificer.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4"); // $1 is the first 2 digits like this: 20 $1, 31 $2, 49 $3, 69 $4.
+                            rowIdentificer = rowIdentificer.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
                         }
 
                         if (!rowIdentificer.matches("\\d{2} \\d{2} \\d{2} \\d{2}")) {
                             System.out.println("Invalid format. Use XX XX XX XX.");
+                            break;
                         }
 
-                        d.changeDataByRow(rowIdentificer, "Member Activity", "ACTIVE");
-                        System.out.println("Member status updated to ACTIVE");
-
+                        if (d.memberUpdated(rowIdentificer)) {
+                            d.changeDataByRow(rowIdentificer, "Member Activity", "ACTIVE");
+                            System.out.println("Member status updated to ACTIVE");
+                        } else {
+                            System.out.println("No member found with that phone number.");
+                        }
                         break;
+
                     case "2":
                         System.out.println("Enter the phone number of the member to set as PASSIVE (xx xx xx xx): ");
                         rowIdentificer = sc.nextLine();
 
                         if(rowIdentificer.matches("\\d{8}")){
-                            rowIdentificer = rowIdentificer.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4"); // $1 is the first 2 digits like this: 20 $1, 31 $2, 49 $3, 69 $4.
+                            rowIdentificer = rowIdentificer.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
                         }
 
                         if (!rowIdentificer.matches("\\d{2} \\d{2} \\d{2} \\d{2}")) {
                             System.out.println("Invalid format. Use XX XX XX XX.");
+                            break;
                         }
 
-                        d.changeDataByRow(rowIdentificer, "Member Activity", "PASSIVE");
-                        System.out.println("Member status updated to PASSIVE");
-
+                        if (d.memberUpdated(rowIdentificer)) {
+                            d.changeDataByRow(rowIdentificer, "Member Activity", "PASSIVE");
+                            System.out.println("Member status updated to PASSIVE");
+                        } else {
+                            System.out.println("No member found with that phone number.");
+                        }
                         break;
+
                     case "3":
                         System.out.println("Enter the phone number of the member to set as RESTANCE (xx xx xx xx): ");
                         rowIdentificer = sc.nextLine();
 
                         if(rowIdentificer.matches("\\d{8}")){
-                            rowIdentificer = rowIdentificer.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4"); // $1 is the first 2 digits like this: 20 $1, 31 $2, 49 $3, 69 $4.
+                            rowIdentificer = rowIdentificer.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
                         }
 
                         if (!rowIdentificer.matches("\\d{2} \\d{2} \\d{2} \\d{2}")) {
                             System.out.println("Invalid format. Use XX XX XX XX.");
+                            break;
                         }
 
-                        d.changeDataByRow(rowIdentificer, "Member Activity", "RESTANCE");
-                        System.out.println("Member status updated to RESTANCE");
+                        if (d.memberUpdated(rowIdentificer)) {
+                            d.changeDataByRow(rowIdentificer, "Member Activity", "RESTANCE");
+                            System.out.println("Member status updated to RESTANCE");
+                        } else {
+                            System.out.println("No member found with that phone number.");
+                        }
                         break;
+
                     case "4":
                         return;
+
+                    default:
+                        System.out.println("Invalid choice. Please select 1-4.");
                 }
             } catch (Exception e) {
                 System.out.println("An error occurred: " + e);
