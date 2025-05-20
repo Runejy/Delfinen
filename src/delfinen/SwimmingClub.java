@@ -441,13 +441,15 @@ public class SwimmingClub {
 
     public void listOfTrainers() {
         System.out.println("Trainers in Delfinen: ");
-        for (String name : getTrainersFromFile()) {
-            System.out.println(name);
+        ArrayList<String> trainers = getTrainersFromFile();
+        for (String trainer : trainers) {
+            System.out.println(trainer);
         }
     }
 
 
     public void top5Swimmers() {
+
 
     }
 

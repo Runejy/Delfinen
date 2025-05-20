@@ -55,6 +55,9 @@ public class Member {
         this.memberType = memberType;
     }
 
+    public Member() {
+    }
+
     public String getName() {
         return name;
     }
