@@ -33,7 +33,7 @@ public class Subcription {
     public void setPaid(boolean paid) {
         this.isPaid = paid;
     }
-
+//Brugerinterface til Menu
     public void showRestance() {
         Database d = new Database();
         Menu m = new Menu();
@@ -137,6 +137,7 @@ public class Subcription {
 
     }
 
+    //Viser brugere i Restance fra CSV fil
     public void viewRestance() {
         List<String> membersInRestance = new ArrayList<>();
 
@@ -164,7 +165,7 @@ public class Subcription {
             throw new RuntimeException("Error reading file", e);
         }
     }
-
+    //Kan adskille de forskellige medlemstyper og viser, hvor meget de pågældende indbrginer af kontigent.
     public void totalRevenueByMemberType() {
         ArrayList<Member> revenueList = new ArrayList<>();
         int totalPassiveRevenue = 0;
@@ -206,7 +207,7 @@ public class Subcription {
         System.out.println("Yearly income for Senior members: " + totalSeniorRevenue + " DKK");
         System.out.println("Yearly income for Retiree members: " + totalRetireeRevenue + " DKK");
     }
-
+    //Viser sammenregenet kontigent
     public void totalRevenue() {
         ArrayList<Member> revenueList = new ArrayList<>();
         int totalRevenue = 0;

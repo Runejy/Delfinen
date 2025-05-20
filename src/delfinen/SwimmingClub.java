@@ -25,6 +25,15 @@ public class SwimmingClub {
         System.out.println("===================================");
         System.out.println();
 
+        //REGISTER PHONENUMBER
+        String phoneNumber = "";
+        while (phoneNumber.isBlank()) {
+            System.out.println("Enter members phone number: ");
+            phoneNumber = scanner.nextLine();
+            if (phoneNumber.isBlank()) {
+                System.out.println("E-mail cannot be empty.");
+            }
+        }
         //REGISTER NAME
         String name = "";
         while (name.isBlank()) {
@@ -34,16 +43,6 @@ public class SwimmingClub {
                 System.out.println("Name cannot be empty.");
             }
 
-        }
-
-        //REGISTER PHONENUMBER
-        String phoneNumber = "";
-        while (phoneNumber.isBlank()) {
-            System.out.println("Enter members phone number: ");
-            phoneNumber = scanner.nextLine();
-            if(phoneNumber.isBlank()){
-                System.out.println("E-mail cannot be empty.");
-            }
         }
 
         //REGISTER MAIL
