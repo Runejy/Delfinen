@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 public class Trainer {
     private Database database = new Database();
-    private ArrayList<EliteSwimmer> eliteList = database.getEliteMemberArrayList();
 
     private String name;
     private List<EliteSwimmer> eliteSwimmers = new ArrayList<>();

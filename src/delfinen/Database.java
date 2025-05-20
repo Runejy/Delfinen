@@ -223,34 +223,35 @@ public class Database {
 
         try {
             Scanner eliteSwimmerReader = new Scanner(new File("src/Files/EliteSwimmer.csv"));
-            String headerElite = eliteSwimmerReader.nextLine();
+            eliteSwimmerReader.nextLine();
+
             while(eliteSwimmerReader.hasNextLine()){
-                if(!eliteSwimmerReader.nextLine().contains(headerElite)){
-                    String[] eliteSwimmerRowData = eliteSwimmerReader.nextLine().split(";");
+                String[] eliteSwimmerRowData = eliteSwimmerReader.nextLine().split(",");
 
-                    Scanner databaseReader = new Scanner(new File(filePath));
-                    String headerDatabase = databaseReader.nextLine();
+                Scanner databaseReader = new Scanner(new File(filePath));
+                databaseReader.nextLine();
 
-                    while(databaseReader.hasNextLine()){
-                        if(!databaseReader.nextLine().contains(headerDatabase)){
-                            String[] rowData = databaseReader.nextLine().split(",");
+                while(databaseReader.hasNextLine()){
+                    String[] rowData = databaseReader.nextLine().split(",");
 
-                            if(eliteSwimmerRowData[0].equals(rowData[0])){
-                                ArrayList<Discipline> disciplineArrayList = new ArrayList<>();
-                                String[] disciplines = eliteSwimmerRowData[4].split(",");
+                    if(eliteSwimmerRowData[0].equals(rowData[0])){
+                        ArrayList<Discipline> disciplineArrayList = new ArrayList<>();
+                        String[] disciplines = eliteSwimmerRowData[4].split("-");
 
-                                for(String discipline : disciplines){
-                                    disciplineArrayList.add(Discipline.valueOf(discipline.toUpperCase()));
-                                }
-                                Trainer trainer = new Trainer(eliteSwimmerRowData[2]);
-
-                                EliteSwimmer eliteSwimmer = new EliteSwimmer(rowData[0], rowData[1], Integer.parseInt(rowData[2]), rowData[3], rowData[4], MemberActivity.valueOf(rowData[5].toUpperCase()), TrainingType.valueOf(rowData[7].toUpperCase()), Team.valueOf(eliteSwimmerRowData[3]),disciplineArrayList,trainer);
-                                eliteMemberList.add(eliteSwimmer);
-                                break;
-                            }
+                        for(String discipline : disciplines){
+                            disciplineArrayList.add(Discipline.valueOf(discipline.toUpperCase()));
                         }
+
+                        Trainer trainer = new Trainer(eliteSwimmerRowData[2]);
+
+                        EliteSwimmer eliteSwimmer = new EliteSwimmer(rowData[0], rowData[1], Integer.parseInt(rowData[2]), rowData[3], rowData[4], MemberActivity.valueOf(rowData[5].toUpperCase()), TrainingType.valueOf(rowData[7].toUpperCase()), Team.valueOf(eliteSwimmerRowData[3]),disciplineArrayList,trainer);
+                        eliteMemberList.add(eliteSwimmer);
+                        System.out.println(eliteSwimmer);
+
+                        break;
                     }
                 }
+
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

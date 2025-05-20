@@ -13,8 +13,6 @@ import java.util.Scanner;
 
 
 public class EliteSwimmer extends Member {
-    private String phoneNumber;
-    private String name;
     private Team team;
     private ArrayList<Discipline> disciplines = new ArrayList<>();
     private Trainer trainer;
@@ -217,6 +215,6 @@ public class EliteSwimmer extends Member {
     }
 
     public String toString(){
-        return name;
+        return String.format("%-15s %-25s %-10s %-10s %-15s %-25s %-10s %-40s ", getPhoneNumber(), getName(), getGender(),getMemberActivity(), getTrainingType(), trainer, team, disciplines);
     }
 }
