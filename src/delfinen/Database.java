@@ -19,25 +19,62 @@ public class Database {
     private static ArrayList<Member> memberList = getMemberArrayList();
     private static ArrayList<EliteSwimmer> eliteSwimmerList = getEliteSwimmersArrayList();
 
-    public static void inputNewMember(Member newMember) {
-        try {
-            fileWriter = new FileWriter(databaseFilePath, true);
+    void print(){
+        for(Member member : memberList){
+            System.out.println(member);
+        }
+    }
+
+    void inputNewMemberData(Member newMember) {
+        if (newMember == null) {
+            System.out.println("Error: Member data is missing.");
+            return;
+        }
+
+        Scanner scanner = new Scanner(System.in);
+        String phoneNumber = newMember.getPhoneNumber();
+
+        while (phoneNumber == null || !phoneNumber.matches("\\d{8}")) {
+            System.out.println("Error: Invalid phone number. Must be 8 digits.");
+            System.out.print("Please enter a valid phone number: ");
+            phoneNumber = scanner.nextLine();
+        }
+
+
+
+
+        phoneNumber = phoneNumber.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
+
+
+
+        try (FileWriter fileWriter = new FileWriter(databaseFilePath, true)) {
             fileWriter.write(
-                    "\n" + newMember.getPhoneNumber() +
+
+                    System.lineSeparator() + phoneNumber +
                             "," + newMember.getName() +
-                            "," + newMember.getAge() + "," + newMember.getGender() +
+                            "," + newMember.getAge() +
+                            "," + newMember.getGender() +
                             "," + newMember.getMail() +
                             "," + newMember.getMemberActivity() +
                             "," + newMember.getMemberType() +
                             "," + newMember.getTrainingType()
             );
-            fileWriter.close();
+            System.out.println("Member data saved successfully.");
         } catch (IOException e) {
+            System.out.println("Error writing member data to file: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
     public static void addNewMember(Member member){
+        if (member == null) {
+            System.out.println("Error: Member data is missing.");
+            return;
+        }
+
+        String phoneNumber = member.getPhoneNumber();
+
+        phoneNumber.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
         memberList.add(member);
         updateDatabaseFile();
     }
@@ -52,6 +89,15 @@ public class Database {
             if (member.getPhoneNumber().equalsIgnoreCase(searchedPhoneNumber)) {
                 switch (dataKey) {
                     case "Telephone":
+                        if(dataValue.matches("\\d{8}")){
+                            dataValue = dataValue.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
+                        }
+
+                        if (!dataValue.matches("\\d{2} \\d{2} \\d{2} \\d{2}")) {
+                            System.out.println("Invalid format. Use XX XX XX XX.");
+                            break;
+                        }
+
                         member.setPhoneNumber(dataValue);
                         updateDatabaseFile();
                         break;
@@ -203,15 +249,12 @@ public class Database {
                         MemberActivity.valueOf(rowData[5].toUpperCase()), //Active or Passive
                         TrainingType.valueOf(rowData[7].toUpperCase())); //Casual og Competition
 
-
                 memberList.add(newMember);
-
             }
             return memberList;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 
@@ -248,12 +291,10 @@ public class Database {
                         break;
                     }
                 }
-
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
         return eliteMemberList;
     }
 
@@ -322,4 +363,3 @@ public class Database {
         return eliteSwimmerList;
     }
 }
-

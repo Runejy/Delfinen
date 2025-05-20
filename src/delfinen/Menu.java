@@ -285,7 +285,7 @@ public class Menu {
             userInput = Menu.getUserNumber(3);
             switch (userInput) {
                 case "1":
-                    
+
                     break;
                 case "2":
                     System.out.println("Enter the phone number of the swimmer you want to update results for:");
@@ -307,7 +307,7 @@ public class Menu {
         }
 
     }
-    
+
     public static void addTrainingResults(){
         System.out.println("Enter the phone number of the swimmer you want to update results for:");
         String phoneTraining = sc.nextLine().trim();

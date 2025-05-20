@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-
-
 public class SwimmingClub {
 
     private static Scanner scanner = new Scanner(System.in);
@@ -24,6 +22,15 @@ public class SwimmingClub {
         System.out.println("===================================");
         System.out.println();
 
+        //REGISTER PHONENUMBER
+        String phoneNumber = "";
+        while (phoneNumber.isBlank()) {
+            System.out.println("Enter members phone number: ");
+            phoneNumber = scanner.nextLine();
+            if (phoneNumber.isBlank()) {
+                System.out.println("E-mail cannot be empty.");
+            }
+        }
         //REGISTER NAME
         String name = "";
         while (name.isBlank()) {
@@ -35,22 +42,12 @@ public class SwimmingClub {
 
         }
 
-        //REGISTER PHONENUMBER
-        String phoneNumber = "";
-        while (phoneNumber.isBlank()) {
-            System.out.println("Enter members phone number: ");
-            phoneNumber = scanner.nextLine();
-            if(phoneNumber.isBlank()){
-                System.out.println("E-mail cannot be empty.");
-            }
-        }
-
         //REGISTER MAIL
         String mail = "";
         while (mail.isBlank()) {
             System.out.println("Enter members e-mail: ");
             mail = scanner.nextLine();
-            if(mail.isBlank()){
+            if (mail.isBlank()) {
                 System.out.println("E-mail cannot be empty.");
             }
         }
@@ -168,27 +165,23 @@ public class SwimmingClub {
             String selectedTrainerName = trainerList.get(trainerChoice - 1);
             Trainer trainer = new Trainer(selectedTrainerName);
 
-
-
             EliteSwimmer eliteSwimmer = new EliteSwimmer(phoneNumber, name, age, gender, mail, memberActivity, trainingType, team, disciplines, trainer);
 
             //ADD TO MEMBERLIST AND CSV
             Database.addNewEliteSwimmer(eliteSwimmer);
         }
 
-
-
         System.out.println("=======================================");
         System.out.println("   New Member Added to the Club");
         System.out.println("=======================================");
-        System.out.printf ("%-20s: %s%n", "Phone number", phoneNumber);
-        System.out.printf ("%-20s: %s%n", "Name", name);
-        System.out.printf ("%-20s: %d%n", "Age", age);
-        System.out.printf ("%-20s: %s%n", "Gender", gender);
-        System.out.printf ("%-20s: %s%n", "Mail", mail);
-        System.out.printf ("%-20s: %s%n", "Member Activity", memberActivity);
-        System.out.printf ("%-20s: %s%n", "Member Type", memberType);
-        System.out.printf ("%-20s: %s%n", "Training Type", trainingType);
+        System.out.printf("%-20s: %s%n", "Phone number", phoneNumber);
+        System.out.printf("%-20s: %s%n", "Name", name);
+        System.out.printf("%-20s: %d%n", "Age", age);
+        System.out.printf("%-20s: %s%n", "Gender", gender);
+        System.out.printf("%-20s: %s%n", "Mail", mail);
+        System.out.printf("%-20s: %s%n", "Member Activity", memberActivity);
+        System.out.printf("%-20s: %s%n", "Member Type", memberType);
+        System.out.printf("%-20s: %s%n", "Training Type", trainingType);
         System.out.println("=======================================");
 
     }
@@ -203,7 +196,6 @@ public class SwimmingClub {
         System.out.print("Enter the phone number of the member you want to update: ");
         String inputphoneNumber = scanner.nextLine();
 
-
         Member member = null;
         for (Member memberToUpdate : Database.getMemberList()) {
             if (memberToUpdate.getPhoneNumber().equalsIgnoreCase(inputphoneNumber)) {
@@ -216,7 +208,6 @@ public class SwimmingClub {
             System.out.println("No member found with phone number: " + inputphoneNumber);
             return;
         }
-
 
         boolean updating = true;
 
@@ -241,12 +232,15 @@ public class SwimmingClub {
             int updateChoice = scanner.nextInt();
             scanner.nextLine();
 
+            String rowIdentificer = inputphoneNumber;
             switch (updateChoice) {
                 case 1 -> {
+
                     System.out.println("Members name: " + member.getName());
                     System.out.println("Enter new name: ");
                     String newName = scanner.nextLine();
                     member.setName(newName);
+                    Database.changeDatabaseData(rowIdentificer, "Name", newName);
                     System.out.println("Name has been updated!");
                     System.out.println("Members name: " + newName);
                 }
@@ -267,6 +261,8 @@ public class SwimmingClub {
                         }
                         member.setAge(age);
                         System.out.println("Birth date has been updated!");
+                        Database.changeDatabaseData(rowIdentificer, "Age", String.valueOf(age));
+                        Database.changeDatabaseData(rowIdentificer, "Birth Date", birthDate.toString());
                         System.out.println("Members birthday: " + birthDate);
                         System.out.println("Members age: " + age);
                         System.out.println("Member type: " + memberType);
@@ -277,28 +273,34 @@ public class SwimmingClub {
                 case 3 -> {
                     while (true) {
                         System.out.println(member.getName() + " current gender: " + member.getGender());
+                        rowIdentificer = inputphoneNumber;
                         System.out.println("Enter members new gender: (F for Female, M for Male, O for Other");
                         String genderInput = scanner.nextLine();
+                        member.setGender(genderInput);
+
 
                         switch (genderInput.toUpperCase()) {
                             case "F" -> {
                                 member.setGender("Female");
+                                Database.changeDatabaseData(rowIdentificer, "Gender", "Female");
                                 System.out.println("Gender updated to Female.");
                                 break;
                             }
                             case "M" -> {
                                 member.setGender("Male");
+                                Database.changeDatabaseData(rowIdentificer, "Gender", "Male");
                                 System.out.println("Gender updated to Male.");
                                 break;
                             }
                             case "O" -> {
                                 member.setGender("Other");
+                                Database.changeDatabaseData(rowIdentificer, "Gender", "Other");
                                 System.out.println("Gender updated to Other.");
                                 break;
                             }
                             default -> {
-                                    System.out.println("Invalid input. Use 'F' for Female, 'M' for Male, 'O' for Other");
-                                    continue;
+                                System.out.println("Invalid input. Use 'F' for Female, 'M' for Male, 'O' for Other");
+                                continue;
                             }
 
                         }
@@ -309,17 +311,21 @@ public class SwimmingClub {
                     String mail = "";
                     while (mail.isBlank()) {
                         System.out.println("Members current email: " + member.getMail());
-                        System.out.println("Enter members new e-mail: ");
+                        System.out.println("Enter member's new e-mail: ");
                         mail = scanner.nextLine();
+
                         if (mail.isBlank()) {
                             System.out.println("E-mail cannot be empty.");
+                        } else {
+                            member.setMail(mail);
+                            Database.changeDatabaseData(rowIdentificer, "Mail", mail);
+                            System.out.println("Mail has been updated to: " + member.getMail());
                         }
                     }
-                    System.out.println("Mail has been updated to: " + member.getMail());
-                    member.setMail(mail);
                 }
                 case 5 -> {
                     String phoneNumber = "";
+
                     while (phoneNumber.isBlank()) {
                         System.out.println("Members current phone number: " + member.getPhoneNumber());
                         System.out.println("Enter members new phone number (8 digits): ");
@@ -370,7 +376,9 @@ public class SwimmingClub {
                 case 8 -> {
                     System.out.println("REMOVE MEMBER????");
                 }
-                case 9 -> updating = false;
+                case 9 -> {
+                    updating = false;
+                }
                 default -> System.out.println("Invalid choice. Please try again.");
 
             }
