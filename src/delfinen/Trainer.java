@@ -11,13 +11,17 @@ import java.util.stream.Collectors;
 
 public class Trainer {
     private Database database = new Database();
-    private ArrayList<Member> eliteList = database.getEliteMemberArrayList();
+    private ArrayList<EliteSwimmer> eliteList = database.getEliteMemberArrayList();
 
     private String name;
     private List<EliteSwimmer> eliteSwimmers = new ArrayList<>();
 
     public Trainer(String name) {
         this.name = name;
+    }
+
+    public Trainer(){
+
     }
 
     public ResultCompetition createCompetitionResult(String date, double time, Discipline discipline, String competitionName, int placement) {

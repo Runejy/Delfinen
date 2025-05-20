@@ -15,7 +15,7 @@ public class SwimmingClub {
     Scanner scanner = new Scanner(System.in);
     Database database = new  Database();
     ArrayList<Member> members = database.memberList;
-    ArrayList<Member> eliteMembers = database.getEliteMemberArrayList();
+    ArrayList<EliteSwimmer> eliteMembers = database.getEliteMemberArrayList();
 
 
     public void addNewMember() {

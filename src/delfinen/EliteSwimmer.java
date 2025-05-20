@@ -7,14 +7,14 @@ import delfinen.Enums.TrainingType;
 import delfinen.Results.Result;
 import delfinen.Results.ResultCompetition;
 import delfinen.Results.ResultTraining;
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 
 public class EliteSwimmer extends Member {
+    private String phoneNumber;
+    private String name;
     private Team team;
     private ArrayList<Discipline> disciplines = new ArrayList<>();
     private Trainer trainer;
@@ -214,5 +214,9 @@ public class EliteSwimmer extends Member {
 
     public void setTrainer(Trainer trainer) {
         this.trainer = trainer;
+    }
+
+    public String toString(){
+        return name;
     }
 }
