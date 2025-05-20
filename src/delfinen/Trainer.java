@@ -3,17 +3,16 @@ package delfinen;
 import delfinen.Enums.Discipline;
 import delfinen.Results.Result;
 import delfinen.Results.ResultCompetition;
+import delfinen.Results.ResultTraining;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Trainer {
-    private Database database = new Database();
-
     private String name;
-    private List<EliteSwimmer> eliteSwimmers = new ArrayList<>();
 
     public Trainer(String name) {
         this.name = name;
@@ -28,34 +27,38 @@ public class Trainer {
     }
 
     public void addEliteSwimmer(EliteSwimmer swimmer) {
-        eliteSwimmers.add(swimmer);
+        Database.getEliteSwimmerList().add(swimmer);
     }
 
-    /*public List<EliteSwimmer> getTop5SwimmersByDiscipline(Discipline discipline) {
-        return eliteSwimmers.stream()
-                .filter(swimmer -> swimmer.getDisciplines().contains(discipline))
-                .sorted(Comparator.comparingDouble(swimmer -> getBestTimeForDiscipline(swimmer, discipline)))
+    public static void getTop5TrainingResults(Discipline discipline) {
+        List<EliteSwimmer> top5TrainingResults = Database.getEliteSwimmerList().stream()
+                .filter(eliteSwimmer -> eliteSwimmer.getDisciplines().containsKey(discipline))
+                .sorted(Comparator.comparingDouble(eliteSwimmer -> eliteSwimmer.getBestTimeForTrainingResuts(discipline)))
                 .limit(5)
                 .collect(Collectors.toList());
+
+        for(EliteSwimmer eliteSwimmer : top5TrainingResults){
+            eliteSwimmer.showTrainingResults();
+        }
     }
 
-    private double getBestTimeForDiscipline(EliteSwimmer swimmer, Discipline discipline) {
-        return swimmer.getResults().stream()
-                .filter(result -> result.getDiscipline() == discipline)
-                .mapToDouble(Result::getTime)
-                .min()
-                .orElse(Double.MAX_VALUE); // Hvis ingen resultater
-    }*/
+    public static void getTop5CompetitionResults(Discipline discipline) {
+        List<EliteSwimmer> top5TrainingResults = Database.getEliteSwimmerList().stream()
+                .filter(eliteSwimmer -> eliteSwimmer.getDisciplines().containsKey(discipline))
+                .sorted(Comparator.comparingDouble(eliteSwimmer -> eliteSwimmer.getBestTimeForCompetitionResults(discipline)))
+                .limit(5)
+                .collect(Collectors.toList());
+
+        for(EliteSwimmer eliteSwimmer : top5TrainingResults){
+            eliteSwimmer.showCompetitionResult();
+        }
+    }
 
     public String getName() {
         return name;
     }
 
-    public List<EliteSwimmer> getEliteSwimmers() {
-        return eliteSwimmers;
-    }
-
-    public void listOfTrainersEliteSwimmers() {
+    public static void listOfTrainersEliteSwimmers() {
     }
 
     @Override

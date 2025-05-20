@@ -35,9 +35,7 @@ public class Subcription {
     }
 
     public void showRestance() {
-        Database d = new Database();
-        Menu m = new Menu();
-        d.databaseOutput();
+        Database.databaseOutput();
         while (true) {
             System.out.println("""
                     1. Set missing payer
@@ -60,10 +58,6 @@ public class Subcription {
 
     // Bruges til at update Member Activity, til ACTIVE, PASSIVE ELLER RESTANCE, for kasseren.
     public void setRestance() {
-        Database d = new Database();
-        Menu m = new Menu();
-        String userInputString;
-
         while(true) {
             System.out.println("""
                 1. Update Active
@@ -89,8 +83,8 @@ public class Subcription {
                             break;
                         }
 
-                        if (d.memberUpdated(rowIdentificer)) {
-                            d.changeDataByRow(rowIdentificer, "Member Activity", "ACTIVE");
+                        if (Database.memberUpdated(rowIdentificer)) {
+                            Database.changeDatabaseData(rowIdentificer, "Member Activity", "ACTIVE");
                             System.out.println("Member status updated to ACTIVE");
                         } else {
                             System.out.println("No member found with that phone number.");
@@ -110,8 +104,8 @@ public class Subcription {
                             break;
                         }
 
-                        if (d.memberUpdated(rowIdentificer)) {
-                            d.changeDataByRow(rowIdentificer, "Member Activity", "PASSIVE");
+                        if (Database.memberUpdated(rowIdentificer)) {
+                            Database.changeDatabaseData(rowIdentificer, "Member Activity", "PASSIVE");
                             System.out.println("Member status updated to PASSIVE");
                         } else {
                             System.out.println("No member found with that phone number.");
@@ -131,8 +125,8 @@ public class Subcription {
                             break;
                         }
 
-                        if (d.memberUpdated(rowIdentificer)) {
-                            d.changeDataByRow(rowIdentificer, "Member Activity", "RESTANCE");
+                        if (Database.memberUpdated(rowIdentificer)) {
+                            Database.changeDatabaseData(rowIdentificer, "Member Activity", "RESTANCE");
                             System.out.println("Member status updated to RESTANCE");
                         } else {
                             System.out.println("No member found with that phone number.");

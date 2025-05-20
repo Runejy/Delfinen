@@ -1,5 +1,6 @@
 package delfinen;
 
+import delfinen.Enums.Discipline;
 import delfinen.Enums.MemberActivity;
 import delfinen.Enums.TrainingType;
 import delfinen.Results.ResultCompetition;
@@ -112,10 +113,6 @@ public class Menu {
 
     //Formand Menu
     public static void showFormand() {
-        //line for calling classes
-        Database d = new Database();
-        SwimmingClub x = new SwimmingClub();
-
         while (true) {
             System.out.println("=== Chairman === ");
             System.out.println("""
@@ -127,13 +124,13 @@ public class Menu {
             userInput = Menu.getUserNumber(4);
             switch (userInput) {
                 case "1":
-                    x.addNewMember();
+                    SwimmingClub.addNewMember();
                     break;
                 case "2":
-                    d.databaseOutput();
+                    Database.databaseOutput();
                     break;
                 case "3":
-                    x.updateMember();
+                    Database.updateDatabaseFile();
                     break;
                 case "4":
                     return;
@@ -177,32 +174,34 @@ public class Menu {
 
     //Træner menu
     public static void showTrainer() {
-        SwimmingClub swimmingClub = new SwimmingClub();
-        Trainer trainer = new Trainer();
         while (true) {
             System.out.println("=== Trainer ===");
             System.out.println("""
                     1: Add trainer
-                    2: Show top 5 swimmers
-                    3: Show list of trainers
-                    4: Show EliteSwimmers
-                    5: Back""");
+                    2: Show top 5 training results
+                    3: Show top 5 competition results
+                    4: Show list of trainers
+                    5: Add elite-swimmer results
+                    6: Back""");
 
-            userInput = Menu.getUserNumber(4);
+            userInput = Menu.getUserNumber(6);
             switch (userInput) {
                 case "1":
-                    swimmingClub.addTrainer();
+                    SwimmingClub.addTrainer();
                     break;
                 case "2":
-                    swimmingClub.top5Swimmers();
+                    showTrainingResuts();
                     break;
                 case "3":
-                    swimmingClub.listOfTrainers();
+                    showCompetitionResults();
                     break;
                 case "4":
-                    showEliteSwimmer();
+                    Trainer.listOfTrainersEliteSwimmers();
                     break;
                 case "5":
+                    showEliteSwimmer();
+                    break;
+                case "6":
                     return;
             }
 
@@ -210,11 +209,69 @@ public class Menu {
         }
     }
 
-    public static void showEliteSwimmer(){
-        Database database = new Database();
-        ArrayList<EliteSwimmer> eliteSwimmerArrayList =  database.getEliteMemberArrayList();
+    public static void showTrainingResuts(){
+        while (true) {
+            System.out.println("=== Show top 5 training results ===");
+            System.out.println("""
+                    1: FREESTYLE
+                    2: BACKSTROKE
+                    3: BREASTSTROKE
+                    4: BUTTERFLY
+                    5: Back""");
 
-        for(EliteSwimmer eliteSwimmer : eliteSwimmerArrayList){
+            userInput = Menu.getUserNumber(5);
+            switch (userInput) {
+                case "1":
+                    Trainer.getTop5TrainingResults(Discipline.FREESTYLE);
+                    break;
+                case "2":
+                    Trainer.getTop5TrainingResults(Discipline.BACKSTROKE);
+                    break;
+                case "3":
+                    Trainer.getTop5TrainingResults(Discipline.BREASTSTROKE);
+                    break;
+                case "4":
+                    Trainer.getTop5TrainingResults(Discipline.BUTTERFLY);
+                    break;
+                case "5":
+                    return;
+            }
+        }
+    }
+
+    public static void showCompetitionResults(){
+        while (true) {
+            System.out.println("=== Show top 5 competition results ===");
+            System.out.println("""
+                    1: FREESTYLE
+                    2: BACKSTROKE
+                    3: BREASTSTROKE
+                    4: BUTTERFLY
+                    5: Back""");
+
+            userInput = Menu.getUserNumber(5);
+            switch (userInput) {
+                case "1":
+                    Trainer.getTop5CompetitionResults(Discipline.FREESTYLE);
+                    break;
+                case "2":
+                    Trainer.getTop5CompetitionResults(Discipline.BACKSTROKE);
+                    break;
+                case "3":
+                    Trainer.getTop5CompetitionResults(Discipline.BREASTSTROKE);
+                    break;
+                case "4":
+                    Trainer.getTop5CompetitionResults(Discipline.BUTTERFLY);
+                    break;
+                case "5":
+                    return;
+            }
+        }
+    }
+
+    public static void showEliteSwimmer(){
+        System.out.println(String.format("%-15s %-25s %-10s %-10s %-15s %-25s %-10s %-40s ", "Phonenumber", "Name", "Gender","Status", "Training Type", "Trainer", "Team", "Discplines"));
+        for(EliteSwimmer eliteSwimmer : Database.getEliteSwimmerList()){
             System.out.println(eliteSwimmer);
         }
 
@@ -228,24 +285,13 @@ public class Menu {
             userInput = Menu.getUserNumber(3);
             switch (userInput) {
                 case "1":
-                    System.out.println("Enter the phone number of the swimmer you want to update results for:");
-                    String phoneTraining = sc.nextLine().trim();
-
-                    EliteSwimmer swimmerTraining = database.findEliteMemberByPhone(phoneTraining, eliteSwimmerArrayList);
-
-                    if (swimmerTraining == null) {
-                        System.out.println("No member found with that phone number");
-                    } else {
-                        ResultTraining resultTraining = swimmerTraining.createTrainingResult();
-                        swimmerTraining.addTrainingResult(resultTraining);
-                        System.out.println("Result has been added to " + swimmerTraining.getName() + ".");
-                    }
+                    
                     break;
                 case "2":
                     System.out.println("Enter the phone number of the swimmer you want to update results for:");
                     String phoneCompetetion = sc.nextLine().trim();
 
-                    EliteSwimmer swimmerCompetetion = database.findEliteMemberByPhone(phoneCompetetion, eliteSwimmerArrayList);
+                    EliteSwimmer swimmerCompetetion = Database.findEliteMemberByPhone(phoneCompetetion);
 
                     if (swimmerCompetetion == null) {
                         System.out.println("No member found with that phone number");
@@ -260,6 +306,21 @@ public class Menu {
             }
         }
 
+    }
+    
+    public static void addTrainingResults(){
+        System.out.println("Enter the phone number of the swimmer you want to update results for:");
+        String phoneTraining = sc.nextLine().trim();
+
+        EliteSwimmer swimmerTraining = Database.findEliteMemberByPhone(phoneTraining);
+
+        if (swimmerTraining == null) {
+            System.out.println("No member found with that phone number");
+        } else {
+            ResultTraining resultTraining = swimmerTraining.createTrainingResult();
+            swimmerTraining.addTrainingResult(resultTraining);
+            System.out.println("Result has been added to " + swimmerTraining.getName() + ".");
+        }
     }
 }
 

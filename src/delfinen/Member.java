@@ -26,7 +26,6 @@ public class Member {
         this.age = age;
         this.mail = mail;
         this.gender = gender;
-        this.gender = gender;
         this.memberActivity = memberActivity;
         this.trainingType = trainingType;
         this.phoneNumber = phoneNumber;

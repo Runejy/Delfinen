@@ -14,16 +14,16 @@ import java.util.Scanner;
 
 public class EliteSwimmer extends Member {
     private Team team;
-    private ArrayList<Discipline> disciplines = new ArrayList<>();
+    private HashMap<Discipline, Discipline> disciplines = new HashMap<>();
     private Trainer trainer;
-    private HashMap<Discipline, ArrayList<ResultTraining>> trainingResult = new HashMap<>();
-    HashMap<Discipline, ArrayList<ResultCompetition>> competitionResult = new HashMap<>();
+    private HashMap<Discipline, ArrayList<ResultTraining>> trainingResults = new HashMap<>();
+    private HashMap<Discipline, ArrayList<ResultCompetition>> competitionResults = new HashMap<>();
     private ArrayList<Result> results = new ArrayList<>();
     private Scanner scanner;
 
     public EliteSwimmer(String phoneNumber, String name, int age, String gender, String mail,
                         MemberActivity memberActivity, TrainingType trainingType, Team team,
-                        ArrayList<Discipline> disciplines, Trainer trainer) {
+                        HashMap<Discipline, Discipline> disciplines, Trainer trainer) {
         super(phoneNumber, name, age, gender, mail, memberActivity, trainingType);
         this.team = team;
         this.disciplines = disciplines;
@@ -151,27 +151,53 @@ public class EliteSwimmer extends Member {
     // Metode til at tilføje et resultat (se Main.java)
     public void addTrainingResult(ResultTraining resultTraining) {
 
-        trainingResult.putIfAbsent(resultTraining.getDiscipline(), new ArrayList<>()); //Hvis der ikke allerede findes en liste for denne disciplin, så sæt en tom liste ind.
-        trainingResult.get(resultTraining.getDiscipline()).add(resultTraining);
+        trainingResults.putIfAbsent(resultTraining.getDiscipline(), new ArrayList<>()); //Hvis der ikke allerede findes en liste for denne disciplin, så sæt en tom liste ind.
+        trainingResults.get(resultTraining.getDiscipline()).add(resultTraining);
     }
 
     public void addCompetitionResult(ResultCompetition resultCompetition) {
-        competitionResult.putIfAbsent(resultCompetition.getDiscipline(), new ArrayList<>()); //Hvis der ikke allerede findes en liste for denne disciplin, så sæt en tom liste ind.
-        competitionResult.get(resultCompetition.getDiscipline()).add(resultCompetition);
+        competitionResults.putIfAbsent(resultCompetition.getDiscipline(), new ArrayList<>()); //Hvis der ikke allerede findes en liste for denne disciplin, så sæt en tom liste ind.
+        competitionResults.get(resultCompetition.getDiscipline()).add(resultCompetition);
     }
 
-    public ArrayList<ResultTraining> getTrainingResults(Discipline discipline) {
-        return trainingResult.get(discipline);
+    public double getBestTimeForTrainingResuts(Discipline discipline) {
+        ArrayList<ResultTraining> results = trainingResults.get(discipline);
+
+        if(results == null || results.isEmpty()){
+            return Double.MAX_VALUE;
+        }
+
+        return results.stream()
+                .mapToDouble(Result::getTime)
+                .min()
+                .orElse(Double.MAX_VALUE); // Hvis ingen resultater
     }
 
-    public ArrayList<ResultCompetition> getCompetitionResults(Discipline discipline) {
-        return competitionResult.get(discipline);
+    public double getBestTimeForCompetitionResults(Discipline discipline) {
+        ArrayList<ResultCompetition> results = competitionResults.get(discipline);
+
+        if(results == null || results.isEmpty()){
+            return Double.MAX_VALUE;
+        }
+
+        return results.stream()
+                .mapToDouble(Result::getTime)
+                .min()
+                .orElse(Double.MAX_VALUE); // Hvis ingen resultater
+    }
+
+    public HashMap<Discipline, ArrayList<ResultTraining>> getTrainingResults() {
+        return trainingResults;
+    }
+
+    public HashMap<Discipline, ArrayList<ResultCompetition>> getCompetitionResults() {
+        return competitionResults;
     }
 
     public void showTrainingResults(){
-        for(Discipline discipline: trainingResult.keySet()){
+        for(Discipline discipline: trainingResults.keySet()){
             System.out.println(String.format("%-15s %-15s", "DATE", "TIME"));
-            for(ResultTraining result : trainingResult.get(discipline)){
+            for(ResultTraining result : trainingResults.get(discipline)){
                 System.out.println(String.format("%-15s %-15s", result.getDate(), result.getTime()));
             }
             System.out.println("--------------------------------------------------------------------");
@@ -179,9 +205,9 @@ public class EliteSwimmer extends Member {
     }
 
     public void showCompetitionResult(){
-        for(Discipline discipline: competitionResult.keySet()){
+        for(Discipline discipline: competitionResults.keySet()){
             System.out.println(String.format("%-15s %-15s %-15s %-15s %-15s", "DATE", "TIME", "DISCIPLINE", "COMPETITION NAME", "PLACEMENT"));
-            for(ResultCompetition result : competitionResult.get(discipline)){
+            for(ResultCompetition result : competitionResults.get(discipline)){
                 System.out.println(String.format("%-15s %-15s %-15s %-25s %-15s", result.getDate(), result.getTime(), result.getDiscipline(), result.getCompetitionName(), result.getPlacement()));
             }
             System.out.println("--------------------------------------------------------------------");
@@ -198,11 +224,11 @@ public class EliteSwimmer extends Member {
         this.team = team;
     }
 
-    public ArrayList<Discipline> getDisciplines() {
+    public HashMap<Discipline, Discipline> getDisciplines() {
         return disciplines;
     }
 
-    public void setDisciplines(ArrayList<Discipline> disciplines) {
+    public void setDisciplines(HashMap<Discipline, Discipline> disciplines) {
         this.disciplines = disciplines;
     }
 

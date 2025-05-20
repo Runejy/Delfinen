@@ -8,17 +8,16 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
+
+
 
 public class SwimmingClub {
 
-    Scanner scanner = new Scanner(System.in);
-    Database database = new  Database();
-    ArrayList<Member> members = database.memberList;
-    ArrayList<EliteSwimmer> eliteMembers = database.getEliteMemberArrayList();
+    private static Scanner scanner = new Scanner(System.in);
 
-
-    public void addNewMember() {
+    public static void addNewMember() {
         //START
         System.out.println("===================================");
         System.out.println("         REGISTER NEW MEMBER");
@@ -126,9 +125,7 @@ public class SwimmingClub {
 
         //ADD MEMBER
         Member newMember = new Member(phoneNumber, name, age, gender, mail, memberActivity, trainingType);
-        database.inputNewMemberData(newMember);
-        members.add(newMember);
-
+        Database.addNewMember(newMember);
 
         //ADD MEMBER IF ELITE
         if (trainingType == TrainingType.COMPETITION) {
@@ -139,7 +136,7 @@ public class SwimmingClub {
 
             //ASSIGN DISCIPLINES TO ELITE SWIMMER
 
-            ArrayList<Discipline> disciplines = assignDisciplines();
+            HashMap<Discipline, Discipline> disciplines = assignDisciplines();
 
             //ASSIGN TRAINER TO ELITE SWIMMER
 
@@ -174,14 +171,9 @@ public class SwimmingClub {
 
 
             EliteSwimmer eliteSwimmer = new EliteSwimmer(phoneNumber, name, age, gender, mail, memberActivity, trainingType, team, disciplines, trainer);
-            eliteSwimmer.setDisciplines(disciplines);
-            eliteSwimmer.setTeam(team);
-            eliteSwimmer.setTrainer(trainer);
 
             //ADD TO MEMBERLIST AND CSV
-            eliteMembers.add(eliteSwimmer);
-            database.inputNewEliteData(eliteSwimmer);
-
+            Database.addNewEliteSwimmer(eliteSwimmer);
         }
 
 
@@ -204,7 +196,7 @@ public class SwimmingClub {
 
     //MARIA
     //Mangler en måde at opdatere CSV filen
-    public void updateMember() {
+    public static void updateMember() {
         System.out.println("===================================");
         System.out.println("         UPDATE MEMBER");
         System.out.println("===================================");
@@ -213,7 +205,7 @@ public class SwimmingClub {
 
 
         Member member = null;
-        for (Member memberToUpdate : members) {
+        for (Member memberToUpdate : Database.getMemberList()) {
             if (memberToUpdate.getPhoneNumber().equalsIgnoreCase(inputphoneNumber)) {
                 member = memberToUpdate;
                 break;
@@ -385,15 +377,15 @@ public class SwimmingClub {
         }
     }
 
-    public void totalMembers(){
+    public static void totalMembers(){
 
     }
 
-    public void totalMembersByMemberType(){
+    public static void totalMembersByMemberType(){
 
     }
 
-    public void addTrainer() {
+    public static void addTrainer() {
         System.out.println("===================================");
         System.out.println("         REGISTER NEW TRAINER");
         System.out.println("===================================");
@@ -409,13 +401,13 @@ public class SwimmingClub {
 
         }
         Trainer trainer = new Trainer(name);
-        database.inputNewTrainer(trainer);
+        Database.inputNewTrainer(trainer);
         System.out.println("Trainer " + name + " has been added to the list of trainers.");
 
 
     }
 
-    public ArrayList<String> getTrainersFromFile() {
+    public static ArrayList<String> getTrainersFromFile() {
         ArrayList<String> trainers = new ArrayList<>();
         File file = new File("src/Files/trainers.csv");
         try {
@@ -453,28 +445,36 @@ public class SwimmingClub {
 
     }
 
-    public ArrayList<Discipline> assignDisciplines() {
-        ArrayList<Discipline> disciplines = new ArrayList<>();
+    public static HashMap<Discipline, Discipline> assignDisciplines() {
+        HashMap<Discipline, Discipline> disciplines = new HashMap<>();
         Scanner input = new Scanner(System.in);
 
         System.out.println("Assign discipline BACKSTROKE to swimmer (Y/N):");
         if (input.nextLine().equalsIgnoreCase("Y")) {
-            disciplines.add(Discipline.BACKSTROKE);
+            disciplines.put(Discipline.BACKSTROKE, Discipline.BACKSTROKE);
+        }else{
+            disciplines.put(Discipline.BACKSTROKE, null);
         }
 
         System.out.println("Assign discipline BUTTERFLY to swimmer (Y/N):");
         if (input.nextLine().equalsIgnoreCase("Y")) {
-            disciplines.add(Discipline.BUTTERFLY);
+            disciplines.put(Discipline.BUTTERFLY, Discipline.BUTTERFLY);
+        }else{
+            disciplines.put(Discipline.BUTTERFLY, null);
         }
 
         System.out.println("Assign discipline FREESTYLE to swimmer (Y/N):");
         if (input.nextLine().equalsIgnoreCase("Y")) {
-            disciplines.add(Discipline.FREESTYLE);
+            disciplines.put(Discipline.FREESTYLE, Discipline.FREESTYLE);
+        }else{
+            disciplines.put(Discipline.FREESTYLE, null);
         }
 
         System.out.println("Assign discipline BREASTSTROKE to swimmer (Y/N):");
         if (input.nextLine().equalsIgnoreCase("Y")) {
-            disciplines.add(Discipline.BREASTSTROKE);
+            disciplines.put(Discipline.BREASTSTROKE, Discipline.BREASTSTROKE);
+        }else{
+            disciplines.put(Discipline.BREASTSTROKE, null);
         }
 
         return disciplines;
