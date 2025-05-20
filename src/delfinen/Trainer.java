@@ -28,7 +28,7 @@ public class Trainer {
         eliteSwimmers.add(swimmer);
     }
 
-    public List<EliteSwimmer> getTop5SwimmersByDiscipline(Discipline discipline) {
+    /*public List<EliteSwimmer> getTop5SwimmersByDiscipline(Discipline discipline) {
         return eliteSwimmers.stream()
                 .filter(swimmer -> swimmer.getDisciplines().contains(discipline))
                 .sorted(Comparator.comparingDouble(swimmer -> getBestTimeForDiscipline(swimmer, discipline)))
@@ -42,7 +42,7 @@ public class Trainer {
                 .mapToDouble(Result::getTime)
                 .min()
                 .orElse(Double.MAX_VALUE); // Hvis ingen resultater
-    }
+    }*/
 
     public String getName() {
         return name;

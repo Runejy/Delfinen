@@ -160,20 +160,15 @@ public class Database {
         try {
             fileWriter = new FileWriter("src/Files/EliteSwimmer.csv", true);
 
-            StringBuilder disciplineString = new StringBuilder();
-            for (int i = 0; i < newEliteSwimmer.getDisciplines().size(); i++) {
-                disciplineString.append(newEliteSwimmer.getDisciplines().get(i));
-                if (i < newEliteSwimmer.getDisciplines().size() - 1) {
-                    disciplineString.append(", ");
-                }
-            }
+            // Fordi disciplinerne er enums, konverteres de til Strings med .name() først
+            String disciplineString = makeDisciplineText(newEliteSwimmer.getDisciplines());
 
             fileWriter.write(
                     System.lineSeparator() +
                             newEliteSwimmer.getName() + ";" +
                             newEliteSwimmer.getTrainer() + ";" +
                             newEliteSwimmer.getTeam() + ";" +
-                            disciplineString.toString()
+                            disciplineString
             );
             fileWriter.close();
         } catch (IOException e) {
@@ -228,17 +223,26 @@ public class Database {
         try{
             ArrayList<Member> memberList = new ArrayList<>();
             Scanner fileReader = new Scanner(new File(filePath));
-            boolean firstLine = true;
+
+            if (fileReader.hasNextLine()) {
+                fileReader.nextLine(); // skip header
+            }
+
             while(fileReader.hasNextLine()){
                 String[] rowData = fileReader.nextLine().split(",");
-                if(!firstLine){
 
-                    Member newMember = new Member(rowData[0], rowData[1],Integer.parseInt(rowData[2]),rowData[3],rowData[4],MemberActivity.valueOf(rowData[5].toUpperCase()),TrainingType.valueOf(rowData[7].toUpperCase()));
+                Member newMember = new Member(
+                        rowData[0], //Telephone
+                        rowData[1], //Name
+                        Integer.parseInt(rowData[2]), //Age
+                        rowData[3], //Gender
+                        rowData[4], //Mail
+                        MemberActivity.valueOf(rowData[5].toUpperCase()), //Active or Passive
+                        TrainingType.valueOf(rowData[7].toUpperCase())); //Casual og Competition
 
-                    memberList.add(newMember);
 
-                }
-                firstLine = false;
+                memberList.add(newMember);
+
             }
             return memberList;
         } catch(FileNotFoundException e) {
