@@ -418,12 +418,14 @@ public class SwimmingClub {
     public ArrayList<String> getTrainersFromFile() {
         ArrayList<String> trainers = new ArrayList<>();
         File file = new File("src/Files/trainers.csv");
-
-        System.out.println("List of trainers in Delfinen: ");
-        Scanner scanner = null;
-
         try {
-            scanner = new Scanner(file);
+            Scanner scanner = new Scanner(file);
+
+            System.out.println("List of trainers in Delfinen: ");
+            if (scanner.hasNextLine()) {
+                scanner.nextLine();
+            }
+
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 trainers.add(line);
@@ -439,13 +441,15 @@ public class SwimmingClub {
 
     public void listOfTrainers() {
         System.out.println("Trainers in Delfinen: ");
-        for (String name : getTrainersFromFile()) {
-            System.out.println(name);
+        ArrayList<String> trainers = getTrainersFromFile();
+        for (String trainer : trainers) {
+            System.out.println(trainer);
         }
     }
 
 
     public void top5Swimmers() {
+
 
     }
 
