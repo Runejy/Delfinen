@@ -208,6 +208,8 @@ public class SwimmingClub {
         System.out.print("Enter the phone number of the member you want to update: ");
         String inputphoneNumber = scanner.nextLine();
 
+        Database database = new Database();
+
 
         Member member = null;
         for (Member memberToUpdate : members) {
@@ -254,6 +256,7 @@ public class SwimmingClub {
                     System.out.println("Enter new name: ");
                     String newName = scanner.nextLine();
                     member.setName(newName);
+                    database.changeDataByRow(rowIdentificer, "Name", newName);
                     System.out.println("Name has been updated!");
                     System.out.println("Members name: " + newName);
                 }
@@ -274,6 +277,8 @@ public class SwimmingClub {
                         }
                         member.setAge(age);
                         System.out.println("Birth date has been updated!");
+                        database.changeDataByRow(rowIdentificer, "Age", String.valueOf(age));
+                        database.changeDataByRow(rowIdentificer, "Birth Date", birthDate.toString());
                         System.out.println("Members birthday: " + birthDate);
                         System.out.println("Members age: " + age);
                         System.out.println("Member type: " + memberType);
@@ -293,6 +298,7 @@ public class SwimmingClub {
                         switch (genderInput.toUpperCase()) {
                             case "F" -> {
                                 member.setGender("Female");
+                                database.changeDataByRow(rowIdentificer, "Gender", "Female");
                                 System.out.println("Gender updated to Female.");
                                 break;
                             }
