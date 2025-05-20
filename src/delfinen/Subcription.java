@@ -33,7 +33,8 @@ public class Subcription {
     public void setPaid(boolean paid) {
         this.isPaid = paid;
     }
-//Brugerinterface til Menu
+
+    //Brugerinterface til Menu
     public void showRestance() {
         Database d = new Database();
         Menu m = new Menu();
@@ -64,12 +65,12 @@ public class Subcription {
         Menu m = new Menu();
         String userInputString;
 
-        while(true) {
+        while (true) {
             System.out.println("""
-                1. Update Active
-                2. Update Passive
-                3. Update Restance
-                4. Back""");
+                    1. Update Active
+                    2. Update Passive
+                    3. Update Restance
+                    4. Back""");
             String userInput = Menu.getUserNumber(4);
 
             try {
@@ -80,7 +81,7 @@ public class Subcription {
                         System.out.println("Enter the phone number of the member to set as Active (xx xx xx xx): ");
                         rowIdentificer = sc.nextLine();
 
-                        if(rowIdentificer.matches("\\d{8}")){
+                        if (rowIdentificer.matches("\\d{8}")) {
                             rowIdentificer = rowIdentificer.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
                         }
 
@@ -101,7 +102,7 @@ public class Subcription {
                         System.out.println("Enter the phone number of the member to set as PASSIVE (xx xx xx xx): ");
                         rowIdentificer = sc.nextLine();
 
-                        if(rowIdentificer.matches("\\d{8}")){
+                        if (rowIdentificer.matches("\\d{8}")) {
                             rowIdentificer = rowIdentificer.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
                         }
 
@@ -122,7 +123,7 @@ public class Subcription {
                         System.out.println("Enter the phone number of the member to set as RESTANCE (xx xx xx xx): ");
                         rowIdentificer = sc.nextLine();
 
-                        if(rowIdentificer.matches("\\d{8}")){
+                        if (rowIdentificer.matches("\\d{8}")) {
                             rowIdentificer = rowIdentificer.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
                         }
 
@@ -180,6 +181,7 @@ public class Subcription {
             throw new RuntimeException("Error reading file", e);
         }
     }
+
     //Kan adskille de forskellige medlemstyper og viser, hvor meget de pågældende indbrginer af kontigent.
     public void totalRevenueByMemberType() {
         ArrayList<Member> revenueList = new ArrayList<>();
@@ -222,6 +224,7 @@ public class Subcription {
         System.out.println("Yearly income for Senior members: " + totalSeniorRevenue + " DKK");
         System.out.println("Yearly income for Retiree members: " + totalRetireeRevenue + " DKK");
     }
+
     //Viser sammenregenet kontigent
     public void totalRevenue() {
         ArrayList<Member> revenueList = new ArrayList<>();

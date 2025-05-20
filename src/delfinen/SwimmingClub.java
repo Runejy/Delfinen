@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class SwimmingClub {
 
     Scanner scanner = new Scanner(System.in);
-    Database database = new  Database();
+    Database database = new Database();
     ArrayList<Member> members = database.memberList;
     ArrayList<Member> eliteMembers = database.getEliteMemberArrayList();
 
@@ -50,7 +50,7 @@ public class SwimmingClub {
         while (mail.isBlank()) {
             System.out.println("Enter members e-mail: ");
             mail = scanner.nextLine();
-            if(mail.isBlank()){
+            if (mail.isBlank()) {
                 System.out.println("E-mail cannot be empty.");
             }
         }
@@ -171,7 +171,6 @@ public class SwimmingClub {
             Trainer trainer = new Trainer(selectedTrainerName);
 
 
-
             EliteSwimmer eliteSwimmer = new EliteSwimmer(phoneNumber, name, age, gender, mail, memberActivity, trainingType, team, disciplines, trainer);
             eliteSwimmer.setDisciplines(disciplines);
             eliteSwimmer.setTeam(team);
@@ -184,18 +183,17 @@ public class SwimmingClub {
         }
 
 
-
         System.out.println("=======================================");
         System.out.println("   New Member Added to the Club");
         System.out.println("=======================================");
-        System.out.printf ("%-20s: %s%n", "Phone number", phoneNumber);
-        System.out.printf ("%-20s: %s%n", "Name", name);
-        System.out.printf ("%-20s: %d%n", "Age", age);
-        System.out.printf ("%-20s: %s%n", "Gender", gender);
-        System.out.printf ("%-20s: %s%n", "Mail", mail);
-        System.out.printf ("%-20s: %s%n", "Member Activity", memberActivity);
-        System.out.printf ("%-20s: %s%n", "Member Type", memberType);
-        System.out.printf ("%-20s: %s%n", "Training Type", trainingType);
+        System.out.printf("%-20s: %s%n", "Phone number", phoneNumber);
+        System.out.printf("%-20s: %s%n", "Name", name);
+        System.out.printf("%-20s: %d%n", "Age", age);
+        System.out.printf("%-20s: %s%n", "Gender", gender);
+        System.out.printf("%-20s: %s%n", "Mail", mail);
+        System.out.printf("%-20s: %s%n", "Member Activity", memberActivity);
+        System.out.printf("%-20s: %s%n", "Member Type", memberType);
+        System.out.printf("%-20s: %s%n", "Training Type", trainingType);
         System.out.println("=======================================");
 
     }
@@ -248,8 +246,10 @@ public class SwimmingClub {
             int updateChoice = scanner.nextInt();
             scanner.nextLine();
 
+            String rowIdentificer = inputphoneNumber;
             switch (updateChoice) {
                 case 1 -> {
+
                     System.out.println("Members name: " + member.getName());
                     System.out.println("Enter new name: ");
                     String newName = scanner.nextLine();
@@ -284,6 +284,7 @@ public class SwimmingClub {
                 case 3 -> {
                     while (true) {
                         System.out.println(member.getName() + " current gender: " + member.getGender());
+                        rowIdentificer = inputphoneNumber;
                         System.out.println("Enter members new gender: (F for Female, M for Male, O for Other");
                         String genderInput = scanner.nextLine();
 
@@ -304,8 +305,8 @@ public class SwimmingClub {
                                 break;
                             }
                             default -> {
-                                    System.out.println("Invalid input. Use 'F' for Female, 'M' for Male, 'O' for Other");
-                                    continue;
+                                System.out.println("Invalid input. Use 'F' for Female, 'M' for Male, 'O' for Other");
+                                continue;
                             }
 
                         }
@@ -377,18 +378,21 @@ public class SwimmingClub {
                 case 8 -> {
                     System.out.println("REMOVE MEMBER????");
                 }
-                case 9 -> updating = false;
+                case 9 -> {
+                    updating = false;
+
+                }
                 default -> System.out.println("Invalid choice. Please try again.");
 
             }
         }
     }
 
-    public void totalMembers(){
+    public void totalMembers() {
 
     }
 
-    public void totalMembersByMemberType(){
+    public void totalMembersByMemberType() {
 
     }
 

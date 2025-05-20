@@ -26,20 +26,43 @@ public class Database {
         }
     }
 
-    void inputNewMemberData(Member newMember){
-        try{
-            fileWriter = new FileWriter(filePath, true);
+    void inputNewMemberData(Member newMember) {
+        if (newMember == null) {
+            System.out.println("Error: Member data is missing.");
+            return;
+        }
+
+        Scanner scanner = new Scanner(System.in);
+        String phoneNumber = newMember.getPhoneNumber();
+
+        while (phoneNumber == null || !phoneNumber.matches("\\d{8}")) {
+            System.out.println("Error: Invalid phone number. Must be 8 digits.");
+            System.out.print("Please enter a valid phone number: ");
+            phoneNumber = scanner.nextLine();
+        }
+
+
+
+
+        phoneNumber = phoneNumber.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
+
+
+
+        try (FileWriter fileWriter = new FileWriter(filePath, true)) {
             fileWriter.write(
-                                "\n" + newMember.getPhoneNumber() +
+
+                    System.lineSeparator() + phoneNumber +
                             "," + newMember.getName() +
-                            "," + newMember.getAge() + "," + newMember.getGender() +
+                            "," + newMember.getAge() +
+                            "," + newMember.getGender() +
                             "," + newMember.getMail() +
                             "," + newMember.getMemberActivity() +
                             "," + newMember.getMemberType() +
                             "," + newMember.getTrainingType()
             );
-            fileWriter.close();
-        } catch(IOException e){
+            System.out.println("Member data saved successfully.");
+        } catch (IOException e) {
+            System.out.println("Error writing member data to file: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -52,9 +75,19 @@ public class Database {
             if (member.getPhoneNumber().equalsIgnoreCase(searchedPhoneNumber)) {
                 switch (dataKey) {
                     case "Telephone":
+                        if(dataValue.matches("\\d{8}")){
+                            dataValue = dataValue.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
+                        }
+
+                        if (!dataValue.matches("\\d{2} \\d{2} \\d{2} \\d{2}")) {
+                            System.out.println("Invalid format. Use XX XX XX XX.");
+                            break;
+                        }
+
                         member.setPhoneNumber(dataValue);
                         updateDatabase();
                         break;
+
                     case "Name":
                         member.setName(dataValue);
                         updateDatabase();
