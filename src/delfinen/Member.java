@@ -4,8 +4,6 @@ import delfinen.Enums.MemberActivity;
 import delfinen.Enums.MemberType;
 import delfinen.Enums.TrainingType;
 
-import java.text.Format;
-
 public class Member {
     private String name;
     private String phoneNumber;

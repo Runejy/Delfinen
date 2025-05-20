@@ -287,6 +287,8 @@ public class SwimmingClub {
                         rowIdentificer = inputphoneNumber;
                         System.out.println("Enter members new gender: (F for Female, M for Male, O for Other");
                         String genderInput = scanner.nextLine();
+                        member.setGender(genderInput);
+
 
                         switch (genderInput.toUpperCase()) {
                             case "F" -> {
@@ -296,11 +298,13 @@ public class SwimmingClub {
                             }
                             case "M" -> {
                                 member.setGender("Male");
+                                database.changeDataByRow(rowIdentificer, "Gender", "Male");
                                 System.out.println("Gender updated to Male.");
                                 break;
                             }
                             case "O" -> {
                                 member.setGender("Other");
+                                database.changeDataByRow(rowIdentificer, "Gender", "Other");
                                 System.out.println("Gender updated to Other.");
                                 break;
                             }
@@ -313,21 +317,26 @@ public class SwimmingClub {
                         break;
                     }
                 }
+                //
                 case 4 -> {
                     String mail = "";
                     while (mail.isBlank()) {
                         System.out.println("Members current email: " + member.getMail());
-                        System.out.println("Enter members new e-mail: ");
+                        System.out.println("Enter member's new e-mail: ");
                         mail = scanner.nextLine();
+
                         if (mail.isBlank()) {
                             System.out.println("E-mail cannot be empty.");
+                        } else {
+                            member.setMail(mail);
+                            database.changeDataByRow(rowIdentificer, "Mail", mail);
+                            System.out.println("Mail has been updated to: " + member.getMail());
                         }
                     }
-                    System.out.println("Mail has been updated to: " + member.getMail());
-                    member.setMail(mail);
                 }
                 case 5 -> {
                     String phoneNumber = "";
+
                     while (phoneNumber.isBlank()) {
                         System.out.println("Members current phone number: " + member.getPhoneNumber());
                         System.out.println("Enter members new phone number (8 digits): ");
