@@ -60,4 +60,8 @@ public class Trainer {
     public void listOfTrainersEliteSwimmers() {
     }
 
+    @Override
+    public String toString(){
+        return name;
+    }
 }
