@@ -8,13 +8,11 @@ import delfinen.Results.Result;
 import delfinen.Results.ResultCompetition;
 import delfinen.Results.ResultTraining;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import static delfinen.Enums.Discipline.FREESTYLE;
 
 public class EliteSwimmer extends Member {
     private Team team;
