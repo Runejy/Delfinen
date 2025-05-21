@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
-
 public class Database {
     private static FileWriter fileWriter;
     private static String databaseFilePath = "src/Files/database.csv";
@@ -262,7 +261,7 @@ public class Database {
     }
 
     // ARRAYLIST OVER ELITE MEMBERS IN DATABASE
-     public static ArrayList<EliteSwimmer> getEliteSwimmersArrayList() {
+     private static ArrayList<EliteSwimmer> getEliteSwimmersArrayList() {
         ArrayList<EliteSwimmer> eliteMemberList = new ArrayList<>();
 
         try {
@@ -309,9 +308,7 @@ public class Database {
             fileReader.nextLine();
 
             while(fileReader.hasNextLine()){
-                String[] rowData = fileReader.nextLine().split(",");
-
-                Trainer trainer = new Trainer(rowData[0]); //Name
+                Trainer trainer = new Trainer(fileReader.nextLine()); //Name
 
                 trainerArrayList.add(trainer);
             }

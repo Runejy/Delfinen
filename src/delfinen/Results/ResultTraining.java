@@ -31,6 +31,6 @@ public class ResultTraining implements Result {
     @Override
     public String toString() {
         // Returner relevant data som string
-        return String.format("%-15s %-15s%n", getDate(), getTime());
+        return String.format("%-15s %-15s %-15s%n", discipline, getDate(), getTime());
     }
 }

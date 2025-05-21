@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Menu {
     private static String userInput;
 
-    private static final Scanner sc = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
 
     private static int userInt;
 
@@ -196,7 +196,14 @@ public class Menu {
                     showCompetitionResults();
                     break;
                 case "4":
-                    Database.getTrainerList();
+                    System.out.println("=== Trainer List ===");
+
+                    ArrayList<Trainer> trainerList = Database.getTrainerList();
+
+                    for(Trainer trainer : trainerList){
+                        System.out.println("- " + trainer);
+                    }
+                    System.out.println("\n");
                     break;
                 case "5":
                     showEliteSwimmer();
@@ -219,7 +226,7 @@ public class Menu {
                     4: BUTTERFLY
                     5: Back""");
 
-            userInput = Menu.getUserNumber(5);
+            userInput = getUserNumber(5);
             switch (userInput) {
                 case "1":
                     Trainer.getTop5TrainingResults(Discipline.FREESTYLE);
@@ -285,21 +292,10 @@ public class Menu {
             userInput = Menu.getUserNumber(3);
             switch (userInput) {
                 case "1":
-
+                    addTrainingResults();
                     break;
                 case "2":
-                    System.out.println("Enter the phone number of the swimmer you want to update results for:");
-                    String phoneCompetetion = sc.nextLine().trim();
-
-                    EliteSwimmer swimmerCompetetion = Database.findEliteMemberByPhone(phoneCompetetion);
-
-                    if (swimmerCompetetion == null) {
-                        System.out.println("No member found with that phone number");
-                    } else {
-                        ResultCompetition resultCompetition = swimmerCompetetion.createCompetitionResult();
-                        swimmerCompetetion.addCompetitionResult(resultCompetition);
-                        System.out.println("Result has been added to " + swimmerCompetetion.getName() + ".");
-                    }
+                    addCompetitionResults();
                     break;
                 case "3":
                     return;
@@ -309,8 +305,10 @@ public class Menu {
     }
 
     public static void addTrainingResults(){
+        Scanner scanner = new Scanner(System.in);
+
         System.out.println("Enter the phone number of the swimmer you want to update results for:");
-        String phoneTraining = sc.nextLine().trim();
+        String phoneTraining = scanner.nextLine().trim();
 
         EliteSwimmer swimmerTraining = Database.findEliteMemberByPhone(phoneTraining);
 
@@ -320,6 +318,23 @@ public class Menu {
             ResultTraining resultTraining = swimmerTraining.createTrainingResult();
             swimmerTraining.addTrainingResult(resultTraining);
             System.out.println("Result has been added to " + swimmerTraining.getName() + ".");
+        }
+    }
+
+    private static void addCompetitionResults(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the phone number of the swimmer you want to update results for:");
+        String phoneCompetetion = scanner.nextLine().trim();
+
+        EliteSwimmer swimmerCompetetion = Database.findEliteMemberByPhone(phoneCompetetion);
+
+        if (swimmerCompetetion == null) {
+            System.out.println("No member found with that phone number");
+        } else {
+            ResultCompetition resultCompetition = swimmerCompetetion.createCompetitionResult();
+            swimmerCompetetion.addCompetitionResult(resultCompetition);
+            System.out.println("Result has been added to " + swimmerCompetetion.getName() + ".");
         }
     }
 }
