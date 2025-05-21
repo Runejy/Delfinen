@@ -1,15 +1,22 @@
 package delfinen.Results;
 
 import delfinen.Enums.Discipline;
+import delfinen.Enums.Team;
 
 public class ResultCompetition implements Result {
+    private String phoneNumber;
+    private String swimmerName;
+    private Team team;
     private String date;
     private double time;
     private Discipline discipline;
     private String competitionName;
     private int placement;
 
-    public ResultCompetition(String date, double time, Discipline discipline, String competitionName, int placement) {
+    public ResultCompetition(String phoneNumber, String swimmerName, Team team, String date, double time, Discipline discipline, String competitionName, int placement) {
+        this.phoneNumber = phoneNumber;
+        this.swimmerName = swimmerName;
+        this.team = team;
         this.date = date;
         this.time = time;
         this.discipline = discipline;

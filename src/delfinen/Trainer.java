@@ -1,6 +1,7 @@
 package delfinen;
 
 import delfinen.Enums.Discipline;
+import delfinen.Enums.Team;
 import delfinen.Results.Result;
 import delfinen.Results.ResultCompetition;
 import delfinen.Results.ResultTraining;
@@ -22,8 +23,8 @@ public class Trainer {
 
     }
 
-    public ResultCompetition createCompetitionResult(String date, double time, Discipline discipline, String competitionName, int placement) {
-        return new ResultCompetition(date, time, discipline, competitionName, placement);
+    public ResultCompetition createCompetitionResult(String phoneNumber, String swimmerName, Team team, String date, double time, Discipline discipline, String competitionName, int placement) {
+        return new ResultCompetition(phoneNumber, swimmerName, team, date, time, discipline, competitionName, placement);
     }
 
     public void addEliteSwimmer(EliteSwimmer swimmer) {

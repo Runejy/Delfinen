@@ -96,8 +96,10 @@ public class EliteSwimmer extends Member {
         scanner.nextLine();
 
         //Skaber et nyt ResultCompetition objekt
+        ResultCompetition result = new ResultCompetition(getPhoneNumber(), getName(), getTeam(), date, timeResult, chosenDiscipline, competition, placement);
 
-        return new ResultCompetition(date, timeResult, chosenDiscipline, competition, placement);
+        Database.addNewResult(chosenDiscipline, result);
+        return result;
     }
 
     public ResultTraining createTrainingResult() {

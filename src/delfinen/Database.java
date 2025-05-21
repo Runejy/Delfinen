@@ -29,8 +29,8 @@ public class Database {
     private static ArrayList<Result> breaststrokeList = getResultArrayList(Discipline.BREASTSTROKE);
     private static ArrayList<Result> freestyleList = getResultArrayList(Discipline.FREESTYLE);
 
-    void print(){
-        for(Member member : memberList){
+    void print() {
+        for (Member member : memberList) {
             System.out.println(member);
         }
     }
@@ -51,10 +51,7 @@ public class Database {
         }
 
 
-
-
         phoneNumber = phoneNumber.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
-
 
 
         try (FileWriter fileWriter = new FileWriter(databaseFilePath, true)) {
@@ -76,7 +73,7 @@ public class Database {
         }
     }
 
-    public static void addNewMember(Member member){
+    public static void addNewMember(Member member) {
         if (member == null) {
             System.out.println("Error: Member data is missing.");
             return;
@@ -90,7 +87,7 @@ public class Database {
         updateDatabaseFile();
     }
 
-    public static void addNewEliteSwimmer(EliteSwimmer eliteSwimmer){
+    public static void addNewEliteSwimmer(EliteSwimmer eliteSwimmer) {
         eliteSwimmerList.add(eliteSwimmer);
         updateEliteSwimmerFile();
     }
@@ -116,7 +113,7 @@ public class Database {
             if (member.getPhoneNumber().equalsIgnoreCase(searchedPhoneNumber)) {
                 switch (dataKey) {
                     case "Telephone":
-                        if(dataValue.matches("\\d{8}")){
+                        if (dataValue.matches("\\d{8}")) {
                             dataValue = dataValue.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
                         }
 
@@ -501,5 +498,21 @@ public class Database {
 
     public static ArrayList<Trainer> getTrainerList(){
         return trainerList;
+    }
+
+    public static ArrayList<Result> getBackstrokeList(){
+        return backstrokeList;
+    }
+
+    public static ArrayList<Result> getBreastStrokeList(){
+        return breaststrokeList;
+    }
+
+    public static ArrayList<Result> getButterflyList(){
+        return butterflyList;
+    }
+
+    public static ArrayList<Result> getFreestyleList(){
+        return freestyleList;
     }
 }

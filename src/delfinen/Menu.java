@@ -32,15 +32,14 @@ public class Menu {
 
     //method for getting userInput when user should pick from a list
     public static String getUserNumber(int numOptions) {
-
+        Scanner scanner = new Scanner(System.in);
         while (true) {
-
             //get user input as integer, making sure they enter a number
             try {
-                userInt = sc.nextInt();
+                userInt = scanner.nextInt();
             } catch (Exception e) {
                 System.out.println("Enter a valid number");
-                sc.nextLine();
+                scanner.nextLine();
                 continue;
             }
 
@@ -53,7 +52,6 @@ public class Menu {
             //convert userInt to String and return it
             return String.valueOf(userInt);
         }
-
     }
 
     //method for getting any number from user when not picking from a list
@@ -184,15 +182,20 @@ public class Menu {
                     5: Add elite-swimmer results
                     6: Back""");
 
-            userInput = Menu.getUserNumber(6);
+            userInput = Menu.getUserNumber(7);
             switch (userInput) {
                 case "1":
                     SwimmingClub.addTrainer();
                     break;
                 case "2":
-                    showTrainingResuts();
+                    for(Result result : Database.getBackstrokeList()){
+
+                    }
                     break;
                 case "3":
+                    showCompetitionResults();
+                    showCompetitionResults();
+                    showCompetitionResults();
                     showCompetitionResults();
                     break;
                 case "4":
@@ -209,6 +212,8 @@ public class Menu {
                     showEliteSwimmer();
                     break;
                 case "6":
+                    break;
+                case "7":
                     return;
             }
 
@@ -289,7 +294,7 @@ public class Menu {
                     2: Add competition result to swimmer
                     3: Back""");
 
-            userInput = Menu.getUserNumber(3);
+            userInput = getUserNumber(3);
             switch (userInput) {
                 case "1":
                     addTrainingResults();
@@ -325,9 +330,9 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter the phone number of the swimmer you want to update results for:");
-        String phoneCompetetion = scanner.nextLine().trim();
+        String phoneCompetition = scanner.nextLine().trim();
 
-        EliteSwimmer swimmerCompetetion = Database.findEliteMemberByPhone(phoneCompetetion);
+        EliteSwimmer swimmerCompetetion = Database.findEliteMemberByPhone(phoneCompetition);
 
         if (swimmerCompetetion == null) {
             System.out.println("No member found with that phone number");

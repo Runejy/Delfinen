@@ -1,6 +1,8 @@
 package delfinen;
 
 import delfinen.Enums.Discipline;
+import delfinen.Enums.Team;
+import delfinen.Results.ResultTraining;
 import delfinen.Trainer;
 import delfinen.Results.ResultCompetition;
 
