@@ -1,11 +1,15 @@
 package delfinen;
 
 import delfinen.Enums.*;
+import delfinen.Results.Result;
+import delfinen.Results.ResultCompetition;
+import delfinen.Results.ResultTraining;
 
 import java.io.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.net.Inet4Address;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,9 +20,14 @@ public class Database {
     private static String databaseFilePath = "src/Files/database.csv";
     private static String eliteSwimmerFilePath = "src/Files/EliteSwimmer.csv";
     private static String trainerFilePath = "src/Files/trainers.csv";
+    private static String resultsFilePath = "src/Files/Results/";
     private static ArrayList<Member> memberList = getMemberArrayList();
     private static ArrayList<EliteSwimmer> eliteSwimmerList = getEliteSwimmersArrayList();
     private static ArrayList<Trainer> trainerList = getTrainerArrayList();
+    private static ArrayList<Result> butterflyList = getResultArrayList(Discipline.BUTTERFLY);
+    private static ArrayList<Result> backstrokeList = getResultArrayList(Discipline.BACKSTROKE);
+    private static ArrayList<Result> breaststrokeList = getResultArrayList(Discipline.BREASTSTROKE);
+    private static ArrayList<Result> freestyleList = getResultArrayList(Discipline.FREESTYLE);
 
     void print(){
         for(Member member : memberList){
@@ -84,6 +93,22 @@ public class Database {
     public static void addNewEliteSwimmer(EliteSwimmer eliteSwimmer){
         eliteSwimmerList.add(eliteSwimmer);
         updateEliteSwimmerFile();
+    }
+
+    public static void addNewResult(Discipline discipline, Result result) {
+        if(discipline.equals(Discipline.BACKSTROKE)){
+            backstrokeList.add(result);
+            updateResultFiles(Discipline.BACKSTROKE);
+        } else if(discipline.equals(Discipline.BREASTSTROKE)){
+            breaststrokeList.add(result);
+            updateResultFiles(Discipline.BREASTSTROKE);
+        } else if(discipline.equals(Discipline.BUTTERFLY)){
+            butterflyList.add(result);
+            updateResultFiles(Discipline.BUTTERFLY);
+        } else if(discipline.equals(Discipline.FREESTYLE)){
+            freestyleList.add(result);
+            updateResultFiles(Discipline.FREESTYLE);
+        }
     }
 
     public static void changeDatabaseData(String searchedPhoneNumber, String dataKey, String dataValue) {
@@ -177,9 +202,9 @@ public class Database {
 
             for (EliteSwimmer eliteSwimmer : eliteSwimmerList) {
                 String disciplineLine = eliteSwimmer.getDisciplines().get("FREESTYLE")
-                + ";" + eliteSwimmer.getDisciplines().get("BACKSTROKE")
-                + ";" + eliteSwimmer.getDisciplines().get("BREASTSTROKE")
-                + ";" + eliteSwimmer.getDisciplines().get("BUTTERFLY");
+                        + ";" + eliteSwimmer.getDisciplines().get("BACKSTROKE")
+                        + ";" + eliteSwimmer.getDisciplines().get("BREASTSTROKE")
+                        + ";" + eliteSwimmer.getDisciplines().get("BUTTERFLY");
 
                 data += "\n" + eliteSwimmer.getPhoneNumber() +
                         "," + eliteSwimmer.getName() +
@@ -193,6 +218,38 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    public static void updateResultFiles(Discipline discipline) {
+        try {
+            fileWriter = new FileWriter(resultsFilePath + discipline + ".csv");
+
+            ArrayList<Result> resultList = null;
+
+
+            if (discipline == Discipline.BACKSTROKE) {
+                resultList = backstrokeList;
+            } else if (discipline == Discipline.BREASTSTROKE) {
+                resultList = breaststrokeList;
+            } else if (discipline == Discipline.BUTTERFLY) {
+                resultList = butterflyList;
+            } else if (discipline == Discipline.FREESTYLE) {
+                resultList = freestyleList;
+            } else {
+                System.out.println("Error!");
+            }
+
+            String data = "Phone number,Swimmer name,Team,Date,Time,Competion name,Placement";
+            for(Result result : resultList){
+                data += "\n" + result.toCSVfile();
+            }
+
+            fileWriter.write(data);
+            fileWriter.close();
+        } catch(IOException e){
+        e.printStackTrace();
+        }
+    }
+
 
     //INPUT ELITE DATA TO CSV FILE
     public static void inputNewEliteData(EliteSwimmer newEliteSwimmer) {
@@ -261,7 +318,7 @@ public class Database {
     }
 
     // ARRAYLIST OVER ELITE MEMBERS IN DATABASE
-     private static ArrayList<EliteSwimmer> getEliteSwimmersArrayList() {
+    private static ArrayList<EliteSwimmer> getEliteSwimmersArrayList() {
         ArrayList<EliteSwimmer> eliteMemberList = new ArrayList<>();
 
         try {
@@ -319,11 +376,69 @@ public class Database {
         return null;
     }
 
-    //ADD TRAINER TO trainers.csv
+    private static ArrayList<Result> getResultArrayList(Discipline discipline) {
+        try {
+            ArrayList<Result> resultList = new ArrayList<>();
+
+
+            Scanner fileReader = new Scanner(new File(resultsFilePath + discipline + ".csv"));
+
+            if (fileReader.hasNextLine()) {
+                fileReader.nextLine(); // skip header
+            }
+
+            while(fileReader.hasNextLine()){
+                String[] rowData = fileReader.nextLine().split(",");
+
+                if(discipline.equals(Discipline.FREESTYLE)){
+                    if(rowData.length == 5){
+                        ResultTraining resultTraining = new ResultTraining(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline);
+                        resultList.add(resultTraining);
+                    }else if(rowData.length == 7){
+                        ResultCompetition resultCompetition = new ResultCompetition(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline ,rowData[5],Integer.parseInt(rowData[6]));
+                        resultList.add(resultCompetition);
+                    }
+                }
+                if(discipline.equals(Discipline.BACKSTROKE)){
+                    if(rowData.length == 5){
+                        ResultTraining resultTraining = new ResultTraining(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline);
+                        resultList.add(resultTraining);
+                    }else if(rowData.length == 7){
+                        ResultCompetition resultCompetition = new ResultCompetition(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline ,rowData[5],Integer.parseInt(rowData[6]));
+                        resultList.add(resultCompetition);
+                    }
+                }
+                if(discipline.equals(Discipline.BREASTSTROKE)){
+                    if(rowData.length == 5){
+                        ResultTraining resultTraining = new ResultTraining(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline);
+                        resultList.add(resultTraining);
+                    }else if(rowData.length == 7){
+                        ResultCompetition resultCompetition = new ResultCompetition(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline ,rowData[5],Integer.parseInt(rowData[6]));
+                        resultList.add(resultCompetition);
+                    }
+                }
+                if(discipline.equals(Discipline.BUTTERFLY)){
+                    if(rowData.length == 5){
+                        ResultTraining resultTraining = new ResultTraining(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline);
+                        resultList.add(resultTraining);
+                    }else if(rowData.length == 7){
+                        ResultCompetition resultCompetition = new ResultCompetition(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline ,rowData[5],Integer.parseInt(rowData[6]));
+                        resultList.add(resultCompetition);
+                    }
+                }
+            }
+            return resultList;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+//ADD TRAINER TO trainers.csv
 
     public static void inputNewTrainer(Trainer newTrainer) {
         try {
-            fileWriter = new FileWriter("src/Files/trainers.csv", true);
+            fileWriter = new FileWriter(trainerFilePath, true);
             fileWriter.write(
                     "\n" + newTrainer.getName()
             );

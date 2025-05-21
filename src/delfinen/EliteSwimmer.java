@@ -143,8 +143,11 @@ public class EliteSwimmer extends Member {
 
 
         //Skaber et nyt ResultTraining objekt
+        ResultTraining result = new ResultTraining(getPhoneNumber(), getName(), getTeam(), date, timeResult, chosenDiscipline);
 
-        return new ResultTraining(date, timeResult, chosenDiscipline);
+        Database.addNewResult(chosenDiscipline, result);
+
+        return result;
     }
 
     // Metode til at tilføje et resultat (se Main.java)

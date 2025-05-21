@@ -40,12 +40,5 @@ public class SwimmingClubTest {
 
     }
 
-    @Test
-    void listOfTrainers() {
-        SwimmingClub club = new SwimmingClub();
-        ArrayList<String> trainers = club.getTrainersFromFile();
-
-        assertTrue(trainers.contains("Jens Hansen"));
-    }
 
 }

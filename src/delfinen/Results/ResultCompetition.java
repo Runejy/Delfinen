@@ -18,6 +18,21 @@ public class ResultCompetition implements Result {
     }
 
     @Override
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    @Override
+    public String getSwimmerName() {
+        return swimmerName;
+    }
+
+    @Override
+    public Team getTeam() {
+        return team;
+    }
+
+    @Override
     public String getDate() {
         return date;
     }
@@ -42,10 +57,17 @@ public class ResultCompetition implements Result {
 
     @Override
     public String toString() {
-        return "Dato: " + date
-                + ", Tid: " + time
-                + ", Disciplin: " + discipline
-                + ", Konkurrence: " + competitionName
-                + ", Placering: " + placement;
+        return String.format("%-15s %-15s %-15s %-15s %-15s%n", getDiscipline(), getDate(), getTime(), getCompetitionName(), getPlacement());
+    }
+
+    @Override
+    public String toCSVfile() {
+        return phoneNumber + "," +
+                swimmerName + "," +
+                team + "," +
+                date + "," +
+                time + "," +
+                competitionName + "," +
+                placement;
     }
 }
