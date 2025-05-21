@@ -262,7 +262,7 @@ public class Database {
     }
 
     // ARRAYLIST OVER ELITE MEMBERS IN DATABASE
-    private static ArrayList<EliteSwimmer> getEliteSwimmersArrayList() {
+     public static ArrayList<EliteSwimmer> getEliteSwimmersArrayList() {
         ArrayList<EliteSwimmer> eliteMemberList = new ArrayList<>();
 
         try {

@@ -18,7 +18,6 @@ public class EliteSwimmer extends Member {
     private Trainer trainer;
     private HashMap<Discipline, ArrayList<ResultTraining>> trainingResults = new HashMap<>();
     private HashMap<Discipline, ArrayList<ResultCompetition>> competitionResults = new HashMap<>();
-    private ArrayList<Result> results = new ArrayList<>();
     private Scanner scanner;
 
     public EliteSwimmer(String phoneNumber, String name, int age, String gender, String mail,
