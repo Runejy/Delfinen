@@ -137,24 +137,22 @@ public class SwimmingClub {
 
             //ASSIGN TRAINER TO ELITE SWIMMER
 
-            ArrayList<String> trainerList = getTrainersFromFile();
-
-            if (trainerList.isEmpty()) {
+            if (Database.getTrainerList().isEmpty()) {
                 System.out.println("No trainers available. Please add trainers first.");
                 return;
             }
 
             System.out.println("Select a trainer from the list:");
-            for (int i = 0; i < trainerList.size(); i++) {
-                System.out.printf("%d - %s%n", i + 1, trainerList.get(i));
+            for (int i = 0; i < Database.getTrainerList().size(); i++) {
+                System.out.printf("%d - %s%n", i + 1, Database.getTrainerList().get(i));
             }
             int trainerChoice = -1;
-            while (trainerChoice < 1 || trainerChoice > trainerList.size()) {
+            while (trainerChoice < 1 || trainerChoice > Database.getTrainerList().size()) {
                 System.out.print("Enter the number of the trainer to assign: ");
                 String input = scanner.nextLine();
                 try {
                     trainerChoice = Integer.parseInt(input);
-                    if (trainerChoice < 1 || trainerChoice > trainerList.size()) {
+                    if (trainerChoice < 1 || trainerChoice > Database.getTrainerList().size()) {
                         System.out.println("Invalid choice. Please select a number from the list.");
                     }
                 } catch (NumberFormatException e) {
@@ -162,8 +160,7 @@ public class SwimmingClub {
                 }
             }
 
-            String selectedTrainerName = trainerList.get(trainerChoice - 1);
-            Trainer trainer = new Trainer(selectedTrainerName);
+            Trainer trainer = Database.getTrainerList().get(trainerChoice - 1);
 
             EliteSwimmer eliteSwimmer = new EliteSwimmer(phoneNumber, name, age, gender, mail, memberActivity, trainingType, team, disciplines, trainer);
 
@@ -415,34 +412,12 @@ public class SwimmingClub {
 
     }
 
-    public static ArrayList<String> getTrainersFromFile() {
-        ArrayList<String> trainers = new ArrayList<>();
-        File file = new File("src/Files/trainers.csv");
-        try {
-            Scanner scanner = new Scanner(file);
-
-            System.out.println("List of trainers in Delfinen: ");
-            if (scanner.hasNextLine()) {
-                scanner.nextLine();
-            }
-
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                trainers.add(line);
-            }
-            scanner.close();
-        } catch (FileNotFoundException e) {
-            System.out.print("File not found.");
-        }
-        return trainers;
 
 
-    }
-
-    public void listOfTrainers() {
+    public static void listOfTrainers() {
         System.out.println("Trainers in Delfinen: ");
-        ArrayList<String> trainers = getTrainersFromFile();
-        for (String trainer : trainers) {
+        ArrayList<Trainer> trainers = Database.getTrainerList();
+        for (Trainer trainer : trainers) {
             System.out.println(trainer);
         }
     }

@@ -16,8 +16,10 @@ public class Database {
     private static FileWriter fileWriter;
     private static String databaseFilePath = "src/Files/database.csv";
     private static String eliteSwimmerFilePath = "src/Files/EliteSwimmer.csv";
+    private static String trainerFilePath = "src/Files/trainers.csv";
     private static ArrayList<Member> memberList = getMemberArrayList();
     private static ArrayList<EliteSwimmer> eliteSwimmerList = getEliteSwimmersArrayList();
+    private static ArrayList<Trainer> trainerList = getTrainerArrayList();
 
     void print(){
         for(Member member : memberList){
@@ -73,8 +75,9 @@ public class Database {
         }
 
         String phoneNumber = member.getPhoneNumber();
-
         phoneNumber.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
+        member.setPhoneNumber(phoneNumber);
+
         memberList.add(member);
         updateDatabaseFile();
     }
@@ -298,6 +301,27 @@ public class Database {
         return eliteMemberList;
     }
 
+    private static ArrayList<Trainer> getTrainerArrayList() {
+        try {
+            ArrayList<Trainer> trainerArrayList = new ArrayList<>();
+            Scanner fileReader = new Scanner(new File(trainerFilePath));
+
+            fileReader.nextLine();
+
+            while(fileReader.hasNextLine()){
+                String[] rowData = fileReader.nextLine().split(",");
+
+                Trainer trainer = new Trainer(rowData[0]); //Name
+
+                trainerArrayList.add(trainer);
+            }
+            return trainerArrayList;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     //ADD TRAINER TO trainers.csv
 
     public static void inputNewTrainer(Trainer newTrainer) {
@@ -361,5 +385,9 @@ public class Database {
 
     public static ArrayList<EliteSwimmer> getEliteSwimmerList(){
         return eliteSwimmerList;
+    }
+
+    public static ArrayList<Trainer> getTrainerList(){
+        return trainerList;
     }
 }

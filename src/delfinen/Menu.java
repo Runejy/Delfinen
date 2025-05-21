@@ -196,7 +196,7 @@ public class Menu {
                     showCompetitionResults();
                     break;
                 case "4":
-                    Trainer.listOfTrainersEliteSwimmers();
+                    Database.getTrainerList();
                     break;
                 case "5":
                     showEliteSwimmer();

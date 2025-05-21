@@ -194,24 +194,32 @@ public class EliteSwimmer extends Member {
         return competitionResults;
     }
 
-    public void showTrainingResults(){
-        for(Discipline discipline: trainingResults.keySet()){
-            System.out.println(String.format("%-15s %-15s", "DATE", "TIME"));
+    public void showTrainingResults(Discipline discipline){
+        System.out.println("\n" + getName() + "\n");
+
+        System.out.printf("%-15s %-15s %-15s \n", discipline, "DATE", "TIME");
+
+        if(trainingResults.get(discipline) != null){
             for(ResultTraining result : trainingResults.get(discipline)){
-                System.out.println(String.format("%-15s %-15s", result.getDate(), result.getTime()));
+                System.out.println(result);
             }
-            System.out.println("--------------------------------------------------------------------");
         }
+
+        System.out.println("--------------------------------------------------------------------");
     }
 
-    public void showCompetitionResult(){
-        for(Discipline discipline: competitionResults.keySet()){
-            System.out.println(String.format("%-15s %-15s %-15s %-15s %-15s", "DATE", "TIME", "DISCIPLINE", "COMPETITION NAME", "PLACEMENT"));
-            for(ResultCompetition result : competitionResults.get(discipline)){
-                System.out.println(String.format("%-15s %-15s %-15s %-25s %-15s", result.getDate(), result.getTime(), result.getDiscipline(), result.getCompetitionName(), result.getPlacement()));
+    public void showCompetitionResults(Discipline discipline){
+        System.out.println("\n" + getName() + "\n");
+
+        System.out.printf("%-15s %-15s %-15s \n", discipline, "DATE", "TIME");
+
+        if(trainingResults.get(discipline) != null){
+            for(ResultTraining result : trainingResults.get(discipline)){
+                System.out.println(result);
             }
-            System.out.println("--------------------------------------------------------------------");
         }
+
+        System.out.println("--------------------------------------------------------------------");
     }
 
     // Getters og setters for øvrige felter...

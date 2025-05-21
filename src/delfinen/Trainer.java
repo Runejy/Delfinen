@@ -30,16 +30,18 @@ public class Trainer {
         Database.getEliteSwimmerList().add(swimmer);
     }
 
-    public static void getTop5TrainingResults(Discipline discipline) {
+    public static List<EliteSwimmer> getTop5TrainingResults(Discipline discipline) {
         List<EliteSwimmer> top5TrainingResults = Database.getEliteSwimmerList().stream()
                 .filter(eliteSwimmer -> eliteSwimmer.getDisciplines().containsKey(discipline))
                 .sorted(Comparator.comparingDouble(eliteSwimmer -> eliteSwimmer.getBestTimeForTrainingResuts(discipline)))
                 .limit(5)
-                .collect(Collectors.toList());
+                .toList();
 
         for(EliteSwimmer eliteSwimmer : top5TrainingResults){
-            eliteSwimmer.showTrainingResults();
+            eliteSwimmer.showTrainingResults(discipline);
         }
+
+        return top5TrainingResults;
     }
 
     public static void getTop5CompetitionResults(Discipline discipline) {
@@ -47,18 +49,15 @@ public class Trainer {
                 .filter(eliteSwimmer -> eliteSwimmer.getDisciplines().containsKey(discipline))
                 .sorted(Comparator.comparingDouble(eliteSwimmer -> eliteSwimmer.getBestTimeForCompetitionResults(discipline)))
                 .limit(5)
-                .collect(Collectors.toList());
+                .toList();
 
         for(EliteSwimmer eliteSwimmer : top5TrainingResults){
-            eliteSwimmer.showCompetitionResult();
+            eliteSwimmer.showCompetitionResults(discipline);
         }
     }
 
     public String getName() {
         return name;
-    }
-
-    public static void listOfTrainersEliteSwimmers() {
     }
 
     @Override

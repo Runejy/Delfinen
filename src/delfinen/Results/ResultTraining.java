@@ -3,8 +3,8 @@ package delfinen.Results;
 import delfinen.Enums.Discipline;
 
 public class ResultTraining implements Result {
-    private String date;
-    private double time;
+    private String date = "";
+    private double time = 0;
     private Discipline discipline;
 
     public ResultTraining(String date, double time, Discipline discipline) {
@@ -31,6 +31,6 @@ public class ResultTraining implements Result {
     @Override
     public String toString() {
         // Returner relevant data som string
-        return "Dato: " + date + ", Tid: " + time + ", Disciplin: " + discipline;
+        return String.format("%-15s %-15s%n", getDate(), getTime());
     }
 }
