@@ -188,9 +188,6 @@ public class Menu {
                     SwimmingClub.addTrainer();
                     break;
                 case "2":
-                    for(Result result : Database.getBackstrokeList()){
-
-                    }
                     break;
                 case "3":
                     showCompetitionResults();

@@ -337,7 +337,7 @@ public class SwimmingClub {
                         }
                     }
                     member.setPhoneNumber(phoneNumber);
-                    Database.changeDatabaseData(rowIdentificer, "Telephone",phoneNumber );
+                    Database.changeDatabaseData(rowIdentificer, "Telephone", phoneNumber);
                     System.out.println("Phone number has been updated to: " + phoneNumber);
 
 
@@ -358,7 +358,7 @@ public class SwimmingClub {
                     }
                     member.setMemberActivity(memberActivity);
 
-                    Database.changeDatabaseData(rowIdentificer, "Member Activity",memberActivity.toString());
+                    Database.changeDatabaseData(rowIdentificer, "Member Activity", memberActivity.toString());
                 }
                 case 7 -> {
                     TrainingType trainingType = null;
@@ -379,7 +379,7 @@ public class SwimmingClub {
                     System.out.println("REMOVE MEMBER????");
                     System.out.println("If yes, pres y and in no, pres n");
                     String input = scanner.nextLine();
-                    if (input.equalsIgnoreCase("y")){
+                    if (input.equalsIgnoreCase("y")) {
                         Database.getMemberList().remove((rowIdentificer));
                         System.out.println("Member has now been removed");
                     } else if (input.equalsIgnoreCase("n")) {
@@ -405,7 +405,7 @@ public class SwimmingClub {
 
     }
 
-    public void addTrainer() {
+    public static void addTrainer() {
         System.out.println("===================================");
         System.out.println("         REGISTER NEW TRAINER");
         System.out.println("===================================");
@@ -448,6 +448,9 @@ public class SwimmingClub {
         }
         return trainers;
 
+
+    }
+
     public static void listOfTrainers() {
         System.out.println("Trainers in Delfinen: ");
 
@@ -463,33 +466,33 @@ public class SwimmingClub {
         System.out.println("Assign discipline BACKSTROKE to swimmer (Y/N):");
         if (input.nextLine().equalsIgnoreCase("Y")) {
             disciplines.put(Discipline.BACKSTROKE, Discipline.BACKSTROKE);
-        }else{
+        } else {
             disciplines.put(Discipline.BACKSTROKE, null);
         }
 
         System.out.println("Assign discipline BUTTERFLY to swimmer (Y/N):");
         if (input.nextLine().equalsIgnoreCase("Y")) {
             disciplines.put(Discipline.BUTTERFLY, Discipline.BUTTERFLY);
-        }else{
+        } else {
             disciplines.put(Discipline.BUTTERFLY, null);
         }
 
         System.out.println("Assign discipline FREESTYLE to swimmer (Y/N):");
         if (input.nextLine().equalsIgnoreCase("Y")) {
             disciplines.put(Discipline.FREESTYLE, Discipline.FREESTYLE);
-        }else{
+        } else {
             disciplines.put(Discipline.FREESTYLE, null);
         }
 
         System.out.println("Assign discipline BREASTSTROKE to swimmer (Y/N):");
         if (input.nextLine().equalsIgnoreCase("Y")) {
             disciplines.put(Discipline.BREASTSTROKE, Discipline.BREASTSTROKE);
-        }else{
+        } else {
             disciplines.put(Discipline.BREASTSTROKE, null);
         }
 
         return disciplines;
     }
 }
-}
+
 
