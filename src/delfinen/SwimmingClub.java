@@ -206,6 +206,7 @@ public class SwimmingClub {
             return;
         }
 
+
         boolean updating = true;
 
         while (updating) {
@@ -331,11 +332,13 @@ public class SwimmingClub {
                         if (!phoneNumber.matches("\\d{8}")) {
                             System.out.println("Invalid phone number. It must contain exactly 8 digits.");
                         } else {
+                            member.setPhoneNumber(phoneNumber);
                             break;
                         }
                     }
                     member.setPhoneNumber(phoneNumber);
-                    System.out.println("Phone number has been updated to: " + member.getPhoneNumber());
+                    Database.changeDatabaseData(rowIdentificer, "Telephone",phoneNumber );
+                    System.out.println("Phone number has been updated to: " + phoneNumber);
 
 
                 }
@@ -354,6 +357,8 @@ public class SwimmingClub {
                         }
                     }
                     member.setMemberActivity(memberActivity);
+
+                    Database.changeDatabaseData(rowIdentificer, "Member Activity",memberActivity.toString());
                 }
                 case 7 -> {
                     TrainingType trainingType = null;
@@ -372,9 +377,19 @@ public class SwimmingClub {
                 }
                 case 8 -> {
                     System.out.println("REMOVE MEMBER????");
+                    System.out.println("If yes, pres y and in no, pres n");
+                    String input = scanner.nextLine();
+                    if (input.equalsIgnoreCase("y")){
+                        Database.getMemberList().remove((rowIdentificer));
+                        System.out.println("Member has now been removed");
+                    } else if (input.equalsIgnoreCase("n")) {
+                        System.out.println("Member has not been removed from the list");
+                        return;
+                    }
                 }
                 case 9 -> {
                     updating = false;
+
                 }
                 default -> System.out.println("Invalid choice. Please try again.");
 
@@ -382,15 +397,15 @@ public class SwimmingClub {
         }
     }
 
-    public static void totalMembers(){
+    public void totalMembers() {
 
     }
 
-    public static void totalMembersByMemberType(){
+    public void totalMembersByMemberType() {
 
     }
 
-    public static void addTrainer() {
+    public void addTrainer() {
         System.out.println("===================================");
         System.out.println("         REGISTER NEW TRAINER");
         System.out.println("===================================");
@@ -412,20 +427,33 @@ public class SwimmingClub {
 
     }
 
+    public ArrayList<String> getTrainersFromFile() {
+        ArrayList<String> trainers = new ArrayList<>();
+        File file = new File("src/Files/trainers.csv");
+        try {
+            Scanner scanner = new Scanner(file);
 
+            System.out.println("List of trainers in Delfinen: ");
+            if (scanner.hasNextLine()) {
+                scanner.nextLine();
+            }
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                trainers.add(line);
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.print("File not found.");
+        }
+        return trainers;
 
     public static void listOfTrainers() {
         System.out.println("Trainers in Delfinen: ");
-        ArrayList<Trainer> trainers = Database.getTrainerList();
-        for (Trainer trainer : trainers) {
+
+        for (Trainer trainer : Database.getTrainerList()) {
             System.out.println(trainer);
         }
-    }
-
-
-    public void top5Swimmers() {
-
-
     }
 
     public static HashMap<Discipline, Discipline> assignDisciplines() {
@@ -463,3 +491,5 @@ public class SwimmingClub {
         return disciplines;
     }
 }
+}
+
