@@ -201,11 +201,31 @@ public class Database {
 
             String data = "Telephone,SwimmerName,Trainer,Team,Discipline";
 
+
+
             for (EliteSwimmer eliteSwimmer : eliteSwimmerList) {
-                String disciplineLine = eliteSwimmer.getDisciplines().get("FREESTYLE")
-                        + ";" + eliteSwimmer.getDisciplines().get("BACKSTROKE")
-                        + ";" + eliteSwimmer.getDisciplines().get("BREASTSTROKE")
-                        + ";" + eliteSwimmer.getDisciplines().get("BUTTERFLY");
+                String FREESTYLE = "null";
+                String BACKSTROKE = "null";
+                String BREASTSTROKE = "null";
+                String BUTTERFLY = "null";
+
+                if(eliteSwimmer.getDisciplines().get(Discipline.FREESTYLE) != null){
+                    FREESTYLE = "FREESTYLE";
+                }
+                if(eliteSwimmer.getDisciplines().get(Discipline.BACKSTROKE) != null){
+                    BACKSTROKE = "BACKSTROKE";
+                }
+                if(eliteSwimmer.getDisciplines().get(Discipline.BREASTSTROKE) != null){
+                    BREASTSTROKE = "BREASTSTROKE";
+                }
+                if(eliteSwimmer.getDisciplines().get(Discipline.BUTTERFLY) != null){
+                    BUTTERFLY = "BUTTERFLY";
+                }
+
+                String disciplineLine = FREESTYLE
+                        + ";" + BACKSTROKE
+                        + ";" + BREASTSTROKE
+                        + ";" + BUTTERFLY;
 
                 data += "\n" + eliteSwimmer.getPhoneNumber() +
                         "," + eliteSwimmer.getName() +
@@ -339,9 +359,22 @@ public class Database {
                         HashMap<Discipline, Discipline> disciplineHashMap = new HashMap<>();
                         String[] disciplinesSplit = eliteSwimmerRowData[4].split(";");
 
+
+                       for(String stringDiscipline : disciplinesSplit){
+                           if(!stringDiscipline.equalsIgnoreCase("null")){
+                               disciplineHashMap.put(Discipline.valueOf(stringDiscipline), Discipline.valueOf(stringDiscipline));
+                           }
+                       }
+
+
+                        /*System.out.println(disciplinesSplit.length);
+                        for(String string : disciplinesSplit){
+                            System.out.println(string);
+                        }
+
                         for(String disciplineString : disciplinesSplit){
                             disciplineHashMap.put(Discipline.valueOf(disciplineString), Discipline.valueOf(disciplineString));
-                        }
+                        }*/
 
                         Trainer trainer = new Trainer(eliteSwimmerRowData[2]);
 
