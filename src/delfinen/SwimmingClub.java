@@ -183,10 +183,9 @@ public class SwimmingClub {
 
     }
 
-
-    //MARIA
-    //Mangler en måde at opdatere CSV filen
-    public static void updateMember() {
+    
+    //Opdatering af CSV filen database
+    public static void changeMemberData() {
         System.out.println("===================================");
         System.out.println("         UPDATE MEMBER");
         System.out.println("===================================");
@@ -374,13 +373,15 @@ public class SwimmingClub {
                         }
                     }
                     member.setTrainingType(trainingType);
+                    Database.changeDatabaseData(rowIdentificer, "Training Type",trainingType.toString());
                 }
                 case 8 -> {
+
                     System.out.println("REMOVE MEMBER????");
-                    System.out.println("If yes, pres y and in no, pres n");
+                    System.out.println("If yes, pres y and if no, pres n");
                     String input = scanner.nextLine();
                     if (input.equalsIgnoreCase("y")) {
-                        Database.getMemberList().remove((rowIdentificer));
+                        Database.changeDatabaseData(rowIdentificer, "Remove Member" ,"");
                         System.out.println("Member has now been removed");
                     } else if (input.equalsIgnoreCase("n")) {
                         System.out.println("Member has not been removed from the list");
@@ -395,14 +396,6 @@ public class SwimmingClub {
 
             }
         }
-    }
-
-    public void totalMembers() {
-
-    }
-
-    public void totalMembersByMemberType() {
-
     }
 
     public static void addTrainer() {

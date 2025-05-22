@@ -25,7 +25,7 @@ Telephone,Name,Age,Gender,Mail,Member Activity,Member Type,Training Type
 34 34 45 45,Rune Jensen,44,Male,gj@hotmail.com,ACTIVE,SENIOR,COMPETITION
 34 57 65 41,August Matthew,22,Male,am@live.dk,ACTIVE,SENIOR,COMPETITION
 41 16 17 11,Tobias Wiik,30,Male,toby@live.dk,ACTIVE,SENIOR,COMPETITION
-11 22 33 44,Yacqub,15,Female,deeznutz@gmail.com,PASSIVE,JUNIOR,COMPETITION
+11 22 33 44,Yacqub,15,Female,deeznutz@gmail.com,PASSIVE,JUNIOR,CASUAL
 56 74 92 01,Helle H,45,Female,helleh@mail.dk,ACTIVE,SENIOR,COMPETITION
 20 05 98 91,Julia Roberts,35,Female,juliar@mail.com,ACTIVE,SENIOR,COMPETITION
 45 67 54 32,Jakob Kjeldgaard,1,Male,jk@live.dk,ACTIVE,JUNIOR,COMPETITION
@@ -47,5 +47,3 @@ Telephone,Name,Age,Gender,Mail,Member Activity,Member Type,Training Type
 20 10 20 10,runewashere,10,Female,rune,ACTIVE,JUNIOR,CASUAL
 02 91 92 93,rune,22,Female,runew,ACTIVE,SENIOR,CASUAL
 87 65 52 62,Anders Degn,16,Male,ad@danmark.dk,RESTANCE,JUNIOR,COMPETITION
-12 12 12 12,Emilos VonBilos,812,Male,VonBilosGmaing@mail.com,ACTIVE,RETIREE,COMPETITION
-14 14 14 14,August Agust,913,Male,mail.dk,RESTANCE,RETIREE,COMPETITION

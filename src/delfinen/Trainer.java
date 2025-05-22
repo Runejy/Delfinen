@@ -19,16 +19,7 @@ public class Trainer {
         this.name = name;
     }
 
-    public Trainer(){
-
-    }
-
-    public ResultCompetition createCompetitionResult(String phoneNumber, String swimmerName, Team team, String date, double time, Discipline discipline, String competitionName, int placement) {
-        return new ResultCompetition(phoneNumber, swimmerName, team, date, time, discipline, competitionName, placement);
-    }
-
-    public void addEliteSwimmer(EliteSwimmer swimmer) {
-        Database.getEliteSwimmerList().add(swimmer);
+    public Trainer() {
     }
 
     public static List<EliteSwimmer> getTop5TrainingResults(Discipline discipline) {
@@ -38,7 +29,7 @@ public class Trainer {
                 .limit(5)
                 .toList();
 
-        for(EliteSwimmer eliteSwimmer : top5TrainingResults){
+        for (EliteSwimmer eliteSwimmer : top5TrainingResults) {
             eliteSwimmer.showTrainingResults(discipline);
         }
 
@@ -52,7 +43,7 @@ public class Trainer {
                 .limit(5)
                 .toList();
 
-        for(EliteSwimmer eliteSwimmer : top5TrainingResults){
+        for (EliteSwimmer eliteSwimmer : top5TrainingResults) {
             eliteSwimmer.showCompetitionResults(discipline);
         }
     }
@@ -62,7 +53,7 @@ public class Trainer {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return name;
     }
 }

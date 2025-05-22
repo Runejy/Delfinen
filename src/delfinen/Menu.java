@@ -116,7 +116,7 @@ public class Menu {
             System.out.println("""
                     1: Add member 
                     2: Show all members
-                    3: Update members
+                    3: Change member data
                     4: Back""");
 
             userInput = Menu.getUserNumber(4);
@@ -128,7 +128,7 @@ public class Menu {
                     Database.databaseOutput();
                     break;
                 case "3":
-                    Database.updateDatabaseFile();
+                    SwimmingClub.changeMemberData();
                     break;
                 case "4":
                     return;
@@ -148,10 +148,11 @@ public class Menu {
             System.out.println("""
                     1: Total Revenue
                     2: Total Revenue by membertype
-                    3: Show members missing payments
-                    4: Back""");
+                    3: Update member
+                    4: Show missing payers
+                    5: Back""");
 
-            userInput = Menu.getUserNumber(4);
+            userInput = Menu.getUserNumber(5);
             switch (userInput) {
                 case "1":
                     s.totalRevenue();
@@ -160,10 +161,11 @@ public class Menu {
                     s.totalRevenueByMemberType();
                     break;
                 case "3":
-                    s.showRestance();
-                    //Method for Restance
+                    s.setRestance();
                     break;
                 case "4":
+                    s.viewRestance();
+                case "5":
                     return;
 
             }
@@ -180,7 +182,9 @@ public class Menu {
                     3: Show top 5 competition results
                     4: Show list of trainers
                     5: Add elite-swimmer results
-                    6: Back""");
+                    6: BLANKBLANKBLANK
+                    7: Back""");
+
 
             userInput = Menu.getUserNumber(7);
             switch (userInput) {

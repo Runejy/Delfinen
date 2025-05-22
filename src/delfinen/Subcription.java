@@ -34,31 +34,10 @@ public class Subcription {
         this.isPaid = paid;
     }
 
-    //Brugerinterface til Menu
-    public void showRestance() {
-        Database.databaseOutput();
-        while (true) {
-            System.out.println("""
-                    1. Set missing payer
-                    2. View missing payers
-                    3. Back""");
-
-            userInput = Menu.getUserNumber(3);
-            switch (userInput) {
-                case "1":
-                    setRestance();
-                    break;
-                case "2":
-                    viewRestance();
-                    break;
-                case "3":
-                    return;
-            }
-        }
-    }
 
     // Bruges til at update Member Activity, til ACTIVE, PASSIVE ELLER RESTANCE, for kasseren.
     public void setRestance() {
+        Database.databaseOutput();
         while(true) {
             System.out.println("""
                     1. Update Active

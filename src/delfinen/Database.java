@@ -109,8 +109,8 @@ public class Database {
     }
 
     public static void changeDatabaseData(String searchedPhoneNumber, String dataKey, String dataValue) {
-        for (Member member : memberList) {
-            if (member.getPhoneNumber().equalsIgnoreCase(searchedPhoneNumber)) {
+        for (int i = 0; i < memberList.size(); i++) {
+            if (memberList.get(i).getPhoneNumber().equalsIgnoreCase(searchedPhoneNumber)) {
                 switch (dataKey) {
                     case "Telephone":
                         if (dataValue.matches("\\d{8}")) {
@@ -122,38 +122,42 @@ public class Database {
                             break;
                         }
 
-                        member.setPhoneNumber(dataValue);
+                        memberList.get(i).setPhoneNumber(dataValue);
                         updateDatabaseFile();
                         break;
                     case "Name":
-                        member.setName(dataValue);
+                        memberList.get(i).setName(dataValue);
                         updateDatabaseFile();
                         break;
                     case "Age":
-                        member.setAge(Integer.parseInt(dataValue));
+                        memberList.get(i).setAge(Integer.parseInt(dataValue));
                         updateDatabaseFile();
                         break;
                     case "Gender":
-                        member.setGender(dataValue);
+                        memberList.get(i).setGender(dataValue);
                         updateDatabaseFile();
                         break;
                     case "Mail":
-                        member.setMail(dataValue);
+                        memberList.get(i).setMail(dataValue);
                         updateDatabaseFile();
                         break;
                     case "Member Activity":
-                        member.setMemberActivity(MemberActivity.valueOf(dataValue));
+                        memberList.get(i).setMemberActivity(MemberActivity.valueOf(dataValue));
                         updateDatabaseFile();
                         break;
                     case "Member Type":
-                        member.setMemberType(MemberType.valueOf(dataValue));
+                        memberList.get(i).setMemberType(MemberType.valueOf(dataValue));
                         updateDatabaseFile();
                         break;
                     case "Training Type":
-                        member.setTrainingType(TrainingType.valueOf(dataValue));
+                        memberList.get(i).setTrainingType(TrainingType.valueOf(dataValue));
                         updateDatabaseFile();
                         break;
+                    case "Remove Member":
+                        memberList.remove(memberList.get(i));
 
+                        updateDatabaseFile();
+                        break;
                 }
             }
         }
