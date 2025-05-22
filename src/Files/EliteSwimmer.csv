@@ -1,13 +1,14 @@
 Telephone,SwimmerName,Trainer,Team,Discipline
-49 68 37 20,Frank Hvam,Jens Hansen,SENIOR,FREESTYLE;BACKSTROKE
-78 69 49 21,Winnie Pooh,Ayla Handannah,JUNIOR,FREESTYLE;BUTTERFLY
-65 43 23 78,Lina Rafn,Lone Nielsen,SENIOR,FREESTYLE;BACKSTROKE;BUTTERFLY
-32 32 34 35,Harry Potter,Michael Phelps,SENIOR,FREESTYLE;BACKSTROKE;BREASTSTROKE;BUTTERFLY
-11 11 11 91,Frodo Baggins,Ayla Handannah,SENIOR,FREESTYLE;BUTTERFLY
-67 58 37 19,Will Smith,Michael Phelps,SENIOR,FREESTYLE;BACKSTROKE;BREASTSTROKE;BUTTERFLY
-39 92 92 10,Michael Jackson,Ayla Handannah,SENIOR,BACKSTROKE
-93 28 72 41,Alfred Lutten,Michael Phelps,SENIOR,FREESTYLE
-67 38 95 01,Hjalte Happy,Lone Nielsen,SENIOR,BACKSTROKE;BREASTSTROKE;BUTTERFLY
-41 89 34 01,Mette Frederiksen,Jens Hansen,JUNIOR,FREESTYLE;BREASTSTROKE
-12 12 12 12,Emilos VonBilos,Jens Hansen,SENIOR,FREESTYLE;BACKSTROKE
-14 14 14 14,August Agust,Jens Hansen,SENIOR,FREESTYLE;BACKSTROKE
+49 68 37 20,Frank Hvam,Jens Hansen,SENIOR,null;null;null;null
+78 69 49 21,Winnie Pooh,Ayla Handannah,JUNIOR,null;null;null;null
+65 43 23 78,Lina Rafn,Lone Nielsen,SENIOR,null;null;null;null
+32 32 34 35,Harry Potter,Michael Phelps,SENIOR,null;null;null;null
+11 11 11 91,Frodo Baggins,Ayla Handannah,SENIOR,null;null;null;null
+67 58 37 19,Will Smith,Michael Phelps,SENIOR,null;null;null;null
+39 92 92 10,Michael Jackson,Ayla Handannah,SENIOR,null;null;null;null
+93 28 72 41,Alfred Lutten,Michael Phelps,SENIOR,null;null;null;null
+67 38 95 01,Hjalte Happy,Lone Nielsen,SENIOR,null;null;null;null
+41 89 34 01,Mette Frederiksen,Jens Hansen,JUNIOR,null;null;null;null
+12 12 12 12,Emilos VonBilos,Jens Hansen,SENIOR,null;null;null;null
+14 14 14 14,August Agust,Jens Hansen,SENIOR,null;null;null;null
+20 10 20 10,August the Wild,Yuri TheTrainWHoTrains,SENIOR,null;null;null;null

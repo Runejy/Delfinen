@@ -26,10 +26,17 @@ public class SwimmingClub {
         String phoneNumber = "";
         while (phoneNumber.isBlank()) {
             System.out.println("Enter members phone number: ");
+
             phoneNumber = scanner.nextLine();
-            if (phoneNumber.isBlank()) {
-                System.out.println("E-mail cannot be empty.");
+
+            while (phoneNumber == null || !phoneNumber.matches("\\d{8}")) {
+                System.out.println("Error: Invalid phone number. Must be 8 digits.");
+                System.out.print("Please enter a valid phone number: ");
+                phoneNumber = scanner.nextLine();
             }
+
+            phoneNumber = phoneNumber.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
+
         }
         //REGISTER NAME
         String name = "";
