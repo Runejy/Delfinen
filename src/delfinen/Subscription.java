@@ -6,7 +6,7 @@ import delfinen.Enums.MemberType;
 import java.io.*;
 import java.util.*;
 
-public class Subcription {
+public class Subscription {
     private double price;
     private boolean isPaid;
 

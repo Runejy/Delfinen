@@ -13,7 +13,7 @@ public class Member {
     private MemberType memberType;
     private MemberActivity memberActivity;
     private TrainingType trainingType;
-    private Subcription sub;
+    private Subscription sub;
 
 
 
@@ -39,7 +39,7 @@ public class Member {
         //sæt MemberType enum baseret på alder(age)
 
         //Opretter en subscription når medlem bliver oprettet.
-        Subcription sub = new Subcription();
+        Subscription sub = new Subscription();
         sub.calculatePrice(this);
         this.sub = sub;
     }
@@ -99,10 +99,10 @@ public class Member {
         return memberActivity;
     }
 
-    public void setSubcription(Subcription sub){
+    public void setSubcription(Subscription sub){
             this.sub = sub;
     }
-    public Subcription getSubscription(){
+    public Subscription getSubscription(){
             return sub;
     }
 

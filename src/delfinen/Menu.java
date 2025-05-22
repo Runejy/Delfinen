@@ -1,12 +1,9 @@
 package delfinen;
 
 import delfinen.Enums.Discipline;
-import delfinen.Enums.MemberActivity;
-import delfinen.Enums.TrainingType;
 import delfinen.Results.ResultCompetition;
 import delfinen.Results.ResultTraining;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -142,14 +139,15 @@ public class Menu {
 
     //Kasser Menu
     public static void showKasser() {
-        Subcription s = new Subcription();
+        Subscription s = new Subscription();
         while (true) {
             System.out.println("=== Financier ===");
             System.out.println("""
                     1: Total Revenue
                     2: Total Revenue by membertype
                     3: Show members missing payments
-                    4: Back""");
+                    4: Update Member activity
+                    5: Back""");
 
             userInput = Menu.getUserNumber(4);
             switch (userInput) {
@@ -188,9 +186,8 @@ public class Menu {
                     SwimmingClub.addTrainer();
                     break;
                 case "2":
-                    for(Result result : Database.getBackstrokeList()){
 
-                    }
+
                     break;
                 case "3":
                     showCompetitionResults();
