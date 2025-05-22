@@ -324,7 +324,7 @@ public class SwimmingClub {
                     }
                 }
                 //
-                case 4 -> {
+                case 4 -> { //den virker
                     String mail = "";
                     while (mail.isBlank()) {
                         System.out.println("Members current email: " + member.getMail());
@@ -340,7 +340,7 @@ public class SwimmingClub {
                         }
                     }
                 }
-                case 5 -> {
+                case 5 -> { //den virker
                     String phoneNumber = "";
 
                     while (phoneNumber.isBlank()) {
@@ -351,15 +351,17 @@ public class SwimmingClub {
                         if (!phoneNumber.matches("\\d{8}")) {
                             System.out.println("Invalid phone number. It must contain exactly 8 digits.");
                         } else {
+                            member.setPhoneNumber(phoneNumber);
                             break;
                         }
                     }
                     member.setPhoneNumber(phoneNumber);
-                    System.out.println("Phone number has been updated to: " + member.getPhoneNumber());
+                    database.changeDataByRow(rowIdentificer, "Telephone",phoneNumber );
+                    System.out.println("Phone number has been updated to: " + phoneNumber);
 
 
                 }
-                case 6 -> {
+                case 6 -> { //den virker
                     MemberActivity memberActivity = null;
                     while (memberActivity == null) {
                         System.out.println("Is member active or passive? Type A for Active or P for Passive.");
@@ -374,8 +376,10 @@ public class SwimmingClub {
                         }
                     }
                     member.setMemberActivity(memberActivity);
+
+                    database.changeDataByRow(rowIdentificer, "Member Activity",memberActivity.toString());
                 }
-                case 7 -> {
+                case 7 -> { //Fejl i denne case. consolen giver fejl når jeg køre programmet og vælger denne mulighed
                     TrainingType trainingType = null;
                     while (trainingType == null) {
                         System.out.println("Is member an Elite swimmer? Type Y for Yes or N for No.");
@@ -392,6 +396,15 @@ public class SwimmingClub {
                 }
                 case 8 -> {
                     System.out.println("REMOVE MEMBER????");
+                    System.out.println("If yes, pres y and in no, pres n");
+                    String input = scanner.nextLine();
+                    if (input.equalsIgnoreCase("y")){
+                        members.remove((rowIdentificer));
+                        System.out.println("Member has now been removed");
+                    } else if (input.equalsIgnoreCase("n")) {
+                        System.out.println("Member has not been removed from the list");
+                        return;
+                    }
                 }
                 case 9 -> {
                     updating = false;
