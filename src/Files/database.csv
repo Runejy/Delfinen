@@ -1,36 +1,36 @@
 Telephone,Name,Age,Gender,Mail,Member Activity,Member Type,Training Type
 20 45 67 89,August Gosden,51,Male,august@gmail.com,ACTIVE,SENIOR,CASUAL
 31 28 49 56,Benjamin Yung,22,Male,ben@gmail.com,ACTIVE,SENIOR,CASUAL
-40 91 83 72,Maria Fogt,79,Female,mariafora@hotmail.com,ACTIVE,RETIREE,COMPETITION
+40 91 83 72,Maria Fogt,79,Female,mariafora@hotmail.com,ACTIVE,RETIREE,CASUAL
 52 37 19 84,Hans Larsen,57,Male,larsen@larsen.dk,ACTIVE,SENIOR,CASUAL
 60 58 77 14,Nynne Larsen,1,Other,@gmail.com,ACTIVE,JUNIOR,CASUAL
 71 63 20 90,Lars Larsen,45,Male,larslars@lars.dk,ACTIVE,SENIOR,CASUAL
-22 11 33 44,Daniel Mortensen,25,Male,dm@gmail.com,ACTIVE,SENIOR,COMPETITION
-53 87 61 05,Line Frank,23,Female,lineersej@gmail.com,ACTIVE,SENIOR,COMPETITION
-28 92 73 66,Sofie Degn,22,Female,sofie_degn@hotmail.com,ACTIVE,SENIOR,COMPETITION
+22 11 33 44,Daniel Mortensen,25,Male,dm@gmail.com,ACTIVE,SENIOR,CASUAL
+53 87 61 05,Line Frank,23,Female,lineersej@gmail.com,ACTIVE,SENIOR,CASUAL
+28 92 73 66,Sofie Degn,22,Female,sofie_degn@hotmail.com,ACTIVE,SENIOR,CASUAL
 42 35 78 29,Martin Jo,32,Male,martinjojojo@live.dk,ACTIVE,SENIOR,CASUAL
-61 70 85 93,Julie Gregersen,26,Female,juliegre@gmail.com,RESTANCE,SENIOR,COMPETITION
+61 70 85 93,Julie Gregersen,26,Female,juliegre@gmail.com,RESTANCE,SENIOR,CASUAL
 26 59 48 37,Lars Kjeldesen,54,Male,lk@mail.com,PASSIVE,SENIOR,CASUAL
 30 74 60 21,Hanne Holst,44,Female,hanneh@hanne.dk,ACTIVE,SENIOR,CASUAL
 23 86 19 40,Heino Hansen,39,Male,heino@mail.dk,RESTANCE,SENIOR,CASUAL
 45 22 68 75,Marie Hansen,34,Other,mariehansen1991@gmail.com,ACTIVE,SENIOR,CASUAL
-38 11 55 92,Gertrud Holem,34,Female,gholem@yahoo.com,ACTIVE,SENIOR,COMPETITION
-52 11 76 51,Maria Fogt,30,Female,mariafora@hotmail.com,ACTIVE,SENIOR,COMPETITION
-52 11 75 00,Laura Fogt,30,Female,laurafora@hotmail.com,ACTIVE,SENIOR,COMPETITION
-12 34 54 33,Ole Olesen,59,Male,ole@ole.dk,ACTIVE,SENIOR,COMPETITION
-43 53 56 31,Hans Jensen,49,Male,hh@jul.dk,ACTIVE,SENIOR,COMPETITION
-34 23 98 99,Julie Mollerup,25,Female,juliemol@gmail.com,ACTIVE,SENIOR,COMPETITION
-45 92 01 23,Frederik Juhlsen,22,Male,fredj@gmail.com,ACTIVE,SENIOR,COMPETITION
-67 87 65 43,Lykke Thorhøj,29,Other,lykkz@hotmail.com,ACTIVE,SENIOR,COMPETITION
-34 34 45 45,Rune Jensen,44,Male,gj@hotmail.com,ACTIVE,SENIOR,COMPETITION
-34 57 65 41,August Matthew,22,Male,am@live.dk,ACTIVE,SENIOR,COMPETITION
-41 16 17 11,Tobias Wiik,30,Male,toby@live.dk,ACTIVE,SENIOR,COMPETITION
-11 22 33 44,Yacqub,15,Female,deeznutz@gmail.com,PASSIVE,JUNIOR,COMPETITION
-56 74 92 01,Helle H,45,Female,helleh@mail.dk,ACTIVE,SENIOR,COMPETITION
-20 05 98 91,Julia Roberts,35,Female,juliar@mail.com,ACTIVE,SENIOR,COMPETITION
-45 67 54 32,Jakob Kjeldgaard,1,Male,jk@live.dk,ACTIVE,JUNIOR,COMPETITION
-33 33 33 39,Rasmus Rudolf,35,Other,julemanden@live.dk,ACTIVE,SENIOR,COMPETITION
-45 67 89 21,Mona Lisa,35,Female,mona@lisa.divine,ACTIVE,SENIOR,COMPETITION
+38 11 55 92,Gertrud Holem,34,Female,gholem@yahoo.com,ACTIVE,SENIOR,CASUAL
+52 11 76 51,Maria Fogt,30,Female,mariafora@hotmail.com,ACTIVE,SENIOR,CASUAL
+52 11 75 00,Laura Fogt,30,Female,laurafora@hotmail.com,ACTIVE,SENIOR,CASUAL
+12 34 54 33,Ole Olesen,59,Male,ole@ole.dk,ACTIVE,SENIOR,CASUAL
+43 53 56 31,Hans Jensen,49,Male,hh@jul.dk,ACTIVE,SENIOR,CASUAL
+34 23 98 99,Julie Mollerup,25,Female,juliemol@gmail.com,ACTIVE,SENIOR,CASUAL
+45 92 01 23,Frederik Juhlsen,22,Male,fredj@gmail.com,ACTIVE,SENIOR,CASUAL
+67 87 65 43,Lykke Thorhøj,29,Other,lykkz@hotmail.com,ACTIVE,SENIOR,CASUAL
+34 34 45 45,Rune Jensen,44,Male,gj@hotmail.com,ACTIVE,SENIOR,CASUAL
+34 57 65 41,August Matthew,22,Male,am@live.dk,ACTIVE,SENIOR,CASUAL
+41 16 17 11,Tobias Wiik,30,Male,toby@live.dk,ACTIVE,SENIOR,CASUAL
+11 22 33 44,Yacqub,15,Female,deeznutz@gmail.com,PASSIVE,JUNIOR,CASUAL
+56 74 92 01,Helle H,45,Female,helleh@mail.dk,ACTIVE,SENIOR,CASUAL
+20 05 98 91,Julia Roberts,35,Female,juliar@mail.com,ACTIVE,SENIOR,CASUAL
+45 67 54 32,Jakob Kjeldgaard,1,Male,jk@live.dk,ACTIVE,JUNIOR,CASUAL
+33 33 33 39,Rasmus Rudolf,35,Other,julemanden@live.dk,ACTIVE,SENIOR,CASUAL
+45 67 89 21,Mona Lisa,35,Female,mona@lisa.divine,ACTIVE,SENIOR,CASUAL
 49 68 37 20,Frank Hvam,25,Male,frankie@mail.com,ACTIVE,SENIOR,COMPETITION
 78 69 49 21,Winnie Pooh,14,Other,poooooh@mail.com,ACTIVE,JUNIOR,COMPETITION
 65 43 23 78,Lina Rafn,45,Female,lina@rafn.dk,ACTIVE,SENIOR,COMPETITION
@@ -41,14 +41,14 @@ Telephone,Name,Age,Gender,Mail,Member Activity,Member Type,Training Type
 93 28 72 41,Alfred Lutten,19,Male,alfie@mail.dk,ACTIVE,SENIOR,COMPETITION
 67 38 95 01,Hjalte Happy,26,Male,hjalte@happy.dk,ACTIVE,SENIOR,COMPETITION
 41 89 34 01,Mette Frederiksen,58,Female,mette@statministeriet.dk,ACTIVE,SENIOR,COMPETITION
-43 92 12 02,Holger Rune,16,Male,holger@rune.dk,ACTIVE,JUNIOR,COMPETITION
-87 65 52 62,Marco RUNE,16,Male,ad@danmark.dk,RESTANCE,JUNIOR,COMPETITION
+43 92 12 02,Holger Rune,16,Male,holger@rune.dk,ACTIVE,JUNIOR,CASUAL
+87 65 52 62,Marco RUNE,16,Male,ad@danmark.dk,RESTANCE,JUNIOR,CASUAL
 33 23 23 22,Rune Sandager,22,Male,Runeyung@gmail.com,ACTIVE,SENIOR,CASUAL
-20 10 20 10,runewashere,10,Female,rune,ACTIVE,JUNIOR,CASUAL
-02 91 92 93,rune,22,Female,runew,ACTIVE,SENIOR,CASUAL
-87 65 52 62,Anders Degn,16,Male,ad@danmark.dk,RESTANCE,JUNIOR,COMPETITION
-12 12 12 12,Emilos VonBilos,812,Male,VonBilosGmaing@mail.com,ACTIVE,RETIREE,COMPETITION
+20 10 20 10,August agug,10,Female,rune,ACTIVE,JUNIOR,CASUAL
+87 65 52 62,Anders Degn,16,Male,ad@danmark.dk,RESTANCE,JUNIOR,CASUAL
+12 12 12 12,Emilos VonBilos,23,Other,Bilos@mail.gov,ACTIVE,SENIOR,COMPETITION
 14 14 14 14,August Agust,913,Male,mail.dk,RESTANCE,RETIREE,COMPETITION
-20 10 20 10,August the Wild,24,Other,augustwild@gmail.com,ACTIVE,SENIOR,COMPETITION
+20 10 20 10,August the Wild,24,Other,augustwild@gmail.com,ACTIVE,SENIOR,CASUAL
 99 99 99 99,asdf,19,Other,asdg,ACTIVE,SENIOR,COMPETITION
-20 20 20 20,hejsa,17,Male,asdg,ACTIVE,JUNIOR,COMPETITION
+20 20 20 20,farvelsa,17,Male,asdg,ACTIVE,JUNIOR,COMPETITION
+12 34 56 78,abcd,24,Other,mail@mail.mail,RESTANCE,SENIOR,COMPETITION

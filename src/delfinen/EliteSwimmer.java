@@ -240,8 +240,8 @@ public class EliteSwimmer extends Member {
         return disciplines;
     }
 
-    public void setDisciplines(HashMap<Discipline, Discipline> disciplines) {
-        this.disciplines = disciplines;
+    public void setDisciplines(Discipline discipline) {
+         disciplines.put(discipline, discipline);
     }
 
     public Trainer getTrainer() {

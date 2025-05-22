@@ -64,7 +64,7 @@ public class Subcription {
                         }
 
                         if (Database.memberUpdated(rowIdentificer)) {
-                            Database.changeDatabaseData(rowIdentificer, "Member Activity", "ACTIVE");
+                            Database.changeMemberData(rowIdentificer, "Member Activity", "ACTIVE");
                             System.out.println("Member status updated to ACTIVE");
                         } else {
                             System.out.println("No member found with that phone number.");
@@ -85,7 +85,7 @@ public class Subcription {
                         }
 
                         if (Database.memberUpdated(rowIdentificer)) {
-                            Database.changeDatabaseData(rowIdentificer, "Member Activity", "PASSIVE");
+                            Database.changeMemberData(rowIdentificer, "Member Activity", "PASSIVE");
                             System.out.println("Member status updated to PASSIVE");
                         } else {
                             System.out.println("No member found with that phone number.");
@@ -106,7 +106,7 @@ public class Subcription {
                         }
 
                         if (Database.memberUpdated(rowIdentificer)) {
-                            Database.changeDatabaseData(rowIdentificer, "Member Activity", "RESTANCE");
+                            Database.changeMemberData(rowIdentificer, "Member Activity", "RESTANCE");
                             System.out.println("Member status updated to RESTANCE");
                         } else {
                             System.out.println("No member found with that phone number.");

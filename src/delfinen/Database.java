@@ -29,13 +29,13 @@ public class Database {
     private static ArrayList<Result> breaststrokeList = getResultArrayList(Discipline.BREASTSTROKE);
     private static ArrayList<Result> freestyleList = getResultArrayList(Discipline.FREESTYLE);
 
-    void print() {
+    public static void print() {
         for (Member member : memberList) {
             System.out.println(member);
         }
     }
 
-    void inputNewMemberData(Member newMember) {
+    public static void inputNewMemberData(Member newMember) {
         if (newMember == null) {
             System.out.println("Error: Member data is missing.");
             return;
@@ -73,93 +73,198 @@ public class Database {
         }
     }
 
-    public static void addNewMember(Member member) {
+    public static boolean addNewMember(Member member) {
         if (member == null) {
             System.out.println("Error: Member data is missing.");
-            return;
+            return false;
         }
 
         String phoneNumber = member.getPhoneNumber();
-        phoneNumber.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
+
+        if (phoneNumber == null && (!phoneNumber.matches("\\d{8}") || !phoneNumber.matches("(\\d{2})(\\d{2})(\\d{2})(\\d{2})"))) {
+            System.out.println("Database ERROR: Invalid phone number format. Use: XX XX XX XX.");
+            return false;
+        }
+
+        phoneNumber = phoneNumber.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
         member.setPhoneNumber(phoneNumber);
 
         memberList.add(member);
         updateDatabaseFile();
+
+        return true;
     }
 
-    public static void addNewEliteSwimmer(EliteSwimmer eliteSwimmer) {
+    public static boolean addNewEliteSwimmer(EliteSwimmer eliteSwimmer) {
+        if (eliteSwimmer == null) {
+            System.out.println("Error: Member data is missing.");
+            return false;
+        }
+
+        String phoneNumber = eliteSwimmer.getPhoneNumber();
+
+        if (phoneNumber == null && (!phoneNumber.matches("\\d{8}") || !phoneNumber.matches("(\\d{2})(\\d{2})(\\d{2})(\\d{2})"))) {
+            System.out.println("Database ERROR: Invalid phone number format. Use: XX XX XX XX.");
+            return false;
+        }
+
+        phoneNumber = phoneNumber.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
+        eliteSwimmer.setPhoneNumber(phoneNumber);
+
         eliteSwimmerList.add(eliteSwimmer);
         updateEliteSwimmerFile();
+
+        return true;
     }
 
     public static void addNewResult(Discipline discipline, Result result) {
-        if(discipline.equals(Discipline.BACKSTROKE)){
+        if (discipline.equals(Discipline.BACKSTROKE)) {
             backstrokeList.add(result);
             updateResultFiles(Discipline.BACKSTROKE);
-        } else if(discipline.equals(Discipline.BREASTSTROKE)){
+        } else if (discipline.equals(Discipline.BREASTSTROKE)) {
             breaststrokeList.add(result);
             updateResultFiles(Discipline.BREASTSTROKE);
-        } else if(discipline.equals(Discipline.BUTTERFLY)){
+        } else if (discipline.equals(Discipline.BUTTERFLY)) {
             butterflyList.add(result);
             updateResultFiles(Discipline.BUTTERFLY);
-        } else if(discipline.equals(Discipline.FREESTYLE)){
+        } else if (discipline.equals(Discipline.FREESTYLE)) {
             freestyleList.add(result);
             updateResultFiles(Discipline.FREESTYLE);
         }
     }
 
-    public static void changeDatabaseData(String searchedPhoneNumber, String dataKey, String dataValue) {
-        for (int i = 0; i < memberList.size(); i++) {
-            if (memberList.get(i).getPhoneNumber().equalsIgnoreCase(searchedPhoneNumber)) {
-                switch (dataKey) {
-                    case "Telephone":
-                        if (dataValue.matches("\\d{8}")) {
-                            dataValue = dataValue.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
-                        }
+    private static Member findMember(String phoneNumber){
+        Member foundMember = null;
 
-                        if (!dataValue.matches("\\d{2} \\d{2} \\d{2} \\d{2}")) {
-                            System.out.println("Invalid format. Use XX XX XX XX.");
-                            break;
-                        }
-
-                        memberList.get(i).setPhoneNumber(dataValue);
-                        updateDatabaseFile();
-                        break;
-                    case "Name":
-                        memberList.get(i).setName(dataValue);
-                        updateDatabaseFile();
-                        break;
-                    case "Age":
-                        memberList.get(i).setAge(Integer.parseInt(dataValue));
-                        updateDatabaseFile();
-                        break;
-                    case "Gender":
-                        memberList.get(i).setGender(dataValue);
-                        updateDatabaseFile();
-                        break;
-                    case "Mail":
-                        memberList.get(i).setMail(dataValue);
-                        updateDatabaseFile();
-                        break;
-                    case "Member Activity":
-                        memberList.get(i).setMemberActivity(MemberActivity.valueOf(dataValue));
-                        updateDatabaseFile();
-                        break;
-                    case "Member Type":
-                        memberList.get(i).setMemberType(MemberType.valueOf(dataValue));
-                        updateDatabaseFile();
-                        break;
-                    case "Training Type":
-                        memberList.get(i).setTrainingType(TrainingType.valueOf(dataValue));
-                        updateDatabaseFile();
-                        break;
-                    case "Remove Member":
-                        memberList.remove(memberList.get(i));
-
-                        updateDatabaseFile();
-                        break;
-                }
+        for(Member member: memberList){
+            if(member.getPhoneNumber().equals(phoneNumber)){
+                foundMember = member;
+                break;
             }
+        }
+
+        return foundMember;
+    }
+
+    private static EliteSwimmer findEliteSwimmer(String phoneNumber){
+        EliteSwimmer foundEliteSwimmer = null;
+
+        for(EliteSwimmer eliteSwimmer: eliteSwimmerList){
+            if(eliteSwimmer.getPhoneNumber().equals(phoneNumber)){
+                foundEliteSwimmer = eliteSwimmer;
+                break;
+            }
+        }
+
+        return foundEliteSwimmer;
+    }
+
+    private static Trainer findTrainer(String name){
+        Trainer foundTrainer = null;
+
+        for(Trainer trainer: trainerList){
+            if(trainer.getName().equals(name)){
+                foundTrainer = trainer;
+            }
+        }
+
+        return foundTrainer;
+    }
+
+    public static void changeMemberData(String searchedPhoneNumber, String dataKey, String dataValue) {
+        Member member = findMember(searchedPhoneNumber);
+
+        if(member.getTrainingType().equals(TrainingType.CASUAL)){
+            changeMember(member, dataKey, dataValue);
+        } else if(member.getTrainingType().equals(TrainingType.COMPETITION)){
+            EliteSwimmer eliteSwimmer = findEliteSwimmer(searchedPhoneNumber);
+
+            changeMember(member, dataKey, dataValue);
+            changeEliteSwimmer(eliteSwimmer, dataKey, dataValue);
+        }
+    }
+
+    private static void changeMember(Member member, String dataKey, String dataValue){
+        switch (dataKey) {
+            case "Telephone":
+                if (!dataValue.matches("\\d{8}")) {
+                    System.out.println("Database ERROR: Invalid phone number format. Use: XX XX XX XX.");
+                    break;
+                }
+
+                dataValue = dataValue.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
+
+                member.setPhoneNumber(dataValue);
+                updateDatabaseFile();
+                break;
+            case "Name":
+                member.setName(dataValue);
+                updateDatabaseFile();
+                break;
+            case "Age":
+                member.setAge(Integer.parseInt(dataValue));
+                updateDatabaseFile();
+                break;
+            case "Gender":
+                member.setGender(dataValue);
+                updateDatabaseFile();
+                break;
+            case "Mail":
+                member.setMail(dataValue);
+                updateDatabaseFile();
+                break;
+            case "Member Activity":
+                member.setMemberActivity(MemberActivity.valueOf(dataValue));
+                updateDatabaseFile();
+                break;
+            case "Member Type":
+                member.setMemberType(MemberType.valueOf(dataValue));
+                updateDatabaseFile();
+                break;
+            case "Training Type":
+                member.setTrainingType(TrainingType.valueOf(dataValue));
+                updateDatabaseFile();
+                break;
+            case "Remove Member":
+                memberList.remove(member);
+                updateDatabaseFile();
+                break;
+        }
+    }
+
+    private static void changeEliteSwimmer(EliteSwimmer eliteSwimmer, String dataKey, String dataValue){
+        switch (dataKey) {
+            case "Telephone":
+                if (!dataValue.matches("\\d{8}")) {
+                    System.out.println("Database ERROR: Invalid phone number format. Use: XX XX XX XX.");
+                    break;
+                }
+
+                dataValue = dataValue.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1 $2 $3 $4");
+
+                eliteSwimmer.setPhoneNumber(dataValue);
+                updateEliteSwimmerFile();
+                break;
+            case "Name":
+                eliteSwimmer.setName(dataValue);
+                updateEliteSwimmerFile();
+                break;
+            case "Trainer":
+                eliteSwimmer.setTrainer(findTrainer(dataValue));
+                updateEliteSwimmerFile();
+                break;
+            case "Team":
+                eliteSwimmer.setTeam(Team.valueOf(dataValue));
+                updateEliteSwimmerFile();
+                break;
+            case "Discipline":
+                eliteSwimmer.setDisciplines(Discipline.valueOf(dataValue));
+                updateEliteSwimmerFile();
+                break;
+            case "Remove Member":
+                eliteSwimmerList.remove(eliteSwimmer);
+                updateEliteSwimmerFile();
+                break;
         }
     }
 
@@ -202,23 +307,22 @@ public class Database {
             String data = "Telephone,SwimmerName,Trainer,Team,Discipline";
 
 
-
             for (EliteSwimmer eliteSwimmer : eliteSwimmerList) {
                 String FREESTYLE = "null";
                 String BACKSTROKE = "null";
                 String BREASTSTROKE = "null";
                 String BUTTERFLY = "null";
 
-                if(eliteSwimmer.getDisciplines().get(Discipline.FREESTYLE) != null){
+                if (eliteSwimmer.getDisciplines().get(Discipline.FREESTYLE) != null) {
                     FREESTYLE = "FREESTYLE";
                 }
-                if(eliteSwimmer.getDisciplines().get(Discipline.BACKSTROKE) != null){
+                if (eliteSwimmer.getDisciplines().get(Discipline.BACKSTROKE) != null) {
                     BACKSTROKE = "BACKSTROKE";
                 }
-                if(eliteSwimmer.getDisciplines().get(Discipline.BREASTSTROKE) != null){
+                if (eliteSwimmer.getDisciplines().get(Discipline.BREASTSTROKE) != null) {
                     BREASTSTROKE = "BREASTSTROKE";
                 }
-                if(eliteSwimmer.getDisciplines().get(Discipline.BUTTERFLY) != null){
+                if (eliteSwimmer.getDisciplines().get(Discipline.BUTTERFLY) != null) {
                     BUTTERFLY = "BUTTERFLY";
                 }
 
@@ -260,14 +364,14 @@ public class Database {
             }
 
             String data = "Phone number,Swimmer name,Team,Date,Time,Competion name,Placement";
-            for(Result result : resultList){
+            for (Result result : resultList) {
                 data += "\n" + result.toCSVfile();
             }
 
             fileWriter.write(data);
             fileWriter.close();
-        } catch(IOException e){
-        e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -317,7 +421,7 @@ public class Database {
                 fileReader.nextLine(); // skip header
             }
 
-            while(fileReader.hasNextLine()){
+            while (fileReader.hasNextLine()) {
                 String[] rowData = fileReader.nextLine().split(",");
 
                 Member newMember = new Member(
@@ -346,39 +450,28 @@ public class Database {
             Scanner eliteSwimmerReader = new Scanner(new File(eliteSwimmerFilePath));
             eliteSwimmerReader.nextLine();
 
-            while(eliteSwimmerReader.hasNextLine()){
+            while (eliteSwimmerReader.hasNextLine()) {
                 String[] eliteSwimmerRowData = eliteSwimmerReader.nextLine().split(",");
 
                 Scanner databaseReader = new Scanner(new File(databaseFilePath));
                 databaseReader.nextLine();
 
-                while(databaseReader.hasNextLine()){
+                while (databaseReader.hasNextLine()) {
                     String[] rowData = databaseReader.nextLine().split(",");
 
-                    if(eliteSwimmerRowData[0].equals(rowData[0])){
+                    if (eliteSwimmerRowData[0].equals(rowData[0])) {
                         HashMap<Discipline, Discipline> disciplineHashMap = new HashMap<>();
                         String[] disciplinesSplit = eliteSwimmerRowData[4].split(";");
 
-
-                       for(String stringDiscipline : disciplinesSplit){
-                           if(!stringDiscipline.equalsIgnoreCase("null")){
-                               disciplineHashMap.put(Discipline.valueOf(stringDiscipline), Discipline.valueOf(stringDiscipline));
-                           }
-                       }
-
-
-                        /*System.out.println(disciplinesSplit.length);
-                        for(String string : disciplinesSplit){
-                            System.out.println(string);
+                        for (String stringDiscipline : disciplinesSplit) {
+                            if (!stringDiscipline.equalsIgnoreCase("null")) {
+                                disciplineHashMap.put(Discipline.valueOf(stringDiscipline), Discipline.valueOf(stringDiscipline));
+                            }
                         }
-
-                        for(String disciplineString : disciplinesSplit){
-                            disciplineHashMap.put(Discipline.valueOf(disciplineString), Discipline.valueOf(disciplineString));
-                        }*/
 
                         Trainer trainer = new Trainer(eliteSwimmerRowData[2]);
 
-                        EliteSwimmer eliteSwimmer = new EliteSwimmer(rowData[0], rowData[1], Integer.parseInt(rowData[2]), rowData[3], rowData[4], MemberActivity.valueOf(rowData[5].toUpperCase()), TrainingType.valueOf(rowData[7].toUpperCase()), Team.valueOf(eliteSwimmerRowData[3]),disciplineHashMap,trainer);
+                        EliteSwimmer eliteSwimmer = new EliteSwimmer(rowData[0], rowData[1], Integer.parseInt(rowData[2]), rowData[3], rowData[4], MemberActivity.valueOf(rowData[5].toUpperCase()), TrainingType.valueOf(rowData[7].toUpperCase()), Team.valueOf(eliteSwimmerRowData[3]), disciplineHashMap, trainer);
                         eliteMemberList.add(eliteSwimmer);
 
                         break;
@@ -398,7 +491,7 @@ public class Database {
 
             fileReader.nextLine();
 
-            while(fileReader.hasNextLine()){
+            while (fileReader.hasNextLine()) {
                 Trainer trainer = new Trainer(fileReader.nextLine()); //Name
 
                 trainerArrayList.add(trainer);
@@ -421,42 +514,42 @@ public class Database {
                 fileReader.nextLine(); // skip header
             }
 
-            while(fileReader.hasNextLine()){
+            while (fileReader.hasNextLine()) {
                 String[] rowData = fileReader.nextLine().split(",");
 
-                if(discipline.equals(Discipline.FREESTYLE)){
-                    if(rowData.length == 5){
+                if (discipline.equals(Discipline.FREESTYLE)) {
+                    if (rowData.length == 5) {
                         ResultTraining resultTraining = new ResultTraining(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline);
                         resultList.add(resultTraining);
-                    }else if(rowData.length == 7){
-                        ResultCompetition resultCompetition = new ResultCompetition(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline ,rowData[5],Integer.parseInt(rowData[6]));
+                    } else if (rowData.length == 7) {
+                        ResultCompetition resultCompetition = new ResultCompetition(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline, rowData[5], Integer.parseInt(rowData[6]));
                         resultList.add(resultCompetition);
                     }
                 }
-                if(discipline.equals(Discipline.BACKSTROKE)){
-                    if(rowData.length == 5){
+                if (discipline.equals(Discipline.BACKSTROKE)) {
+                    if (rowData.length == 5) {
                         ResultTraining resultTraining = new ResultTraining(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline);
                         resultList.add(resultTraining);
-                    }else if(rowData.length == 7){
-                        ResultCompetition resultCompetition = new ResultCompetition(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline ,rowData[5],Integer.parseInt(rowData[6]));
+                    } else if (rowData.length == 7) {
+                        ResultCompetition resultCompetition = new ResultCompetition(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline, rowData[5], Integer.parseInt(rowData[6]));
                         resultList.add(resultCompetition);
                     }
                 }
-                if(discipline.equals(Discipline.BREASTSTROKE)){
-                    if(rowData.length == 5){
+                if (discipline.equals(Discipline.BREASTSTROKE)) {
+                    if (rowData.length == 5) {
                         ResultTraining resultTraining = new ResultTraining(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline);
                         resultList.add(resultTraining);
-                    }else if(rowData.length == 7){
-                        ResultCompetition resultCompetition = new ResultCompetition(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline ,rowData[5],Integer.parseInt(rowData[6]));
+                    } else if (rowData.length == 7) {
+                        ResultCompetition resultCompetition = new ResultCompetition(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline, rowData[5], Integer.parseInt(rowData[6]));
                         resultList.add(resultCompetition);
                     }
                 }
-                if(discipline.equals(Discipline.BUTTERFLY)){
-                    if(rowData.length == 5){
+                if (discipline.equals(Discipline.BUTTERFLY)) {
+                    if (rowData.length == 5) {
                         ResultTraining resultTraining = new ResultTraining(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline);
                         resultList.add(resultTraining);
-                    }else if(rowData.length == 7){
-                        ResultCompetition resultCompetition = new ResultCompetition(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline ,rowData[5],Integer.parseInt(rowData[6]));
+                    } else if (rowData.length == 7) {
+                        ResultCompetition resultCompetition = new ResultCompetition(rowData[0], rowData[1], Team.valueOf(rowData[2]), rowData[3], Double.parseDouble(rowData[4]), discipline, rowData[5], Integer.parseInt(rowData[6]));
                         resultList.add(resultCompetition);
                     }
                 }
@@ -516,7 +609,7 @@ public class Database {
         }
     }
 
-    public static EliteSwimmer findEliteMemberByPhone(String phoneNumber){
+    public static EliteSwimmer findEliteMemberByPhone(String phoneNumber) {
         for (EliteSwimmer eliteSwimmer : eliteSwimmerList) {
             if (eliteSwimmer.getPhoneNumber().trim().contains(phoneNumber.trim())) {
                 return eliteSwimmer;
@@ -525,31 +618,31 @@ public class Database {
         return null;
     }
 
-    public static ArrayList<Member> getMemberList(){
+    public static ArrayList<Member> getMemberList() {
         return memberList;
     }
 
-    public static ArrayList<EliteSwimmer> getEliteSwimmerList(){
+    public static ArrayList<EliteSwimmer> getEliteSwimmerList() {
         return eliteSwimmerList;
     }
 
-    public static ArrayList<Trainer> getTrainerList(){
+    public static ArrayList<Trainer> getTrainerList() {
         return trainerList;
     }
 
-    public static ArrayList<Result> getBackstrokeList(){
+    public static ArrayList<Result> getBackstrokeList() {
         return backstrokeList;
     }
 
-    public static ArrayList<Result> getBreastStrokeList(){
+    public static ArrayList<Result> getBreastStrokeList() {
         return breaststrokeList;
     }
 
-    public static ArrayList<Result> getButterflyList(){
+    public static ArrayList<Result> getButterflyList() {
         return butterflyList;
     }
 
-    public static ArrayList<Result> getFreestyleList(){
+    public static ArrayList<Result> getFreestyleList() {
         return freestyleList;
     }
 }

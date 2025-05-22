@@ -165,9 +165,9 @@ public class Menu {
                     break;
                 case "4":
                     s.viewRestance();
+                    break;
                 case "5":
                     return;
-
             }
         }
     }
