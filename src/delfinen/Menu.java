@@ -182,11 +182,10 @@ public class Menu {
                     3: Show top 5 competition results
                     4: Show list of trainers
                     5: Add elite-swimmer results
-                    6: BLANKBLANKBLANK
-                    7: Back""");
+                    6: Back""");
 
 
-            userInput = Menu.getUserNumber(7);
+            userInput = Menu.getUserNumber(6);
             switch (userInput) {
                 case "1":
                     SwimmingClub.addTrainer();
@@ -211,8 +210,6 @@ public class Menu {
                     showEliteSwimmer();
                     break;
                 case "6":
-                    break;
-                case "7":
                     return;
             }
 
