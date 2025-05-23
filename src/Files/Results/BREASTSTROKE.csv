@@ -1,19 +1,20 @@
 Phone number,Swimmer name,Team,Date,Time,Competion name,Placement
-32 32 34 35,Harry Potter,SENIOR,2025-02-23,194.2,,
-32 32 34 35,Harry Potter,SENIOR,2025-03-11,212.1,,
+32 32 34 35,Harry Potter,SENIOR,2025-02-23,194.2,,,
+32 32 34 35,Harry Potter,SENIOR,2025-03-11,212.1,,,
 32 32 34 35,Harry Potter,SENIOR,2025-02-07,181.8,Jysk Mesterskab,3
 32 32 34 35,Harry Potter,SENIOR,2025-02-26,183.8,Jysk Mesterskab,4
 32 32 34 35,Harry Potter,SENIOR,2025-02-26,221.7,DM Langbane,3
-67 58 37 19,Will Smith,SENIOR,2025-03-04,224.4,,
-67 58 37 19,Will Smith,SENIOR,2025-01-03,169.7,,
+67 58 37 19,Will Smith,SENIOR,2025-03-04,224.4,,,
+67 58 37 19,Will Smith,SENIOR,2025-01-03,169.7,,,
 67 58 37 19,Will Smith,SENIOR,2025-04-21,151.9,Cup Århus,1
 67 58 37 19,Will Smith,SENIOR,2025-01-15,172.3,Jysk Mesterskab,5
-67 38 95 01,Hjalte Happy,SENIOR,2025-01-19,209.9,,
-67 38 95 01,Hjalte Happy,SENIOR,2025-01-11,193.2,,
+67 38 95 01,Hjalte Happy,SENIOR,2025-01-19,209.9,,,
+67 38 95 01,Hjalte Happy,SENIOR,2025-01-11,193.2,,,
 67 38 95 01,Hjalte Happy,SENIOR,2025-01-19,201.3,DM Langbane,1
 67 38 95 01,Hjalte Happy,SENIOR,2025-03-23,170.0,DM Langbane,5
 67 38 95 01,Hjalte Happy,SENIOR,2025-04-08,227.7,Jysk Mesterskab,2
-41 89 34 01,Mette Frederiksen,JUNIOR,2025-04-02,189.6,,
-41 89 34 01,Mette Frederiksen,JUNIOR,2025-04-16,203.8,,
+41 89 34 01,Mette Frederiksen,JUNIOR,2025-04-02,189.6,,,
+41 89 34 01,Mette Frederiksen,JUNIOR,2025-04-16,203.8,,,
 41 89 34 01,Mette Frederiksen,JUNIOR,2025-04-18,217.2,DM Kortbane,4
 41 89 34 01,Mette Frederiksen,JUNIOR,2025-03-08,219.1,Cup Odense,1
+20 20 20 20,farvelsa,JUNIOR,2025-05-25,1.0E52,DM ,2
