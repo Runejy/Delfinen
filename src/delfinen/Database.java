@@ -645,4 +645,6 @@ public class Database {
     public static ArrayList<Result> getFreestyleList() {
         return freestyleList;
     }
+
+
 }

@@ -2,8 +2,10 @@ package delfinen.Results;
 
 import delfinen.Enums.Discipline;
 import delfinen.Enums.Team;
+import delfinen.Enums.TrainingType;
 
 public class ResultTraining implements Result {
+    private TrainingType resultType = TrainingType.CASUAL;
     private String phoneNumber;
     private String swimmerName;
     private Team team;
@@ -52,7 +54,7 @@ public class ResultTraining implements Result {
 
     @Override
     public String toString() {
-        return String.format("%-15s %-15s %-15s%n", getDiscipline(), getDate(), getTime());
+        return String.format("%-20s %-15s %-15s %-15s %n", swimmerName, date, time + " sec", discipline);
     }
 
     @Override
@@ -63,5 +65,9 @@ public class ResultTraining implements Result {
                 date + "," +
                 time + "," +
                 ",,";
+    }
+    @Override
+    public TrainingType getResultType(){
+        return resultType;
     }
 }

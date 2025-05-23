@@ -2,8 +2,10 @@ package delfinen.Results;
 
 import delfinen.Enums.Discipline;
 import delfinen.Enums.Team;
+import delfinen.Enums.TrainingType;
 
 public class ResultCompetition implements Result {
+    private TrainingType resultType = TrainingType.COMPETITION;
     private String phoneNumber;
     private String swimmerName;
     private Team team;
@@ -64,7 +66,7 @@ public class ResultCompetition implements Result {
 
     @Override
     public String toString() {
-        return String.format("%-15s %-15s %-15s %-15s %-15s%n", getDiscipline(), getDate(), getTime(), getCompetitionName(), getPlacement());
+        return String.format("%-25s %-15s %-15s %-15s %-25s %-15s%n", swimmerName, date, time + " sec", discipline, competitionName, placement);
     }
 
     @Override
@@ -76,5 +78,10 @@ public class ResultCompetition implements Result {
                 time + "," +
                 competitionName + "," +
                 placement;
+    }
+
+    @Override
+    public TrainingType getResultType(){
+        return resultType;
     }
 }

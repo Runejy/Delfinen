@@ -192,11 +192,9 @@ public class Menu {
                     SwimmingClub.addTrainer();
                     break;
                 case "2":
+                    showTrainingResuts();
                     break;
                 case "3":
-                    showCompetitionResults();
-                    showCompetitionResults();
-                    showCompetitionResults();
                     showCompetitionResults();
                     break;
                 case "4":
