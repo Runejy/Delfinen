@@ -35,6 +35,8 @@ public class Database {
         }
     }
 
+    //Skriver nye medlemmer ind i CSV-fil i rette format - gammel version
+
     public static void inputNewMemberData(Member newMember) {
         if (newMember == null) {
             System.out.println("Error: Member data is missing.");
@@ -73,6 +75,8 @@ public class Database {
         }
     }
 
+    //Skriver nye medlemmer ind i CSV-fil i rette format
+
     public static boolean addNewMember(Member member) {
         if (member == null) {
             System.out.println("Error: Member data is missing.");
@@ -94,6 +98,8 @@ public class Database {
 
         return true;
     }
+
+    //Skriver nye elite medlemmer ind i CSV-fil i rette format
 
     public static boolean addNewEliteSwimmer(EliteSwimmer eliteSwimmer) {
         if (eliteSwimmer == null) {
@@ -376,40 +382,40 @@ public class Database {
     }
 
 
-    //INPUT ELITE DATA TO CSV FILE
-    public static void inputNewEliteData(EliteSwimmer newEliteSwimmer) {
-        try {
-            fileWriter = new FileWriter(eliteSwimmerFilePath, true);
+//    //INPUT ELITE DATA TO CSV FILE
+//    public static void inputNewEliteData(EliteSwimmer newEliteSwimmer) {
+//        try {
+//            fileWriter = new FileWriter(eliteSwimmerFilePath, true);
+//
+//            // Fordi disciplinerne er enums, konverteres de til Strings med .name() først
+//            String disciplineString = makeDisciplineText(newEliteSwimmer.getDisciplines());
+//
+//            fileWriter.write(
+//                    System.lineSeparator() +
+//                            newEliteSwimmer.getPhoneNumber() + ";" +
+//                            newEliteSwimmer.getName() + ";" +
+//                            newEliteSwimmer.getTrainer() + ";" +
+//                            newEliteSwimmer.getTeam() + ";" +
+//                            disciplineString
+//            );
+//            fileWriter.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-            // Fordi disciplinerne er enums, konverteres de til Strings med .name() først
-            String disciplineString = makeDisciplineText(newEliteSwimmer.getDisciplines());
-
-            fileWriter.write(
-                    System.lineSeparator() +
-                            newEliteSwimmer.getPhoneNumber() + ";" +
-                            newEliteSwimmer.getName() + ";" +
-                            newEliteSwimmer.getTrainer() + ";" +
-                            newEliteSwimmer.getTeam() + ";" +
-                            disciplineString
-            );
-            fileWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static String makeDisciplineText(HashMap<Discipline, Discipline> disciplines) {
-        String result = "";
-
-        for (int i = 0; i < disciplines.size(); i++) {
-            result += disciplines.get(i); // ADDS DISCIPLINE AS TEXT
-            if (i < disciplines.size() - 1) {
-                result += ", "; // ADD COMMA AND SPACE IF IT'S NOT THE LAST DISCIPLINE IN LIST
-            }
-        }
-
-        return result;
-    }
+//    public static String makeDisciplineText(HashMap<Discipline, Discipline> disciplines) {
+//        String result = "";
+//
+//        for (int i = 0; i < disciplines.size(); i++) {
+//            result += disciplines.get(i); // ADDS DISCIPLINE AS TEXT
+//            if (i < disciplines.size() - 1) {
+//                result += ", "; // ADD COMMA AND SPACE IF IT'S NOT THE LAST DISCIPLINE IN LIST
+//            }
+//        }
+//
+//        return result;
+//    }
 
     // ARRAYLIST OVER MEMBERS IN DATABASE
     private static ArrayList<Member> getMemberArrayList() {
@@ -431,7 +437,7 @@ public class Database {
                         rowData[3], //Gender
                         rowData[4], //Mail
                         MemberActivity.valueOf(rowData[5].toUpperCase()), //Active or Passive
-                        TrainingType.valueOf(rowData[7].toUpperCase())); //Casual og Competition
+                        TrainingType.valueOf(rowData[7].toUpperCase())); //Casual or Competition
 
                 memberList.add(newMember);
             }
